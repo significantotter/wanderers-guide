@@ -6,7 +6,7 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Wanderer's Guide Code ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // ========================================================================================= //
 
-let supportedWebLinks = [
+window.supportedWebLinks = [
     {Website: '2e.aonprd.com', Title: 'Archives of Nethys - 2e'},
     {Website: 'pf2.easytool.es', Title: 'PF2 EasyTool'},
     {Website: 'pf2easy.com', Title: 'PF2 EasyTool'},
@@ -17,21 +17,21 @@ let supportedWebLinks = [
     {Website: 'paizo.com', Title: 'Paizo'},
 ];
 
-let textProcess_warningOnUnknown = false;
-function textProcess_canIndex(dataCollection){
+window.textProcess_warningOnUnknown = false;
+window.textProcess_canIndex=function(dataCollection){
    return (typeof dataCollection !== 'undefined' && dataCollection != null);
 }
 
-const regexFeatLinkExt = /\((Feat|Ability|Action|Activity):(lvl-([\-0-9]+):|type-([a-z]+):|)\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
-const regexFeatLink = /\((Feat|Ability|Action|Activity):(lvl-([\-0-9]+):|type-([a-z]+):|)\s*([^(:]+?)\s*\)/ig;
-const regexItemLinkExt = /\((Item):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
-const regexItemLink = /\((Item):\s*([^(:]+?)\s*\)/ig;
-const regexSpellLinkExt = /\((Spell):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
-const regexSpellLink = /\((Spell):\s*([^(:]+?)\s*\)/ig;
-const regexLanguageLinkExt = /\((Language):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
-const regexLanguageLink = /\((Language):\s*([^(:]+?)\s*\)/ig;
-const regexTraitLinkExt = /\((Trait):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
-const regexTraitLink = /\((Trait):\s*([^(:]+?)\s*\)/ig;
+window.regexFeatLinkExt = /\((Feat|Ability|Action|Activity):(lvl-([\-0-9]+):|type-([a-z]+):|)\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
+window.regexFeatLink = /\((Feat|Ability|Action|Activity):(lvl-([\-0-9]+):|type-([a-z]+):|)\s*([^(:]+?)\s*\)/ig;
+window.regexItemLinkExt = /\((Item):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
+window.regexItemLink = /\((Item):\s*([^(:]+?)\s*\)/ig;
+window.regexSpellLinkExt = /\((Spell):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
+window.regexSpellLink = /\((Spell):\s*([^(:]+?)\s*\)/ig;
+window.regexLanguageLinkExt = /\((Language):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
+window.regexLanguageLink = /\((Language):\s*([^(:]+?)\s*\)/ig;
+window.regexTraitLinkExt = /\((Trait):\s*([^(:]+?)\s*\|\s*(.+?)\s*\)/ig;
+window.regexTraitLink = /\((Trait):\s*([^(:]+?)\s*\)/ig;
 
 /*
 Optional Requirements:
@@ -42,10 +42,10 @@ Optional Requirements:
   - g_itemMap
   - g_spellMap
 */
-let temp_textProcess_j = '';
-let temp_textProcess_s = '';
+window.temp_textProcess_j = '';
+window.temp_textProcess_s = '';
 
-function processText(text, isSheet, isJustified = false, size = 'MEDIUM', indexConditions = true) {
+window.processText=function(text, isSheet, isJustified = false, size = 'MEDIUM', indexConditions = true) {
     if(text == null) {return text;}
 
     let _j;
@@ -256,7 +256,7 @@ function processText(text, isSheet, isJustified = false, size = 'MEDIUM', indexC
 
 }
 
-function processTextRemoveIndexing(text) {
+window.processTextRemoveIndexing=function(text) {
   if(text == null) {return text;}
 
   // ~ : Some Text
@@ -325,7 +325,7 @@ function processTextRemoveIndexing(text) {
 /////
 
 const regexTableDetection = /((^((.+)\|(.+))$)(\n|$)){3,}/igm;
-function handleTableCreation(match) {
+window.handleTableCreation=function(match) {
 
   let rows = match.split(/\n/);
 
@@ -421,11 +421,11 @@ function handleTableCreation(match) {
 
 /////
 
-function handleFeatLink(match, linkName, limitation, limitLvl, limitType, innerTextName) {
+window.handleFeatLink=function(match, linkName, limitation, limitLvl, limitType, innerTextName) {
     return handleFeatLinkExt(match, linkName, limitation, limitLvl, limitType, innerTextName, innerTextName);
 }
 
-function handleFeatLinkExt(match, linkName, limitation, limitLvl, limitType, innerTextDisplay, innerTextName) {
+window.handleFeatLinkExt=function(match, linkName, limitation, limitLvl, limitType, innerTextDisplay, innerTextName) {
 
     let isLevelLimit = limitation.toLowerCase().startsWith('lvl-');
     let isTypeLimit = limitation.toLowerCase().startsWith('type-');
@@ -493,11 +493,11 @@ function handleFeatLinkExt(match, linkName, limitation, limitLvl, limitType, inn
 }
 
 
-function handleItemLink(match, linkName, innerTextName) {
+window.handleItemLink=function(match, linkName, innerTextName) {
     return handleItemLinkExt(match, linkName, innerTextName, innerTextName);
 }
 
-function handleItemLinkExt(match, linkName, innerTextDisplay, innerTextName) {
+window.handleItemLinkExt=function(match, linkName, innerTextDisplay, innerTextName) {
     innerTextName = innerTextName.replace(/’/g,'\'').toUpperCase();
     for(const [itemID, itemDataStruct] of g_itemMap.entries()){
         let itemName = itemDataStruct.Item.name.replace(/[\(\)]/g,'').toUpperCase();
@@ -525,11 +525,11 @@ function handleItemLinkExt(match, linkName, innerTextDisplay, innerTextName) {
 }
 
 
-function handleSpellLink(match, linkName, innerTextName) {
+window.handleSpellLink=function(match, linkName, innerTextName) {
     return handleSpellLinkExt(match, linkName, innerTextName, innerTextName);
 }
 
-function handleSpellLinkExt(match, linkName, innerTextDisplay, innerTextName) {
+window.handleSpellLinkExt=function(match, linkName, innerTextDisplay, innerTextName) {
     innerTextName = innerTextName.replace(/’/g,'\'').toUpperCase();
     for(const [spellID, spellDataStruct] of g_spellMap.entries()){
         let spellName = spellDataStruct.Spell.name.toUpperCase();
@@ -557,11 +557,11 @@ function handleSpellLinkExt(match, linkName, innerTextDisplay, innerTextName) {
 }
 
 
-function handleLanguageLink(match, linkName, innerTextName) {
+window.handleLanguageLink=function(match, linkName, innerTextName) {
     return handleLanguageLinkExt(match, linkName, innerTextName, innerTextName);
 }
 
-function handleLanguageLinkExt(match, linkName, innerTextDisplay, innerTextName) {
+window.handleLanguageLinkExt=function(match, linkName, innerTextDisplay, innerTextName) {
     innerTextName = innerTextName.replace(/’/g,'\'').toUpperCase();
     for(const language of g_allLanguages){
         let langName = language.name.toUpperCase();
@@ -589,11 +589,11 @@ function handleLanguageLinkExt(match, linkName, innerTextDisplay, innerTextName)
 }
 
 
-function handleTraitLink(match, linkName, innerTextName) {
+window.handleTraitLink=function(match, linkName, innerTextName) {
     return handleTraitLinkExt(match, linkName, innerTextName, innerTextName);
 }
 
-function handleTraitLinkExt(match, linkName, innerTextDisplay, innerTextName) {
+window.handleTraitLinkExt=function(match, linkName, innerTextDisplay, innerTextName) {
     let traitLinkClass = 'traitTextLink'+(innerTextName.replace(/[' ]/g, ''));
     let traitLinkText = '<span class="'+traitLinkClass+' is-underlined-info cursor-clickable">'+innerTextDisplay+'</span>';
     setTimeout(function() {
@@ -610,7 +610,7 @@ function handleTraitLinkExt(match, linkName, innerTextDisplay, innerTextName) {
 
 /////
 
-function handleIndexConditions(text){
+window.handleIndexConditions=function(text){
     for(const condition of g_allConditions){
         let conditionName = condition.name.toLowerCase();
         let conditionLinkClass = 'conditionTextLink'+conditionName.replace(/ /g,'-');
@@ -634,7 +634,7 @@ function handleIndexConditions(text){
 /////
 
 // Stages Cleaner
-function handleStages(match, boldOne, stageNum, boldTwo, text){
+window.handleStages=function(match, boldOne, stageNum, boldTwo, text){
   text = text.trim();
   if(text.endsWith(';')){ text = text.slice(0, -1); }
 
@@ -649,7 +649,7 @@ function handleStages(match, boldOne, stageNum, boldTwo, text){
 
 /////
 
-function handleLink(match, innerTextURL) {
+window.handleLink=function(match, innerTextURL) {
     let urlObj = null;
     try {
         urlObj = new URL(innerTextURL);
@@ -671,7 +671,7 @@ function handleLink(match, innerTextURL) {
 
 
 /////////////// SHEET VARIABLES & TOOLTIPS ///////////////
-function processTextOnlyVariablesAndTooltips(text){
+window.processTextOnlyVariablesAndTooltips=function(text){
   if(text == null){ return null; }
 
   let regexSheetVariables = /\{(.+?)\}/g;
@@ -680,7 +680,7 @@ function processTextOnlyVariablesAndTooltips(text){
   return text;
 }
 
-function handleSheetVariablesAndTooltips(match, innerText){
+window.handleSheetVariablesAndTooltips=function(match, innerText){
     if(innerText.includes("|")){
         let innerTextData = innerText.split("|");
         innerTextVariable = innerTextData[0].replace(/\s/g, "").toUpperCase();
@@ -754,7 +754,7 @@ function handleSheetVariablesAndTooltips(match, innerText){
 }
 
 // Old system, really need to replace getStatTotal() with getVariableValue()
-function acquireSheetVariable(variableName){
+window.acquireSheetVariable=function(variableName){
     if(variableName.charAt(0) === '+') {
         variableName = variableName.substring(1);
         if(variableName.slice(-3) === "_DC") {
@@ -779,7 +779,7 @@ function acquireSheetVariable(variableName){
     }
 }
 
-function processTextBakeSheetVariables(text){
+window.processTextBakeSheetVariables=function(text){
   if(text == null){ return null; }
 
   let handleVariables = function(match, innerText){
@@ -803,7 +803,7 @@ function processTextBakeSheetVariables(text){
   return text;
 }
 
-function processTextRemoveTooltips(text, removeOnlyIfMatches=null){
+window.processTextRemoveTooltips=function(text, removeOnlyIfMatches=null){
   if(text == null){ return null; }
 
   let handleRemoval = function(match, word, tooltipWords){

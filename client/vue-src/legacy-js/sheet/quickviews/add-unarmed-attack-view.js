@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddUnarmedAttackQuickview(data) {
+window.openAddUnarmedAttackQuickview=function(data) {
     addBackFunctionality(data);
 
     let itemID,itemName,itemDescription,itemDamageType,itemDieType,itemRange,itemReload,itemCode,itemMaterialType,itemTagArray, itemAtkBonus, itemDmgBonus;
@@ -249,6 +249,6 @@ function openAddUnarmedAttackQuickview(data) {
 }
 
 
-function isUnarmedAttack(item){
+window.isUnarmedAttack=function(item){
   return (item != null && item.WeaponData != null && item.WeaponData.category.toUpperCase() == 'UNARMED');
 }

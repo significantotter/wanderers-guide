@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddLoreQuickview(data) {
+window.openAddLoreQuickview=function(data) {
 
     $('#quickViewTitle').html("Add Lore Skill");
     let qContent = $('#quickViewContent');

@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openActionsTab(data) {
+window.openActionsTab=function(data) {
 
     $('#tabContent').append('<div class="tabs is-centered is-marginless"><ul class="action-tabs"><li><a id="actionTabEncounter">Encounter</a></li><li><a id="actionTabExploration">Exploration</a></li><li><a id="actionTabDowntime">Downtime</a></li></ul></div>');
 
@@ -169,7 +169,7 @@ function openActionsTab(data) {
 
 
 // Action Tabs //
-function changeActionTab(type, data){
+window.changeActionTab=function(type, data){
     if(!g_selectedSubTabLock) {g_selectedSubTabID = type;}
     g_selectedActionSubTabID = type;
 
@@ -250,7 +250,7 @@ function changeActionTab(type, data){
 
 }
 
-function filterActionArray(data, featStructArray, tabType){
+window.filterActionArray=function(data, featStructArray, tabType){
 
     // Add class, acnestry, etc feats to featStructArray, if enabled
     if(g_selectedAction_FeatsEnabled){
@@ -486,7 +486,7 @@ function filterActionArray(data, featStructArray, tabType){
 
 }
 
-function displayAction(actionStruct, actionCount, skillMap) {
+window.displayAction=function(actionStruct, actionCount, skillMap) {
 
     let actionID = 'actionLink-C'+actionCount;
                 

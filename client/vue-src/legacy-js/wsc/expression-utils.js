@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function readExpr(wscCode){
+window.readExpr=function(wscCode){
   // IF(*){*} or IF(*){*}ELSE{*}
   let rMatchIf = wscCode.match(/^\s*IF\s*\((.*?)\)\s*\{(.*?)\}\s*$/);
   let rMatchIfElse = wscCode.match(/^\s*IF\s*\((.*?)\)\s*\{(.*?)\}\s*ELSE\s*\{(.*?)\}\s*$/);

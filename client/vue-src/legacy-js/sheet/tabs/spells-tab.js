@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openSpellTab(data) {
+window.openSpellTab=function(data) {
 
   $('#tabContent').append('<div id="spellsTabs" class="tabs is-centered is-marginless"><ul class="spell-tabs"><li><a id="spellsTabCore">Core</a></li><li><a id="spellsTabFocus">Focus</a></li><li><a id="spellsTabInnate">Innate</a></li></ul></div>');
 
@@ -55,7 +55,7 @@ function openSpellTab(data) {
 }
 
 // Spells Tabs //
-function changeSpellsTab(type){
+window.changeSpellsTab=function(type){
   if(!g_selectedSubTabLock) {g_selectedSubTabID = type;}
   g_selectedSpellSubTabID = type;
 
@@ -79,7 +79,7 @@ function changeSpellsTab(type){
 
 // Core Spells //
 
-function displaySpellsCore() {
+window.displaySpellsCore=function() {
 
   $('#spellsTabContent').append(`
     <div class="columns is-mobile is-marginless">
@@ -102,7 +102,7 @@ function displaySpellsCore() {
 }
 
 
-function displaySpellsAndSlots(){
+window.displaySpellsAndSlots=function(){
 
   let data = {
     ArcaneSpellAttack : getStatTotal(VARIABLE.ARCANE_SPELL_ATTACK),
@@ -233,7 +233,7 @@ function displaySpellsAndSlots(){
 }
 
 
-function displaySpellsInLevelPrepared(spellBook, level, slotArray, spellBookSectionID, data, spellsSearchInput) {
+window.displaySpellsInLevelPrepared=function(spellBook, level, slotArray, spellBookSectionID, data, spellsSearchInput) {
 
   let sectionName = (level == 0) ? 'Cantrips' : 'Level '+level;
   let spellBookTitleSectionID = spellBookSectionID+'-title';
@@ -449,7 +449,7 @@ function displaySpellsInLevelPrepared(spellBook, level, slotArray, spellBookSect
 
 
 
-function displaySpellsInLevelSpontaneous(spellBook, level, slotArray, spellBookSectionID, data, spellsSearchInput) {
+window.displaySpellsInLevelSpontaneous=function(spellBook, level, slotArray, spellBookSectionID, data, spellsSearchInput) {
 
   let filteredSlotArray = [];
   for(let slot of slotArray){
@@ -697,7 +697,7 @@ function displaySpellsInLevelSpontaneous(spellBook, level, slotArray, spellBookS
   return (didDisplaySpellAtLevel) ? 1 : 0;
 }
 
-function displaySpontaneousCastingsSet(locationID, slotsArray, spellListingSponClass){
+window.displaySpontaneousCastingsSet=function(locationID, slotsArray, spellListingSponClass){
 
   let castingButtonsClass = 'castingSpontaneousBtns-'+locationID;
   let slotsUsedCount = 0;
@@ -748,9 +748,9 @@ function displaySpontaneousCastingsSet(locationID, slotsArray, spellListingSponC
 
 
 // Focus Spells //
-let g_focusOpenPoint = false;
+window.g_focusOpenPoint = false;
 
-function displaySpellsFocus() {
+window.displaySpellsFocus=function() {
 
     let data = {
       ArcaneSpellAttack : getStatTotal(VARIABLE.ARCANE_SPELL_ATTACK),
@@ -931,7 +931,7 @@ function displaySpellsFocus() {
 
 }
 
-function displayFocusCastingsSet(changeType){
+window.displayFocusCastingsSet=function(changeType){
 
     let performedChange = false;
     for(let focusPointData of g_focusPointArray){
@@ -1006,7 +1006,7 @@ function displayFocusCastingsSet(changeType){
 
 
 // Innate Spells //
-function displaySpellsInnate() {
+window.displaySpellsInnate=function() {
 
     let data = {
       ArcaneSpellAttack : getStatTotal(VARIABLE.ARCANE_SPELL_ATTACK),
@@ -1159,7 +1159,7 @@ function displaySpellsInnate() {
 
 }
 
-function displayInnateCastingsSet(locationID, innateSpell, spellIndex, spellListingID){
+window.displayInnateCastingsSet=function(locationID, innateSpell, spellIndex, spellListingID){
 
     let castingButtonsClass = 'castingInnateBtns'+locationID;
 

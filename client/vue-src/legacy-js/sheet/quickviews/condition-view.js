@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openConditionQuickview(data) {
+window.openConditionQuickview=function(data) {
     addBackFunctionality(data);
 
     $('#quickViewTitle').html('Condition - '+capitalizeWords(data.Condition.name));

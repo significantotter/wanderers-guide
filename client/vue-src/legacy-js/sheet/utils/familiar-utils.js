@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let g_familiarAbilitiesMap = new Map();
+window.g_familiarAbilitiesMap = new Map();
 
-function processFamiliarAbilities(charFamiliar){
+window.processFamiliarAbilities=function(charFamiliar){
   if(charFamiliar.abilitiesJSON == null) { return; }
   let abilitiesArray = [];
   let abilityNamesArray = JSON.parse(charFamiliar.abilitiesJSON);
@@ -21,12 +21,12 @@ function processFamiliarAbilities(charFamiliar){
 }
 
 // Familiar Abilities - Code //
-let g_familiarSpeedsMap = new Map();
-let g_familiarSensesMap = new Map();
-let g_familiarHPMap = new Map();
+window.g_familiarSpeedsMap = new Map();
+window.g_familiarSensesMap = new Map();
+window.g_familiarHPMap = new Map();
 
-let temp_charFamiliarID = null;
-function processFamiliarAbilityCode(charFamiliarID, abilitiesArray){
+window.temp_charFamiliarID = null;
+window.processFamiliarAbilityCode=function(charFamiliarID, abilitiesArray){
   temp_charFamiliarID = charFamiliarID;
 
   g_familiarSpeedsMap.set(temp_charFamiliarID, []);
@@ -77,7 +77,7 @@ function processFamiliarAbilityCode(charFamiliarID, abilitiesArray){
 
 }
 
-function handleFamiliarSpeed(match, innerText){
+window.handleFamiliarSpeed=function(match, innerText){
   let speedArray = g_familiarSpeedsMap.get(temp_charFamiliarID);
   if(speedArray != null){
     speedArray.push(innerText);
@@ -86,7 +86,7 @@ function handleFamiliarSpeed(match, innerText){
   return '';
 }
 
-function handleFamiliarSense(match, innerText){
+window.handleFamiliarSense=function(match, innerText){
   let senseArray = g_familiarSensesMap.get(temp_charFamiliarID);
   if(senseArray != null){
     senseArray.push(innerText);
@@ -95,7 +95,7 @@ function handleFamiliarSense(match, innerText){
   return '';
 }
 
-function handleFamiliarMaxHP(match, innerText){
+window.handleFamiliarMaxHP=function(match, innerText){
   let hpArray = g_familiarHPMap.get(temp_charFamiliarID);
   if(hpArray != null){
     hpArray.push(parseInt(innerText));
@@ -106,7 +106,7 @@ function handleFamiliarMaxHP(match, innerText){
 
 ////
 
-function getFamiliarMaxHealth(charFamiliar){
+window.getFamiliarMaxHealth=function(charFamiliar){
   let hpArray = g_familiarHPMap.get(charFamiliar.id);
   let hpIncrease = 5;
   if(hpArray != null){
@@ -119,7 +119,7 @@ function getFamiliarMaxHealth(charFamiliar){
 
 ////
 
-function getFamiliarAC(){
+window.getFamiliarAC=function(){
   // Remove circumstance or status bonuses / penalties
   /*
     CIRCUM_BONUS, STATUS_BONUS, CIRCUM_PENALTY, STATUS_PENALTY
@@ -158,7 +158,7 @@ function getFamiliarAC(){
   return totalAC - removalMod + dexModChange;
 }
 
-function getFamiliarSpellBonus(){
+window.getFamiliarSpellBonus=function(){
   let levelBonus = g_character.level;
   if(gOption_hasProfWithoutLevel) { levelBonus = 0; }
   if(g_spellBookArray != null && g_spellBookArray.length > 0){
@@ -180,7 +180,7 @@ function getFamiliarSpellBonus(){
   return levelBonus + getMod(g_preConditions_chaScore);
 }
 
-function getFamiliarMiscBonus(){
+window.getFamiliarMiscBonus=function(){
   if(gOption_hasProfWithoutLevel) {
     return 0;
   } else {
@@ -188,35 +188,35 @@ function getFamiliarMiscBonus(){
   }
 }
 
-function getFamiliarFortBonus(){
+window.getFamiliarFortBonus=function(){
   return getStatTotal(VARIABLE.SAVE_FORT);
 }
-function getFamiliarReflexBonus(){
+window.getFamiliarReflexBonus=function(){
   return getStatTotal(VARIABLE.SAVE_REFLEX);
 }
-function getFamiliarWillBonus(){
+window.getFamiliarWillBonus=function(){
   return getStatTotal(VARIABLE.SAVE_WILL);
 }
 
-function getFamiliarPerception(){
+window.getFamiliarPerception=function(){
   return getFamiliarSpellBonus();
 }
 
-function getFamiliarAcrobatics(){
+window.getFamiliarAcrobatics=function(){
   return getFamiliarSpellBonus();
 }
 
-function getFamiliarStealth(){
+window.getFamiliarStealth=function(){
   return getFamiliarSpellBonus();
 }
 
 ////
 
-function getFamiliarSize(){
+window.getFamiliarSize=function(){
   return 'TINY';
 }
 
-function getFamiliarSense(charFamiliar){
+window.getFamiliarSense=function(charFamiliar){
   let senseArray = g_familiarSensesMap.get(charFamiliar.id);
   let senseText = 'low-light vision, empathy (1 mile, only to you)';
   if(senseArray != null){
@@ -232,7 +232,7 @@ function getFamiliarSense(charFamiliar){
   return senseText;
 }
 
-function getFamiliarSpeed(charFamiliar){
+window.getFamiliarSpeed=function(charFamiliar){
   let speedArray = g_familiarSpeedsMap.get(charFamiliar.id);
   let speedText = '25';
   if(speedArray != null){
@@ -245,7 +245,7 @@ function getFamiliarSpeed(charFamiliar){
 
 
 
-function getFamiliarSpecificStruct(specificType){
+window.getFamiliarSpecificStruct=function(specificType){
   
   let familiarStruct = g_companionData.AllSpecificFamiliars.find(struct => {
     return struct.specificType === specificType;
@@ -265,7 +265,7 @@ function getFamiliarSpecificStruct(specificType){
 
 }
 
-function displayFamiliarTraits(content, specificStruct){
+window.displayFamiliarTraits=function(content, specificStruct){
   if(specificStruct == null) {return;}
   let tagsInnerHTML = '<div class="columns is-centered is-marginless"><div class="column is-9 is-paddingless"><div class="buttons is-marginless is-centered">';
   for(const tag of specificStruct.Tags){
@@ -275,18 +275,18 @@ function displayFamiliarTraits(content, specificStruct){
   content.append(tagsInnerHTML);
 }
 
-function displayFamiliarAlignment(content, specificStruct){
+window.displayFamiliarAlignment=function(content, specificStruct){
   if(specificStruct == null || specificStruct.Alignment == null) {return;}
   content.append('<hr class="m-2">');
   content.append('<div class="px-3"><p class="negative-indent"><strong>Alignment</strong> '+specificStruct.Alignment+'</p></div>');
 }
 
-function displayFamiliarReqAbils(content, specificStruct){
+window.displayFamiliarReqAbils=function(content, specificStruct){
   if(specificStruct == null) {return;}
   content.append('<div class="px-3"><p class="negative-indent"><strong>Required Number of Abilities</strong> '+specificStruct.NumAbils+'</p></div>');
 }
 
-function displayFamiliarExtraAbils(content, specificStruct){
+window.displayFamiliarExtraAbils=function(content, specificStruct){
   if(specificStruct == null) {return;}
   for(let extraAbil of specificStruct.ExtraAbils){
     content.append('<hr class="m-2">');

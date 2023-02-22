@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddWeakQuickview(data) {
+window.openAddWeakQuickview=function(data) {
   addBackFunctionality(data);
 
   $('#quickViewTitle').html("Add Weakness");

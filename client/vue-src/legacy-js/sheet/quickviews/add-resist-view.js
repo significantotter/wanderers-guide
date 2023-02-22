@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddResistQuickview(data) {
+window.openAddResistQuickview=function(data) {
   addBackFunctionality(data);
 
   $('#quickViewTitle').html("Add Resistance");

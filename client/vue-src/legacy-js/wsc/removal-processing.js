@@ -12,7 +12,7 @@
 
 */
 
-function processRemovalStatements(code, codeName, bundleID){
+window.processRemovalStatements=function(code, codeName, bundleID){
   if(code == null) {return;}
 
   let allStatements = code.split(/\n/);
@@ -63,7 +63,7 @@ function processRemovalStatements(code, codeName, bundleID){
   return success;
 }
 
-function removalFeat(name, codeName, bundleID){
+window.removalFeat=function(name, codeName, bundleID){
 
   for(const [featID, featStruct] of g_featMap.entries()){
     if(featStruct?.Feat?.name?.toUpperCase().trim() === name){
@@ -83,7 +83,7 @@ function removalFeat(name, codeName, bundleID){
 
 }
 
-function removalSpell(name, codeName, bundleID){
+window.removalSpell=function(name, codeName, bundleID){
 
   for(const [spellID, spellStruct] of g_spellMap.entries()){
     if(spellStruct?.Spell?.name?.toUpperCase().trim() === name){
@@ -103,7 +103,7 @@ function removalSpell(name, codeName, bundleID){
 
 }
 
-function removalItem(name, codeName, bundleID){
+window.removalItem=function(name, codeName, bundleID){
 
   for(const [itemID, itemStruct] of g_itemMap.entries()){
     if(itemStruct?.Item?.name?.toUpperCase().trim() === name){
@@ -123,7 +123,7 @@ function removalItem(name, codeName, bundleID){
 
 }
 
-function removalClassFeature(name, codeName, bundleID){
+window.removalClassFeature=function(name, codeName, bundleID){
 
   let searchAndRemoveClassFeature = function(abilityArray, insideValue=false){
     if(abilityArray == null) { return; }

@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function getAttackAndDamage(itemData, invItem){
+window.getAttackAndDamage=function(itemData, invItem){
 
     let strMod = getMod(getStatTotal(VARIABLE.SCORE_STR));
     let dexMod = getMod(getStatTotal(VARIABLE.SCORE_DEX));
@@ -504,7 +504,7 @@ function getAttackAndDamage(itemData, invItem){
 
 
 // MAP Calc //
-function generateMAP(attackBonus, itemTagArray) {
+window.generateMAP=function(attackBonus, itemTagArray) {
 
   attackBonus = parseInt(attackBonus);
   let agileTag = itemTagArray.find(tag => {
@@ -545,7 +545,7 @@ function generateMAP(attackBonus, itemTagArray) {
 
 }
 
-function generateStringMAP(attackBonus, itemTagArray){
+window.generateStringMAP=function(attackBonus, itemTagArray){
 
   let map = generateMAP(attackBonus, itemTagArray);
   return `${map.one}/${map.two}/${map.three}`;

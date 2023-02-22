@@ -2,14 +2,15 @@
     By Aaron Cassar.
 */
 
-let errorMessages = [];
+window.errorMessages = [];
+window.socket = io();
 
-function displayError(message){
+window.displayError=function(message){
   console.warn('Traced Error: '+message);
   console.error('Traced Error: '+message);
 }
 
-function processError(message){
+window.processError=function(message){
   errorMessages.push(message);
   reloadErrorMessages();
 }
@@ -21,11 +22,11 @@ window.onerror = function(e, url, line) {
   processError(`${e} (${url}:${line})`);
 };
 
-function clearErrorMessages() {
+window.clearErrorMessages=function() {
   errorMessages = [];
 }
 
-function reloadErrorMessages(){
+window.reloadErrorMessages=function(){
     if(errorMessages.length > 0) {
         let errorHTML = '<p class="subtitle is-marginless has-text-weight-bold">Errors</p>';
         for(let errMsg of errorMessages){

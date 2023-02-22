@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-let g_profConversionMap = new Map();
+window.g_profConversionMap = new Map();
 
 g_profConversionMap.set(VARIABLE.LIGHT_ARMOR, {Name: 'Light_Armor', Category: 'Defense', AbilScore: 'NONE'});
 g_profConversionMap.set(VARIABLE.MEDIUM_ARMOR, {Name: 'Medium_Armor', Category: 'Defense', AbilScore: 'NONE'});
@@ -107,7 +107,7 @@ g_profConversionMap.set('STEALTH', {Name: 'Stealth', Category: 'Skill'});
 g_profConversionMap.set('SURVIVAL', {Name: 'Survival', Category: 'Skill'});
 g_profConversionMap.set('THIEVERY', {Name: 'Thievery', Category: 'Skill'});
 
-function profConversion_convertOldNameToVarName(profName){
+window.profConversion_convertOldNameToVarName=function(profName){
 
   let convertProfName = profConversion_convertOldName(profName);
   switch(convertProfName){
@@ -175,15 +175,21 @@ function profConversion_convertOldNameToVarName(profName){
 
 }
 
-function profConversion_convertOldName(profName){
+window.profConversion_convertOldName=function(profName){
   return profName.replace(/\s+/g,'').replace(/_/g,'').toUpperCase();
 }
 
-let g_expr_hasInit = false;
-let g_expr_level, g_expr_focusPoints, g_expr_profMap, g_expr_senseArray,
-        g_expr_heritage, g_expr_classAbilityArray, g_expr_featDataMap, g_expr_featNameArray = null;
+window.g_expr_hasInit = false;
+window.g_expr_level = null;
+window.g_expr_focusPoints = null;
+window.g_expr_profMap = null;
+window.g_expr_senseArray = null;
+window.g_expr_heritage = null;
+window.g_expr_classAbilityArray = null;
+window.g_expr_featDataMap = null;
+window.g_expr_featNameArray = null;
 
-function initExpressionProcessor(expDataStruct){
+window.initExpressionProcessor=function(expDataStruct){
 
     g_expr_level = expDataStruct.ChoiceStruct.Character.level;
     g_expr_profMap = objToMap(expDataStruct.ChoiceStruct.ProfObject);
@@ -233,12 +239,12 @@ function initExpressionProcessor(expDataStruct){
 
 }
 
-function updateExpressionProcessor(expDataStruct){
+window.updateExpressionProcessor=function(expDataStruct){
     initExpressionProcessor(expDataStruct);
 }
 
 
-function testExpr(wscCode, srcStruct=null){
+window.testExpr=function(wscCode, srcStruct=null){
     if(!g_expr_hasInit) {
         displayError("Expression Processor has not been init!");
         return null;
@@ -285,7 +291,7 @@ function testExpr(wscCode, srcStruct=null){
 
 }
 
-function expHandleExpression(expression, statement, elseStatement, srcStruct){
+window.expHandleExpression=function(expression, statement, elseStatement, srcStruct){
 
     if(expression.includes('HAS-LEVEL')){ // HAS-LEVEL==13
         return expHasLevel(expression, statement, elseStatement);
@@ -337,15 +343,15 @@ function expHandleExpression(expression, statement, elseStatement, srcStruct){
 
 }
 
-function expHasLevel(expression, statement, elseStatement){
+window.expHasLevel=function(expression, statement, elseStatement){
     return expHasNumberCompare(g_expr_level, expression, statement, elseStatement);
 }
 
-function expHasFocusPoints(expression, statement, elseStatement){
+window.expHasFocusPoints=function(expression, statement, elseStatement){
     return expHasNumberCompare(g_expr_focusPoints, expression, statement, elseStatement);
 }
 
-function expIsVariable(expression, variableName, statement, elseStatement){
+window.expIsVariable=function(expression, variableName, statement, elseStatement){
   let variable = g_variableMap.get(variableName);
   if(variable == null) {
     displayError("Expression Processing: Unknown variable \'"+variableName+"\'!");
@@ -369,7 +375,7 @@ function expIsVariable(expression, variableName, statement, elseStatement){
 
 }
 
-function expHasNumberCompare(charVarNumber, expression, statement, elseStatement){
+window.expHasNumberCompare=function(charVarNumber, expression, statement, elseStatement){
     if(expression.includes('==')){
         let inputValue = expression.split('==')[1];
         let number = parseInt(inputValue);
@@ -442,7 +448,7 @@ function expHasNumberCompare(charVarNumber, expression, statement, elseStatement
     return null;
 }
 
-function expHasStringCompare(charVarString, expression, statement, elseStatement){
+window.expHasStringCompare=function(charVarString, expression, statement, elseStatement){
   if(expression.includes('==')){
       let string = expression.split('==')[1];
       if(string != null){
@@ -465,7 +471,7 @@ function expHasStringCompare(charVarString, expression, statement, elseStatement
   return null;
 }
 
-function expHasHeritage(expression, statement, elseStatement){
+window.expHasHeritage=function(expression, statement, elseStatement){
     if(g_expr_heritage == null) { return elseStatement; }
     if(expression.includes('==')){
         let heritageName = expression.split('==')[1].toUpperCase();
@@ -486,7 +492,7 @@ function expHasHeritage(expression, statement, elseStatement){
     }
 }
 
-function expHasClassAbility(expression, statement, elseStatement){
+window.expHasClassAbility=function(expression, statement, elseStatement){
     if(expression.includes('==')){
         let classAbilityName = expression.split('==')[1].toUpperCase();
         classAbilityName = classAbilityName.replace(/_/g," ");
@@ -508,7 +514,7 @@ function expHasClassAbility(expression, statement, elseStatement){
     }
 }
 
-function expHasFeat(expression, statement, elseStatement, srcStruct){
+window.expHasFeat=function(expression, statement, elseStatement, srcStruct){
     if(expression.includes('==')){
         let featName = expression.split('==')[1].toUpperCase();
         featName = featName.replace(/_/g," ");
@@ -528,7 +534,7 @@ function expHasFeat(expression, statement, elseStatement, srcStruct){
     }
 }
 
-function expHasSource(expression, statement, elseStatement){
+window.expHasSource=function(expression, statement, elseStatement){
     if(expression.includes('==')){
         let sourceName = expression.split('==')[1].toUpperCase().trim();
         let source = g_enabledSources.find(source => {
@@ -552,7 +558,7 @@ function expHasSource(expression, statement, elseStatement){
     }
 }
 
-function expHasVision(expression, statement, elseStatement, srcStruct){
+window.expHasVision=function(expression, statement, elseStatement, srcStruct){
     if(expression.includes('==')){
         let visionName = expression.split('==')[1].toUpperCase();
         visionName = visionName.replace(/_/g," ");
@@ -586,7 +592,7 @@ function expHasVision(expression, statement, elseStatement, srcStruct){
     }
 }
 
-function expHasProf(expression, statement, elseStatement, srcStruct){
+window.expHasProf=function(expression, statement, elseStatement, srcStruct){
     let data;
     let boolOp;
     if(expression.includes('==')){
@@ -643,7 +649,7 @@ function expHasProf(expression, statement, elseStatement, srcStruct){
     return elseStatement;
 }
 
-function expHasProfNumUpsCompare(numUpsOne, boolOp, numUpsTwo){
+window.expHasProfNumUpsCompare=function(numUpsOne, boolOp, numUpsTwo){
     switch(boolOp) {
         case 'EQUALS': return numUpsOne == numUpsTwo;
         case 'NOT-EQUALS': return numUpsOne != numUpsTwo;
@@ -653,7 +659,7 @@ function expHasProfNumUpsCompare(numUpsOne, boolOp, numUpsTwo){
     }
 }
 
-function cleanProfDataArrayOfStatementProfs(profDataArray, srcStruct){
+window.cleanProfDataArrayOfStatementProfs=function(profDataArray, srcStruct){
   if(srcStruct == null) {return profDataArray;}
   let newProfDataArray = [];
   for(let profData of profDataArray) {
@@ -667,7 +673,7 @@ function cleanProfDataArrayOfStatementProfs(profDataArray, srcStruct){
 
 /*~ Sheet-Only Expressions ~*/
 
-function expIsUnarmored(expression, statement, elseStatement) {
+window.expIsUnarmored=function(expression, statement, elseStatement) {
   if (typeof g_equippedArmorCategory !== 'undefined') {
     return (g_equippedArmorCategory == null || g_equippedArmorCategory == 'UNARMORED') ? statement : elseStatement;
   } else {
@@ -675,7 +681,7 @@ function expIsUnarmored(expression, statement, elseStatement) {
   }
 }
 
-function expIsToggled(expression, statement, elseStatement) {
+window.expIsToggled=function(expression, statement, elseStatement) {
   if(!isSheetPage()) { return null; }
   if(expression.includes('==')){
     let sheetStateName = expression.split('==')[1].toUpperCase();

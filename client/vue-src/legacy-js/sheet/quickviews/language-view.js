@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openLanguageQuickview(data) {
+window.openLanguageQuickview=function(data) {
     addBackFunctionality(data);
 
     $('#quickViewTitle').html(data.Language.name);

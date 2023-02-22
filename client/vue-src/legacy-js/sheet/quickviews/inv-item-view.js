@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let g_invItemView_isCriticalHit = false;
+window.g_invItemView_isCriticalHit = false;
 
-function openInvItemQuickview(data) {
+window.openInvItemQuickview=function(data) {
     addBackFunctionality(data);
 
     let viewOnly = (data.InvItem.viewOnly != null) ? true : false;

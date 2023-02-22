@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAbilityQuickview(data) {
+window.openAbilityQuickview=function(data) {
     addBackFunctionality(data);
     addContentSource(data.Ability.id, data.Ability.contentSrc, data.Ability.homebrewID);
 
@@ -88,7 +88,7 @@ function openAbilityQuickview(data) {
 }
 
 
-function showFeatListOptions(qContent, wscStatements){
+window.showFeatListOptions=function(qContent, wscStatements){
   if(wscStatements == null) {return;}
 
   let statementArray = wscStatements.split(/\n/);

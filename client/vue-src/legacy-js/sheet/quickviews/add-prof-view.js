@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddProfQuickview(data) {
+window.openAddProfQuickview=function(data) {
 
     $('#quickViewTitle').html("Add Proficiency");
     let qContent = $('#quickViewContent');

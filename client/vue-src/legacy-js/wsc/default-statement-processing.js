@@ -2,8 +2,8 @@
     By Aaron Cassar.
 */
 
-let g_defaultItemPropRuneSlotNum = null;
-function processDefaultItemRuneSheetCode(wscCode, itemID, invItemID){
+window.g_defaultItemPropRuneSlotNum = null;
+window.processDefaultItemRuneSheetCode=function(wscCode, itemID, invItemID){
     if(wscCode == null) {return false;}
 
     // Process Variables
@@ -67,7 +67,7 @@ function processDefaultItemRuneSheetCode(wscCode, itemID, invItemID){
 }
 
 
-function defaultAddItemToBag(bagItemID, bagInvItemID, itemToAddName, itemToAddQty){
+window.defaultAddItemToBag=function(bagItemID, bagInvItemID, itemToAddName, itemToAddQty){
 
     let bagItemDataStruct = g_itemMap.get(bagItemID+"");
     if(bagItemDataStruct.StorageData == null) {return;}
@@ -95,7 +95,7 @@ function defaultAddItemToBag(bagItemID, bagInvItemID, itemToAddName, itemToAddQt
 }
 
 
-function defaultSetWeaponRunes(invItemID, runeCodeName, runeData){
+window.defaultSetWeaponRunes=function(invItemID, runeCodeName, runeData){
     runeCodeName = runeCodeName.replace(/_/g," ");
     runeCodeName = runeCodeName.replace(/’/g,"'");
 
@@ -118,7 +118,7 @@ function defaultSetWeaponRunes(invItemID, runeCodeName, runeData){
 
 }
 
-function findWeaponRuneByName(runeCodeName, runeData){
+window.findWeaponRuneByName=function(runeCodeName, runeData){
     for(let weapRune of runeData.WeaponArray){
         if(weapRune != null) {
             let weapRuneName = runestoneNameToRuneName(weapRune.Item.name).toUpperCase();
@@ -132,7 +132,7 @@ function findWeaponRuneByName(runeCodeName, runeData){
 
 
 
-function defaultSetArmorRunes(invItemID, runeCodeName, runeData){
+window.defaultSetArmorRunes=function(invItemID, runeCodeName, runeData){
     runeCodeName = runeCodeName.replace(/_/g," ");
     runeCodeName = runeCodeName.replace(/’/g,"'");
 
@@ -155,7 +155,7 @@ function defaultSetArmorRunes(invItemID, runeCodeName, runeData){
 
 }
 
-function findArmorRuneByName(runeCodeName, runeData){
+window.findArmorRuneByName=function(runeCodeName, runeData){
     for(let weapRune of runeData.ArmorArray){
         if(weapRune != null) {
             let weapRuneName = runestoneNameToRuneName(weapRune.Item.name).toUpperCase();

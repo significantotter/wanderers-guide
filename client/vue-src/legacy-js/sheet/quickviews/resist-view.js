@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openResistancesQuickview(data) {
+window.openResistancesQuickview=function(data) {
 
     let resistAndVulnerText = '';
     if(data.ResistAndVulners.Resistances.length != 0){
@@ -40,7 +40,7 @@ function openResistancesQuickview(data) {
 
 }
 
-function processResistsOrWeaksToMap(array, charLevel){
+window.processResistsOrWeaksToMap=function(array, charLevel){
   let map = new Map();
   for(let entry of array) {
 

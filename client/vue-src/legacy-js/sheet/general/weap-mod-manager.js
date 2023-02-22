@@ -2,10 +2,10 @@
     By Aaron Cassar.
 */
 
-let g_weapModManagerMap = null;
-const g_weapMod_damageRegex = /^([ \-\+]|^)(\d+)+d(\d+)((\s*[+-]\s*\d+)*)( |)([^ .,;\n]+)$/im;
+window.g_weapModManagerMap = null;
+window.g_weapMod_damageRegex = /^([ \-\+]|^)(\d+)+d(\d+)((\s*[+-]\s*\d+)*)( |)([^ .,;\n]+)$/im;
 
-function initWeapModManager(){
+window.initWeapModManager=function(){
   g_weapModManagerMap = new Map();
 }
 
@@ -30,7 +30,7 @@ function initWeapModManager(){
   g_weapModManagerMap: (invItemID) -> ({ Map: (weapModType) -> ({ Array: [weapMod, weapMod, ...] }) })
 */
 
-function addWeapMod(invItemID, weapMod, weapModType, extraInfo=''){
+window.addWeapMod=function(invItemID, weapMod, weapModType, extraInfo=''){
   if(invItemID == null) { return; }
   if(weapModType == 'DAMAGE-ON-HIT'
       || weapModType == 'DAMAGE-ON-CRIT'
@@ -78,7 +78,7 @@ function addWeapMod(invItemID, weapMod, weapModType, extraInfo=''){
 
 }
 
-function getWeapMod(invItemID, weapModType){
+window.getWeapMod=function(invItemID, weapModType){
   if(invItemID == null){ return []; }
   let weapModDataMap = g_weapModManagerMap.get(invItemID+'');
   if(weapModDataMap != null){
@@ -93,6 +93,6 @@ function getWeapMod(invItemID, weapModType){
   }
 }
 
-function getWeapModAll(invItemID){
+window.getWeapModAll=function(invItemID){
   return g_weapModManagerMap.get(invItemID+'');
 }

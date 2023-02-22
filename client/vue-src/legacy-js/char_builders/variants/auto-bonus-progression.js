@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function addAutoBonusProgressionVariant(classStruct){
+window.addAutoBonusProgressionVariant=function(classStruct){
   classStruct.Abilities.push(getABP_AttackPotency(1, 2, 1));
   classStruct.Abilities.push(getABP_SkillPotencies(2, 3));
   classStruct.Abilities.push(getABP_DevastatingAttacks(3, 4, 2, 'two'));
@@ -41,7 +41,7 @@ function addAutoBonusProgressionVariant(classStruct){
   return classStruct;
 }
 
-function getABP_AttackPotency(id_offset, lvl, bonus){
+window.getABP_AttackPotency=function(id_offset, lvl, bonus){
   return {
     id: -2000+(-1*id_offset),
     name: "Attack Potency +"+bonus,
@@ -56,7 +56,7 @@ function getABP_AttackPotency(id_offset, lvl, bonus){
   };
 }
 
-function getABP_SkillPotencies(id_offset, lvl){
+window.getABP_SkillPotencies=function(id_offset, lvl){
   return {
     id: -2000+(-1*id_offset),
     name: "Skill Potencies",
@@ -71,7 +71,7 @@ function getABP_SkillPotencies(id_offset, lvl){
   };
 }
 
-function getABP_DevastatingAttacks(id_offset, lvl, diceNum, diceWord){
+window.getABP_DevastatingAttacks=function(id_offset, lvl, diceNum, diceWord){
   return {
     id: -2000+(-1*id_offset),
     name: "Devastating Attacks ("+diceWord+" dice)",
@@ -86,7 +86,7 @@ function getABP_DevastatingAttacks(id_offset, lvl, diceNum, diceWord){
   };
 }
 
-function getABP_DefensePotency(id_offset, lvl, bonus){
+window.getABP_DefensePotency=function(id_offset, lvl, bonus){
   return {
     id: -2000+(-1*id_offset),
     name: "Defense Potency +"+bonus,
@@ -101,7 +101,7 @@ function getABP_DefensePotency(id_offset, lvl, bonus){
   };
 }
 
-function getABP_PerceptionPotency(id_offset, lvl, bonus){
+window.getABP_PerceptionPotency=function(id_offset, lvl, bonus){
   return {
     id: -2000+(-1*id_offset),
     name: "Perception Potency +"+bonus,
@@ -116,7 +116,7 @@ function getABP_PerceptionPotency(id_offset, lvl, bonus){
   };
 }
 
-function getABP_SavingThrowPotency(id_offset, lvl, bonus){
+window.getABP_SavingThrowPotency=function(id_offset, lvl, bonus){
   return {
     id: -2000+(-1*id_offset),
     name: "Saving Throw Potency +"+bonus,
@@ -131,7 +131,7 @@ function getABP_SavingThrowPotency(id_offset, lvl, bonus){
   };
 }
 
-function getABP_AbilityApex(id_offset, lvl){
+window.getABP_AbilityApex=function(id_offset, lvl){
   return {
     id: -2000+(-1*id_offset),
     name: "Ability Apex",
@@ -146,7 +146,7 @@ function getABP_AbilityApex(id_offset, lvl){
   };
 }
 /*
-function addABP_AbilityApex(classAbilities, id_offset, lvl){
+window.addABP_AbilityApex=function(classAbilities, id_offset, lvl){
   let apexAbilityID = -2000+(-1*id_offset);
   classAbilities.push({
     id: apexAbilityID,

@@ -2,17 +2,17 @@
     By Aaron Cassar.
 */
 
-const variableProcessingDebug = false;
-const variableRegex = /^[\w]+$/;
+window.variableProcessingDebug = false;
+window.variableRegex = /^[\w]+$/;
 
 /*
   (Variable_Name) -> ({ Type: Array, Value: [], })
   Types: INTEGER, STRING, ABILITY_SCORE, LIST, PROFICIENCY
 */
 
-let g_variableMap = new Map();
+window.g_variableMap = new Map();
 
-const VARIABLE = {
+window.VARIABLE = {
 	SCORE_STR: 'SCORE_STR',
 	SCORE_DEX: 'SCORE_DEX',
 	SCORE_CON: 'SCORE_CON',
@@ -111,7 +111,7 @@ const VARIABLE = {
 
 };
 
-const VAR_TYPE = {
+window.VAR_TYPE = {
   INTEGER: 'INTEGER',
   STRING: 'STRING',
   ABILITY_SCORE: 'ABILITY_SCORE',
@@ -119,11 +119,11 @@ const VAR_TYPE = {
   PROFICIENCY: 'PROFICIENCY',
 };
 
-const VAR_NULL = -999;
+window.VAR_NULL = -999;
 
 /////////
 
-function initializeVariable(variableName, variableType, value){
+window.initializeVariable=function(variableName, variableType, value){
   variableName = variableName.replace(/\s/g, "_").toUpperCase();
 
   if(variableType == VAR_TYPE.INTEGER){
@@ -144,12 +144,12 @@ function initializeVariable(variableName, variableType, value){
 
 }
 
-function initializeVariableProf(variableName, abilityScoreName, numUps, profDataArray){
+window.initializeVariableProf=function(variableName, abilityScoreName, numUps, profDataArray){
   variableName = variableName.replace(/\s/g, "_").toUpperCase();
   variables_addProficiency(variableName, abilityScoreName, getProfLetterFromNumUps(numUps), profDataArray);
 }
 
-function resettingVariables(enabledSources=null){
+window.resettingVariables=function(enabledSources=null){
 
   if(variableProcessingDebug) { console.log(`Initializing predefined variables in builder.`); }
 
@@ -192,7 +192,7 @@ function resettingVariables(enabledSources=null){
 
 }
 
-function variables_addInteger(variableName, value){
+window.variables_addInteger=function(variableName, value){
   g_variableMap.set(variableName, {
     Type: VAR_TYPE.INTEGER,
     Value: value,
@@ -200,14 +200,14 @@ function variables_addInteger(variableName, value){
     Conditionals: new Map()
   });
 }
-function variables_addString(variableName, value){
+window.variables_addString=function(variableName, value){
   g_variableMap.set(variableName, {
     Type: VAR_TYPE.STRING,
     Value: value,
     Extras: new Map()
   });
 }
-function variables_addAbilityScore(variableName, value){
+window.variables_addAbilityScore=function(variableName, value){
   g_variableMap.set(variableName, {
     Type: VAR_TYPE.ABILITY_SCORE,
     Value: {
@@ -217,13 +217,13 @@ function variables_addAbilityScore(variableName, value){
     }
   });
 }
-function variables_addList(variableName, value){
+window.variables_addList=function(variableName, value){
   g_variableMap.set(variableName, {
     Type: VAR_TYPE.LIST,
     Value: value
   });
 }
-function variables_addProficiency(variableName, abilityScoreName, rank, profDataArray=null){
+window.variables_addProficiency=function(variableName, abilityScoreName, rank, profDataArray=null){
   let rankHistory = new Map();
   if(profDataArray == null){
     if(rank != 'U'){
@@ -250,7 +250,7 @@ function variables_addProficiency(variableName, abilityScoreName, rank, profData
 
 /////////
 
-function variables_getValue(variableName){
+window.variables_getValue=function(variableName){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { return null; }
@@ -260,7 +260,7 @@ function variables_getValue(variableName){
 
 ///
 
-function variables_addRank(variableName, rank, sourceName, srcStructKey){
+window.variables_addRank=function(variableName, rank, sourceName, srcStructKey){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) {
@@ -282,7 +282,7 @@ function variables_addRank(variableName, rank, sourceName, srcStructKey){
 
 }
 
-function variables_removeRank(variableName, srcStructKey){
+window.variables_removeRank=function(variableName, srcStructKey){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return; }
@@ -296,7 +296,7 @@ function variables_removeRank(variableName, srcStructKey){
 
 }
 
-function variables_getFinalRank(variableName){
+window.variables_getFinalRank=function(variableName){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return; }
@@ -326,7 +326,7 @@ function variables_getFinalRank(variableName){
 
 ///
 
-function variables_addToExtras(variableName, value, type, source){
+window.variables_addToExtras=function(variableName, value, type, source){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { return; }
@@ -367,7 +367,7 @@ function variables_addToExtras(variableName, value, type, source){
 
 }
 
-function variables_removeFromExtras(variableName, type){
+window.variables_removeFromExtras=function(variableName, type){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { return; }
@@ -401,7 +401,7 @@ function variables_removeFromExtras(variableName, type){
 
 }
 
-function variables_getFullString(variableName, errorOnFailure=true){
+window.variables_getFullString=function(variableName, errorOnFailure=true){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -441,7 +441,7 @@ function variables_getFullString(variableName, errorOnFailure=true){
 
 }
 
-function variables_getExtrasMap(variableName){
+window.variables_getExtrasMap=function(variableName){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -469,7 +469,7 @@ function variables_getExtrasMap(variableName){
 
 ///
 
-function variables_addToBonuses(variableName, value, type, source){
+window.variables_addToBonuses=function(variableName, value, type, source){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return; }
@@ -522,7 +522,7 @@ function variables_addToBonuses(variableName, value, type, source){
 
 }
 
-function variables_removeFromBonuses(variableName, type){
+window.variables_removeFromBonuses=function(variableName, type){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return; }
@@ -558,7 +558,7 @@ function variables_removeFromBonuses(variableName, type){
 
 }
 
-function variables_getBonus(variableName, type){
+window.variables_getBonus=function(variableName, type){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -585,7 +585,7 @@ function variables_getBonus(variableName, type){
 
 }
 
-function variables_getBonusTotal(variableName){
+window.variables_getBonusTotal=function(variableName){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -644,7 +644,7 @@ function variables_getBonusTotal(variableName){
 
 }
 
-function variables_getTotal(variableName, errorOnFailure=true){
+window.variables_getTotal=function(variableName, errorOnFailure=true){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -689,7 +689,7 @@ function variables_getTotal(variableName, errorOnFailure=true){
 
 }
 
-function variables_getBonusesMap(variableName){
+window.variables_getBonusesMap=function(variableName){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -718,7 +718,7 @@ function variables_getBonusesMap(variableName){
 
 /////////
 
-function variables_addToConditionals(variableName, condition, source){
+window.variables_addToConditionals=function(variableName, condition, source){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return; }
@@ -762,7 +762,7 @@ function variables_addToConditionals(variableName, condition, source){
 
 }
 
-function variables_getConditionalsMap(variableName){
+window.variables_getConditionalsMap=function(variableName){
 
   let variable = g_variableMap.get(variableName);
   if(variable == null) { console.warn('Unknown variable: '+variableName); return null; }
@@ -834,7 +834,7 @@ function variables_getConditionalsMap(variableName){
 
 }
 
-function variables_hasConditionals(variableName){
+window.variables_hasConditionals=function(variableName){
   let map = variables_getConditionalsMap(variableName);
   return map != null && map.size > 0;
 }
@@ -842,7 +842,7 @@ function variables_hasConditionals(variableName){
 
 ///////////////
 
-function processVariables(wscCode, uniqueID){
+window.processVariables=function(wscCode, uniqueID){
   if(wscCode == null) {return;}
 
   let wscStatements = wscCode.split(/\n/);
@@ -983,7 +983,7 @@ function processVariables(wscCode, uniqueID){
   return newWscCode;
 }
 
-function handleVariableText(varText, errorOnFailure=true){
+window.handleVariableText=function(varText, errorOnFailure=true){
   if(!varText.includes('{') || !varText.includes('}')) { return varText; }
 
   // Validate text //
@@ -1030,7 +1030,7 @@ function handleVariableText(varText, errorOnFailure=true){
 
 }
 
-function getVariableValue(variableStr, errorOnFailure=true){
+window.getVariableValue=function(variableStr, errorOnFailure=true){
 
   if(variableStr.includes('.')){
     // Variable with .
@@ -1074,7 +1074,7 @@ function getVariableValue(variableStr, errorOnFailure=true){
 
 }
 
-function getVariableValueFromMethod(variable, varName, method) {
+window.getVariableValueFromMethod=function(variable, varName, method) {
   let methodUpper = method.toUpperCase();
 
   if(variable.Type == VAR_TYPE.INTEGER){
@@ -1170,7 +1170,7 @@ function getVariableValueFromMethod(variable, varName, method) {
 
 }
 
-function setVariableValueIntoMethod(variable, varName, method, value, uniqueID=null) {
+window.setVariableValueIntoMethod=function(variable, varName, method, value, uniqueID=null) {
   let methodUpper = method.toUpperCase();
 
   if(variable.Type == VAR_TYPE.INTEGER){

@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let g_charInfoData;
+window.g_charInfoData = null;
 
-function openCharInfoQuickview(data) {
+window.openCharInfoQuickview=function(data) {
 
   $('#quickViewTitle').html('Character Info');
 
@@ -202,7 +202,7 @@ function openCharInfoQuickview(data) {
 
 }
 
-function updateCharInfoPicture(){
+window.updateCharInfoPicture=function(){
   if(g_charInfoData.imageURL != null && g_charInfoData.imageURL.match(/\.(jpeg|jpg|gif|png|webp)$/) != null){
     $('#charInfoPicture').attr('src', g_charInfoData.imageURL);
   } else {
@@ -210,7 +210,7 @@ function updateCharInfoPicture(){
   }
 }
 
-function saveCharInfo(){
+window.saveCharInfo=function(){
   let charInfoJSON = JSON.stringify(g_charInfoData);
   if(charInfoJSON > 3000) {return;}
   g_character.infoJSON = charInfoJSON;

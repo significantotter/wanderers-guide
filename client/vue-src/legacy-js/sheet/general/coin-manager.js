@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function getTotalCoinsInCP(){
+window.getTotalCoinsInCP=function(){
   let totalCP = g_bulkAndCoinsStruct.CopperCoins;
   totalCP += g_bulkAndCoinsStruct.SilverCoins*10;
   totalCP += g_bulkAndCoinsStruct.GoldCoins*100;
@@ -10,11 +10,11 @@ function getTotalCoinsInCP(){
   return totalCP;
 }
 
-function hasCoins(costInCP){
+window.hasCoins=function(costInCP){
   return getTotalCoinsInCP() >= costInCP;
 }
 
-function reduceAndSimplifyCoins(costInCP){
+window.reduceAndSimplifyCoins=function(costInCP){
   if(!hasCoins(costInCP)) { return false; }
 
   let homeBagInvItemID = null;
@@ -90,7 +90,7 @@ function reduceAndSimplifyCoins(costInCP){
   return true;
 }
 
-function convertRemainingCost(remainingCost){
+window.convertRemainingCost=function(remainingCost){
   remainingCost = (remainingCost == 0) ? 0 : remainingCost*-1;
   let pp = Math.floor(remainingCost/1000);
   remainingCost = remainingCost%1000;
@@ -102,7 +102,7 @@ function convertRemainingCost(remainingCost){
   return {pp, gp, sp, cp};
 }
 
-function addCoinToReturn(coinItemID, qty, homeBagInvItemID){
+window.addCoinToReturn=function(coinItemID, qty, homeBagInvItemID){
 
   let coinInvItemInBag = g_invStruct.InvItems.find(invItem => {
     return invItem.bagInvItemID == homeBagInvItemID && invItem.itemID == coinItemID;

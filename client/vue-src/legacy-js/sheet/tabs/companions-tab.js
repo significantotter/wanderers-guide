@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openCompanionTab(data) {
+window.openCompanionTab=function(data) {
 
   $('#tabContent').html('<div id="companionsContent" class="use-custom-scrollbar" style="height: 555px; max-height: 555px; overflow-y: auto;"></div>');
 

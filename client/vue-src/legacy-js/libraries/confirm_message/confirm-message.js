@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-class ConfirmMessage {
+window.ConfirmMessage =class{
   constructor(title, description, buttonName, modalID, deleteBtnID, btnColor='is-danger') {
     this.title = title;
     this.description = description;

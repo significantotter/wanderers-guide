@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function displayNotesField(qContent, srcStruct, rows=4){
+window.displayNotesField=function(qContent, srcStruct, rows=4){
 
     let notesData = getNotesData(srcStruct);
     if(notesData == null){ return; }
@@ -31,7 +31,7 @@ function displayNotesField(qContent, srcStruct, rows=4){
 
 }
 
-function getNotesData(srcStruct){
+window.getNotesData=function(srcStruct){
     for(let notesData of g_notesFields) {
         // Checks if the note field statement's parent is the input srcStruct
         if(srcStruct.sourceCode === notesData.sourceCode){

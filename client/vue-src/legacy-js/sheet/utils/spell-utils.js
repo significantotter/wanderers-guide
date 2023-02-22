@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function getSpellTypeBulmaColor(typeData){
+window.getSpellTypeBulmaColor=function(typeData){
   let typeColor = getSpellTypeColor(typeData);
   let bulmaColor;
   switch(typeColor){
@@ -19,7 +19,7 @@ function getSpellTypeBulmaColor(typeData){
   return bulmaColor;
 }
 
-function getSpellTypeBulmaColor_SlotFilled(typeData){
+window.getSpellTypeBulmaColor_SlotFilled=function(typeData){
   let typeColor = getSpellTypeColor(typeData);
   let bulmaColor;
   switch(typeColor){
@@ -36,7 +36,7 @@ function getSpellTypeBulmaColor_SlotFilled(typeData){
   return bulmaColor;
 }
 
-function getSpellTypeBulmaColor_SlotEmpty(typeData){
+window.getSpellTypeBulmaColor_SlotEmpty=function(typeData){
   let typeColor = getSpellTypeColor(typeData);
   let bulmaColor;
   switch(typeColor){
@@ -54,7 +54,7 @@ function getSpellTypeBulmaColor_SlotEmpty(typeData){
 }
 
 
-function getSpellTypeColor(typeData) {
+window.getSpellTypeColor=function(typeData) {
   let typeStruct = getSpellTypeStruct(typeData);
   let colorType = '';
   if(typeStruct.Red){
@@ -72,7 +72,7 @@ function getSpellTypeColor(typeData) {
 
 // Spell Color-Types //
 
-function getSpellTypeStruct(typeData){
+window.getSpellTypeStruct=function(typeData){
   let isRedType, isGreenType, isBlueType;
   if(typeData == '' || typeData == null){
       isRedType = false;
@@ -87,14 +87,14 @@ function getSpellTypeStruct(typeData){
   return {Red: isRedType, Green: isGreenType, Blue: isBlueType};
 }
 
-function getSpellTypeData(typeStruct){
+window.getSpellTypeData=function(typeStruct){
   let redPart = (typeStruct.Red) ? 'R:1' : 'R:0';
   let greenPart = (typeStruct.Green) ? 'G:1' : 'G:0';
   let bluePart = (typeStruct.Blue) ? 'B:1' : 'B:0';
   return redPart+','+greenPart+','+bluePart;
 }
 
-function updateSpellBookSpellType(spellBookSpellID, spellType){
+window.updateSpellBookSpellType=function(spellBookSpellID, spellType){
   for(let spellBook of g_spellBookArray){
     for(let spellBookSpell of spellBook.SpellBook){
       if(spellBookSpell.SpellBookSpellID == spellBookSpellID){

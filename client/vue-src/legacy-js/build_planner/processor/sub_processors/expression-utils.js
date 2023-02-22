@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function readExpr(wscCode){
+window.readExpr=function(wscCode){
   // IF(*){*} or IF(*){*}ELSE{*}
   let rMatchIf = wscCode.match(/^\s*IF\s*\((.*?)\)\s*\{(.*?)\}\s*$/);
   let rMatchIfElse = wscCode.match(/^\s*IF\s*\((.*?)\)\s*\{(.*?)\}\s*ELSE\s*\{(.*?)\}\s*$/);
@@ -31,12 +31,12 @@ function readExpr(wscCode){
 }
 
 
-function expr_getProfUserBonus(profBonus){
+window.expr_getProfUserBonus=function(profBonus){
   let numBonus = parseInt(profBonus);
   return (isNaN(numBonus) ? 0 : numBonus);
 }
 
-function expr_getFinalProf(profDataArray) {
+window.expr_getFinalProf=function(profDataArray) {
   if(profDataArray == null || profDataArray.length == 0) { return null; }
 
   let finalProfData = null;
@@ -142,7 +142,7 @@ function expr_getFinalProf(profDataArray) {
 
 }
 
-function expr_getUserSetData(profDataArray) {
+window.expr_getUserSetData=function(profDataArray) {
   if(profDataArray == null || profDataArray.length == 0) { return null; }
   for(const profData of profDataArray){
     if(profData.sourceType === 'user-set' && isNaN(profData.Prof)) {
@@ -152,7 +152,7 @@ function expr_getUserSetData(profDataArray) {
   return null;
 }
 
-function expr_getUserAddedData(profDataArray) {
+window.expr_getUserAddedData=function(profDataArray) {
   if(profDataArray == null || profDataArray.length == 0) { return null; }
   for(const profData of profDataArray){
     if(profData.sourceType === 'user-added') {

@@ -2,15 +2,15 @@
     By Aaron Cassar.
 */
 
-let g_reloadingSheet = false;
+window.g_reloadingSheet = false;
 
-function reloadCharSheet(){
+window.reloadCharSheet=function(){
   if(!g_reloadingSheet) {
     setDelayToReloadSheet();
   }
 }
 
-function setDelayToReloadSheet(){
+window.setDelayToReloadSheet=function(){
   g_reloadingSheet = true;
   setTimeout(() => {
     loadCharSheet();

@@ -2,12 +2,12 @@
     By Aaron Cassar.
 */
 
-let g_addItems_itemSearchMap = null;
-let g_addItems_appliedFilters = 0;
-let g_addItems_itemMaxDisplay = 0;
-const g_addItems_displayIncrement = 20;
+window.g_addItems_itemSearchMap = null;
+window.g_addItems_appliedFilters = 0;
+window.g_addItems_itemMaxDisplay = 0;
+window.g_addItems_displayIncrement = 20;
 
-function openAddItemQuickview(data) {
+window.openAddItemQuickview=function(data) {
 
     $('#quickViewTitle').html('Add Items');
     $('#quickViewTitleRight').html('<button id="createCustomItemBtn" class="button is-very-small is-success is-outlined is-rounded is-pulled-right mr-1">Create Item</button>');
@@ -297,7 +297,7 @@ function openAddItemQuickview(data) {
 
 
 
-function applyFiltersAndItemSearch(type, data){
+window.applyFiltersAndItemSearch=function(type, data){
 
     $('#addItemListSection').html('');
 
@@ -521,7 +521,7 @@ function applyFiltersAndItemSearch(type, data){
 
 }
 
-function listItemsFromSearch(data){
+window.listItemsFromSearch=function(data){
 
   $('#addItemListSection').html('');
 
@@ -570,7 +570,7 @@ function listItemsFromSearch(data){
 
 }
 
-function displayAddItem(itemID, itemDataStruct, data){
+window.displayAddItem=function(itemID, itemDataStruct, data){
 
     if(itemDataStruct.Item.hidden == 1 || itemDataStruct.Item.isArchived == 1){
         return;
@@ -741,7 +741,7 @@ function displayAddItem(itemID, itemDataStruct, data){
 
 }
 
-function displayItemDetails(itemDataStruct, addItemDetailsItemID){
+window.displayItemDetails=function(itemDataStruct, addItemDetailsItemID){
 
     if(itemDataStruct == null){
         $('#'+addItemDetailsItemID).html('');

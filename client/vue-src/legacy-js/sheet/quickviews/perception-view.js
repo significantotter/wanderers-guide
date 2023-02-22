@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openPerceptionQuickview(data) {
+window.openPerceptionQuickview=function(data) {
     let noteFieldID = 'perception-'+data.ProfData.Name.replace(/\s/g, "_");
 
     $('#quickViewTitle').html(data.ProfData.Name);

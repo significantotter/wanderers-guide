@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openResistancesListQuickview(data) {
+window.openResistancesListQuickview=function(data) {
     
     $('#quickViewTitle').html('Resistance / Weakness List');
 

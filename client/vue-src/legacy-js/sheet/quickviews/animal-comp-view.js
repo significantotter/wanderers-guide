@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAnimalCompQuickview(data) {
+window.openAnimalCompQuickview=function(data) {
 
     let qContent = $('#quickViewContent');
 
@@ -287,7 +287,7 @@ function openAnimalCompQuickview(data) {
 
 }
 
-function displayAnimalCompanionAttack(qContent, animal, charAnimal, attackNum) {
+window.displayAnimalCompanionAttack=function(qContent, animal, charAnimal, attackNum) {
 
     // Name //
     let attackName = animal['a'+attackNum+'Name'];
@@ -356,7 +356,7 @@ function displayAnimalCompanionAttack(qContent, animal, charAnimal, attackNum) {
 
 }
 
-function updateAnimalCompanion(charAnimalComp) {
+window.updateAnimalCompanion=function(charAnimalComp) {
 
     let updateValues = {
         Name : $('#animalName').val(),

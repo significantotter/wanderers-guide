@@ -4,97 +4,97 @@
 
 // HARDCODED - Note: The fundamental RuneIDs in here are hardcoded (itemRunes IDs, not itemIDs). //
 
-function isWeaponPotencyOne(runeID){
+window.isWeaponPotencyOne=function(runeID){
   return runeID == 20;
 }
 
-function isWeaponPotencyTwo(runeID){
+window.isWeaponPotencyTwo=function(runeID){
   return runeID == 27;
 }
 
-function isWeaponPotencyThree(runeID){
+window.isWeaponPotencyThree=function(runeID){
   return runeID == 31;
 }
 
-function isWeaponPotencyFour(runeID){
+window.isWeaponPotencyFour=function(runeID){
   return runeID == 112;
 }
 
 //
 
-function isStriking(runeID){
+window.isStriking=function(runeID){
   return runeID == 24;
 }
 
-function isGreaterStriking(runeID){
+window.isGreaterStriking=function(runeID){
   return runeID == 29;
 }
 
-function isMajorStriking(runeID){
+window.isMajorStriking=function(runeID){
   return runeID == 33;
 }
 
 //
 
-function isArmorPotencyOne(runeID){
+window.isArmorPotencyOne=function(runeID){
   return runeID == 25;
 }
 
-function isArmorPotencyTwo(runeID){
+window.isArmorPotencyTwo=function(runeID){
   return runeID == 28;
 }
 
-function isArmorPotencyThree(runeID){
+window.isArmorPotencyThree=function(runeID){
   return runeID == 32;
 }
 
-function isArmorPotencyFour(runeID){
+window.isArmorPotencyFour=function(runeID){
   return runeID == 113;
 }
 
 //
 
-function isResilient(runeID){
+window.isResilient=function(runeID){
   return runeID == 26;
 }
 
-function isGreaterResilient(runeID){
+window.isGreaterResilient=function(runeID){
   return runeID == 30;
 }
 
-function isMajorResilient(runeID){
+window.isMajorResilient=function(runeID){
   return runeID == 34;
 }
 
 //
 
-function isWeaponPotencyRune(runeID){
+window.isWeaponPotencyRune=function(runeID){
     return isWeaponPotencyOne(runeID) || isWeaponPotencyTwo(runeID) || isWeaponPotencyThree(runeID) || isWeaponPotencyFour(runeID);
 }
 
-function isStrikingRune(runeID){
+window.isStrikingRune=function(runeID){
     return isStriking(runeID) || isGreaterStriking(runeID) || isMajorStriking(runeID);
 }
 
 //
 
-function isArmorPotencyRune(runeID){
+window.isArmorPotencyRune=function(runeID){
     return isArmorPotencyOne(runeID) || isArmorPotencyTwo(runeID) || isArmorPotencyThree(runeID) || isArmorPotencyFour(runeID);
 }
 
-function isResilientRune(runeID){
+window.isResilientRune=function(runeID){
     return isResilient(runeID) || isGreaterResilient(runeID) || isMajorResilient(runeID);
 }
 
 //
 
-function runestoneNameToRuneName(runestoneItemName){
+window.runestoneNameToRuneName=function(runestoneItemName){
     return runestoneItemName.replace(' Runestone','');
 }
 
 
 
-function displayRunesForItem(qContent, invItem, isWeapon){
+window.displayRunesForItem=function(qContent, invItem, isWeapon){
     const runeDataStruct = g_runeDataStruct;
 
     let invItemAddFundamentalRuneSelectID = 'invItemAddFundamentalRuneSelect'+invItem.id;
@@ -186,7 +186,7 @@ function displayRunesForItem(qContent, invItem, isWeapon){
 
 
 
-function displayRunesInQuickview(qContent, invItem, runeDataStruct, isWeapon){
+window.displayRunesInQuickview=function(qContent, invItem, runeDataStruct, isWeapon){
 
     // If using AutoBonusProgression, remove all fundmental runes and just show potency rune slots at the correct levels.
     if(gOption_hasAutoBonusProgression){
@@ -401,7 +401,7 @@ function displayRunesInQuickview(qContent, invItem, runeDataStruct, isWeapon){
 
 }
 
-function addFundamentalRuneEntry(qContent, invItem, runeID, runeName, runeDescription){
+window.addFundamentalRuneEntry=function(qContent, invItem, runeID, runeName, runeDescription){
 
     let runeEntryID = 'runeEntry'+runeID;
     let runeEntryDeleteID = runeEntryID+'Delete';
@@ -415,7 +415,7 @@ function addFundamentalRuneEntry(qContent, invItem, runeID, runeName, runeDescri
 
 }
 
-function getPropertyRuneIDBySlot(invItem, propertyRuneSlot){
+window.getPropertyRuneIDBySlot=function(invItem, propertyRuneSlot){
     switch(propertyRuneSlot) {
         case 1:
             return invItem.propRune1ID;
@@ -430,7 +430,7 @@ function getPropertyRuneIDBySlot(invItem, propertyRuneSlot){
     }
 }
 
-function addPropertyRuneSelection(qContent, invItem, runeArray, propertyRuneSlot){
+window.addPropertyRuneSelection=function(qContent, invItem, runeArray, propertyRuneSlot){
 
     let propertyRuneSelectionID = 'propertyRuneSelection'+propertyRuneSlot;
     qContent.append('<div class="has-text-centered p-1"><div class="select is-small is-success"><select id="'+propertyRuneSelectionID+'"></select></div></div>');
@@ -500,7 +500,7 @@ function addPropertyRuneSelection(qContent, invItem, runeArray, propertyRuneSlot
     
 }
 
-function getInvItemLevel(item, invItem){
+window.getInvItemLevel=function(item, invItem){
 
   let highestLevel = item.Item.level;
 

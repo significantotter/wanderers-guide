@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openSpellEmptyQuickview(data) {
+window.openSpellEmptyQuickview=function(data) {
 
     if(data.ViewType == 1){
         $('#quickViewTitle').html('Empty Slot');

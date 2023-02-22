@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddSpellSlotQuickview(data) {
+window.openAddSpellSlotQuickview=function(data) {
 
     $('#quickViewTitle').html("Add Spell Slot");
     let qContent = $('#quickViewContent');

@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let amalgamationBonusText = "This is a collection of any additional bonuses or penalties you might have. This includes adjustments from feats, items, conditions, or those you may have added manually.";
+window.amalgamationBonusText = "This is a collection of any additional bonuses or penalties you might have. This includes adjustments from feats, items, conditions, or those you may have added manually.";
 
-function openSkillQuickview(data) {
+window.openSkillQuickview=function(data) {
 
     let noteFieldID = 'skill-'+data.SkillName.replace(/\s/g, "_");
 

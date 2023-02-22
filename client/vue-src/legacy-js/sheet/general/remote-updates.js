@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-var notyf = new Notyf({
+window.notyf = new Notyf({
   duration: 5000,
   ripple: true,
   dismissible: true,
@@ -113,7 +113,7 @@ socket.on('sendCharacterUpdateToGM', function(charID, updates){
 
 });
 
-function updateCampaignCharacter(charID, accessToken, type, data){
+window.updateCampaignCharacter=function(charID, accessToken, type, data){
 
   if(accessToken == null){
     accessToken = g_campaignDetails.accessTokens.find(accessToken => {
@@ -167,10 +167,10 @@ function updateCampaignCharacter(charID, accessToken, type, data){
   roll-history - rollHistoryJSON
 */
 
-let g_sendingUpdateToGM = false;
-let g_updatesToGM = [];
+window.g_sendingUpdateToGM = false;
+window.g_updatesToGM = [];
 
-function sendOutUpdateToGM(field, updateStruct){
+window.sendOutUpdateToGM=function(field, updateStruct){
   if(!g_campaignDetails) { return; }
 
   // Update your own campaign character
@@ -182,7 +182,7 @@ function sendOutUpdateToGM(field, updateStruct){
   }
 }
 
-function setDelayToSendOutUpdateToGM(){
+window.setDelayToSendOutUpdateToGM=function(){
   g_sendingUpdateToGM = true;
   setTimeout(() => {
     socket.emit(`requestCharacterUpdateToGM`, getCharIDFromURL(), g_updatesToGM);

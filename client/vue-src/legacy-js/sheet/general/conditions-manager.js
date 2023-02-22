@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function getConditionFromName(name) {
+window.getConditionFromName=function(name) {
   for (const condition of g_allConditions) {
     if (condition.name.toLowerCase() == name.toLowerCase()) {
       return condition;
@@ -11,7 +11,7 @@ function getConditionFromName(name) {
   return null;
 }
 
-function getConditionFromID(conditionID) {
+window.getConditionFromID=function(conditionID) {
   for (const condition of g_allConditions) {
     if (condition.id == conditionID) {
       return condition;
@@ -20,7 +20,7 @@ function getConditionFromID(conditionID) {
   return null;
 }
 
-function hasCondition(checkingConditionID) {
+window.hasCondition=function(checkingConditionID) {
   for (const [conditionID, conditionData] of g_conditionsMap.entries()) {
     if (conditionID == checkingConditionID) {
       return true;
@@ -29,7 +29,7 @@ function hasCondition(checkingConditionID) {
   return false;
 }
 
-function getCondition(checkingConditionID) {
+window.getCondition=function(checkingConditionID) {
   for (const [conditionID, conditionData] of g_conditionsMap.entries()) {
     if (conditionID == checkingConditionID) {
       return conditionData;
@@ -38,7 +38,7 @@ function getCondition(checkingConditionID) {
   return null;
 }
 
-function getCurrentConditionIDFromName(name) {
+window.getCurrentConditionIDFromName=function(name) {
   for (const [conditionID, conditionData] of g_conditionsMap.entries()) {
     if (conditionData.Condition.name.toLowerCase() == name.toLowerCase()) {
       return conditionData.EntryID;
@@ -47,7 +47,7 @@ function getCurrentConditionIDFromName(name) {
   return null;
 }
 
-function getCurrentConditionIDFromSourceText(sourceText) {
+window.getCurrentConditionIDFromSourceText=function(sourceText) {
   for (const [conditionID, conditionData] of g_conditionsMap.entries()) {
     if (conditionData.SourceText == sourceText) {
       return conditionData.EntryID;
@@ -56,7 +56,7 @@ function getCurrentConditionIDFromSourceText(sourceText) {
   return null;
 }
 
-function addCondition(conditionID, value, sourceText, parentID = null) {
+window.addCondition=function(conditionID, value, sourceText, parentID = null) {
   let existingCondition = g_conditionsMap.get(conditionID + '');
   if (existingCondition != null) {
     if ((existingCondition.SourceText == null && sourceText != null) || (existingCondition.Value != value)) {
@@ -81,7 +81,7 @@ function addCondition(conditionID, value, sourceText, parentID = null) {
 
 }
 
-function removeCondition(conditionID, onlyWithSourceText = null) {
+window.removeCondition=function(conditionID, onlyWithSourceText = null) {
   if (onlyWithSourceText != null) {
     let conditionEntryID = getCurrentConditionIDFromSourceText(onlyWithSourceText);
     if (conditionEntryID != null) {
@@ -116,7 +116,7 @@ $(function () {
   });
 
   $('#conditionsModalSubtractButton').click(function () {
-    let value = parseInt($('#conditionsModalValue').html());
+    value = parseInt($('#conditionsModalValue').html());
     if (!isNaN(value)) {
       value--;
       value = (value > 9) ? 9 : value;
@@ -137,7 +137,7 @@ $(function () {
 
 });
 
-function displayConditionsList() {
+window.displayConditionsList=function() {
 
   $('#conditionsContent').html('');
 
@@ -172,13 +172,13 @@ function displayConditionsList() {
 
 }
 
-function runAllConditionsCode() {
+window.runAllConditionsCode=function() {
   for (const [conditionID, conditionData] of g_conditionsMap.entries()) {
     runConditionCode(conditionID);
   }
 }
 
-function runConditionCode(conditionID) {
+window.runConditionCode=function(conditionID) {
   let conditionData = g_conditionsMap.get(conditionID + "");
   if (conditionData != null) {
 
@@ -198,7 +198,7 @@ function runConditionCode(conditionID) {
   }
 }
 
-function openConditionsModal(conditionID) {
+window.openConditionsModal=function(conditionID) {
 
   let conditionData = g_conditionsMap.get(conditionID + '');
 
@@ -245,7 +245,7 @@ function openConditionsModal(conditionID) {
 
 }
 
-function closeConditionsModal() {
+window.closeConditionsModal=function() {
 
   $('#conditionsModalDefault').removeClass('is-active');
   $('html').removeClass('is-clipped');
@@ -284,7 +284,7 @@ $(function () {
 });
 
 
-function openSelectConditionsModal() {
+window.openSelectConditionsModal=function() {
 
   $('#conditionsSelectModalContent').html('');
 
@@ -309,7 +309,7 @@ function openSelectConditionsModal() {
       });
 
       $('#' + conditionSectionID).click(function () {
-        value = (condition.hasValue == 1) ? 1 : null;
+        let value = (condition.hasValue == 1) ? 1 : null;
         addCondition(condition.id + "", value, null);
         closeSelectConditionsModal();
       });
@@ -325,7 +325,7 @@ function openSelectConditionsModal() {
 
 }
 
-function closeSelectConditionsModal() {
+window.closeSelectConditionsModal=function() {
 
   $('#conditionsSelectModalDefault').removeClass('is-active');
   $('html').removeClass('is-clipped');

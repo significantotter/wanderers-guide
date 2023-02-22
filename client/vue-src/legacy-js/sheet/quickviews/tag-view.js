@@ -5,13 +5,13 @@
 /*
   Use this for more than just traits
 */
-let g_tagViewMapper = new Map();
+window.g_tagViewMapper = new Map();
 g_tagViewMapper.set('somatic', 'Spell Component');
 g_tagViewMapper.set('verbal', 'Spell Component');
 g_tagViewMapper.set('material', 'Spell Component');
 g_tagViewMapper.set('focus', 'Spell Component');
 
-function openTagQuickview(data) {
+window.openTagQuickview=function(data) {
     addBackFunctionality(data);
 
     let tagType = g_tagViewMapper.get(data.TagName.toLowerCase());

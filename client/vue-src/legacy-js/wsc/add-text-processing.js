@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function processAddText(code, locationID, centerText=false){
+window.processAddText=function(code, locationID, centerText=false){
   if(code == null || locationID == null) {return;}
 
   let allStatements = code.split(/\n/);
@@ -12,7 +12,7 @@ function processAddText(code, locationID, centerText=false){
 
 }
 
-function processStatement_AddText(statementRaw, locationID, centerText){
+window.processStatement_AddText=function(statementRaw, locationID, centerText){
   if(statementRaw.includes("ADD-TEXT=")){ // ADD-TEXT=Anything, will be parsed like a description field
 
     let statement = null;
@@ -76,7 +76,7 @@ function processStatement_AddText(statementRaw, locationID, centerText){
   }
 }
 
-function exp_cleaner(expression){
+window.exp_cleaner=function(expression){
 
   expression = expression.replace('class ability', 'class feature');
         
@@ -94,7 +94,7 @@ function exp_cleaner(expression){
 }
 
 
-function exp_convertLevelTextToNumRange(expression){
+window.exp_convertLevelTextToNumRange=function(expression){
 
   // Hardcoded - Min and max character levels
   let lowerBound = 1;
@@ -177,7 +177,7 @@ function exp_convertLevelTextToNumRange(expression){
 
 }
 
-function exp_makeClassFeaturePretty(expression){
+window.exp_makeClassFeaturePretty=function(expression){
 
   if(expression.startsWith('has class feature equal to')){
     expression = expression.replace('has class feature equal to', '');

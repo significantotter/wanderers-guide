@@ -2,8 +2,8 @@
     By Aaron Cassar.
 */
 
-let g_notesPageArray = null;
-let g_currentNotePageID = null;
+window.g_notesPageArray = null;
+window.g_currentNotePageID = null;
 
 // ~~~~~~~~~~~~~~ // Run on Load // ~~~~~~~~~~~~~~ //
 $(function () {
@@ -65,7 +65,7 @@ $(function () {
 
 });
 
-function openNotesTab(data) {
+window.openNotesTab=function(data) {
 
   /*
   [{
@@ -102,7 +102,7 @@ function openNotesTab(data) {
 
 }
 
-function loadNotesPages(){
+window.loadNotesPages=function(){
 
   $('#tabContent').html('<div id="notesAreaSection"></div><div id="notesPageSection" class="is-flex" style="flex-wrap: wrap;"></div>');
 
@@ -158,7 +158,7 @@ function loadNotesPages(){
 
 }
 
-function getNewNotesPageID(){
+window.getNewNotesPageID=function(){
   let highestID = 0;
   for(let page of g_notesPageArray){
     if(page.id > highestID) { highestID = page.id; }
@@ -166,7 +166,7 @@ function getNewNotesPageID(){
   return highestID+1;
 }
 
-function openNotesPage(page){
+window.openNotesPage=function(page){
   if(page == null) { return; }
   g_currentNotePageID = page.id;
   $('.pageOpenBtn').addClass('is-outlined');
@@ -174,7 +174,7 @@ function openNotesPage(page){
   loadNotesArea(page.id, page.data);
 }
 
-function openPageMore(page){
+window.openPageMore=function(page){
   if(page == null) { return; }
 
   $('#note-page-more-modal-page-name').val(page.name);
@@ -185,7 +185,7 @@ function openPageMore(page){
   $('html').addClass('is-clipped');
 }
 
-function loadNotesArea(pageID, pageNotesData){
+window.loadNotesArea=function(pageID, pageNotesData){
 
   let notesAreaID = "notesArea";
   let notesAreaControlShellID = "notesAreaControlShell";
@@ -235,7 +235,7 @@ function loadNotesArea(pageID, pageNotesData){
 
 }
 
-function saveNotePages(){
+window.saveNotePages=function(){
   let charNotesJSON = JSON.stringify(g_notesPageArray);
   g_character.notes = charNotesJSON;
   socket.emit("requestNotesSave",

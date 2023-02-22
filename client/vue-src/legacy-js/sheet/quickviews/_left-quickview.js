@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openLeftQuickView(subtabName) {
+window.openLeftQuickView=function(subtabName) {
 
   $('#quickViewLeftTitle').html('Sheet Tools');
 
@@ -40,11 +40,11 @@ function openLeftQuickView(subtabName) {
 
 }
 
-function closeLeftQuickView() {
+window.closeLeftQuickView=function() {
   $('#quickviewLeftDefault').removeClass('is-active');
 }
 
-function setLeftQuickViewTab(subtabName) {
+window.setLeftQuickViewTab=function(subtabName) {
 
   $('#quickViewLeftTitle').html('Sheet Tools - ' + subtabName);
   $('#quickViewLeftContent').html('');
@@ -72,7 +72,7 @@ function setLeftQuickViewTab(subtabName) {
 
 
 
-function leftQuickview_OpenToggleables() {
+window.leftQuickview_OpenToggleables=function() {
 
   let qContent = $('#quickViewLeftContent');
 
@@ -105,7 +105,7 @@ function leftQuickview_OpenToggleables() {
 }
 
 
-function leftQuickview_OpenDiceRoller() {
+window.leftQuickview_OpenDiceRoller=function() {
 
   let qContent = $('#quickViewLeftContent');
 
@@ -271,7 +271,7 @@ function leftQuickview_OpenDiceRoller() {
 }
 
 
-function leftQuickview_OpenCampaign() {
+window.leftQuickview_OpenCampaign=function() {
 
   let qContent = $('#quickViewLeftContent');
 
@@ -358,7 +358,7 @@ function leftQuickview_OpenCampaign() {
 
 }
 
-function leftQuickview_setCharacterHealth(accessToken) {
+window.leftQuickview_setCharacterHealth=function(accessToken) {
   if(!$('#quickviewLeftDefault').hasClass('is-active')) { return; }
 
   $(`#campaign-character-health-${accessToken.charID}`).html('');
@@ -405,7 +405,7 @@ function leftQuickview_setCharacterHealth(accessToken) {
 
 }
 
-function leftQuickview_setCharacterConditions(accessToken) {
+window.leftQuickview_setCharacterConditions=function(accessToken) {
   if(!$('#quickviewLeftDefault').hasClass('is-active')) { return; }
 
   $(`#campaign-character-conditions-${accessToken.charID}`).html('');

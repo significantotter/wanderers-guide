@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openCustomizeProfQuickview(data) {
+window.openCustomizeProfQuickview=function(data) {
     addBackFunctionality(data);
 
     let profName = data.ProfData.Name.replace(/_/g,' ');

@@ -2,10 +2,10 @@
     By Aaron Cassar.
 */
 
-let g_concealedFeatNames = [];
-let g_overrideFeatLevelMap = new Map();
+window.g_concealedFeatNames = [];
+window.g_overrideFeatLevelMap = new Map();
 
-function processMiscFeatStatements(code) {
+window.processMiscFeatStatements=function(code) {
   if (code == null) { return; }
 
   let allStatements = code.split(/\n/);
@@ -59,7 +59,7 @@ function processMiscFeatStatements(code) {
 }
 
 // For new processor
-function runMiscFeatStatements(wscStatement, wscStatementUpper) {
+window.runMiscFeatStatements=function(wscStatement, wscStatementUpper) {
 
   if (wscStatementUpper.startsWith("UNHIDE-FEAT-NAME=")) { // UNHIDE-FEAT-NAME=Counterspell
 
@@ -98,15 +98,15 @@ function runMiscFeatStatements(wscStatement, wscStatementUpper) {
   return PROCESS_RETURN.UNKNOWN;
 }
 
-function isFeatConcealed(featName) {
+window.isFeatConcealed=function(featName) {
   return g_concealedFeatNames.includes(featName.toUpperCase());
 }
 
-function getFeatLevelOverride(featName) {
+window.getFeatLevelOverride=function(featName) {
   return g_overrideFeatLevelMap.get(featName.toUpperCase());
 }
 
-function updateFeatMapWithMiscs(featMap) {
+window.updateFeatMapWithMiscs=function(featMap) {
   let newFeatMap = new Map();
   for (const [featID, featStruct] of featMap.entries()) {
     if (featStruct.Feat != null) {

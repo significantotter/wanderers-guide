@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openSpeedQuickview(data) {
+window.openSpeedQuickview=function(data) {
 
     $('#quickViewTitle').html('Speed');
     let qContent = $('#quickViewContent');
@@ -31,7 +31,7 @@ function openSpeedQuickview(data) {
 
 }
 
-function addSpeedContent(qContent, speedStatName, speedName){
+window.addSpeedContent=function(qContent, speedStatName, speedName){
     qContent.append('<hr class="m-2">');
 
     let speedAmalgBonusNumID = 'amalgSpeedBonusNum'+speedStatName;

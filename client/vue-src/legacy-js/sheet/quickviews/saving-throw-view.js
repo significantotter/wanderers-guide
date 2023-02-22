@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openSavingThrowQuickview(data) {
+window.openSavingThrowQuickview=function(data) {
     let noteFieldID = 'savingThrow-'+data.ProfData.Name.replace(/\s/g, "_");
 
     $('#quickViewTitle').html(data.ProfData.Name);

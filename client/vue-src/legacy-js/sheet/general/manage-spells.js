@@ -2,8 +2,9 @@
     By Aaron Cassar.
 */
 
-let prev_spellSRC, prev_spellData = null;
-let current_spellSRC = null;
+window.prev_spellSRC
+window.prev_spellData = null;
+window.current_spellSRC = null;
 
 // ~~~~~~~~~~~~~~ // Run on Load // ~~~~~~~~~~~~~~ //
 $(function () {
@@ -27,7 +28,7 @@ $(function () {
 
 });
 
-function openManageSpellsModal(data){
+window.openManageSpellsModal=function(data){
 
     $('#manageSpellsTabs').html('');
     for(let spellBook of g_spellBookArray) {
@@ -52,7 +53,7 @@ function openManageSpellsModal(data){
 
 }
 
-function closeManageSpellsModal(){
+window.closeManageSpellsModal=function(){
 
     $('#spellsTab').trigger("click", [true]);
 
@@ -80,7 +81,7 @@ socket.on("returnSpellBookUpdated", function(spellBookStruct){
 
 
 
-function openSpellSRCTab(spellSRC, data){
+window.openSpellSRCTab=function(spellSRC, data){
     current_spellSRC = spellSRC;
     
     let spellBook = g_spellBookArray.find(spellBook => {
@@ -133,7 +134,7 @@ function openSpellSRCTab(spellSRC, data){
 
 
 
-function displaySpellSpontaneous(spellBook, data) {
+window.displaySpellSpontaneous=function(spellBook, data) {
 
     let spellBookSearch = $('#manageSpellsSpellBookSearch');
     let spellBookSearchInput = null;
@@ -214,7 +215,7 @@ function displaySpellSpontaneous(spellBook, data) {
 
 }
 
-function displaySpellSlotsSpontaneous(spellSRC, data) {
+window.displaySpellSlotsSpontaneous=function(spellSRC, data) {
 
     let spellSlotArray = data.SpellSlotsMap.get(spellSRC);
     let spellSlotMap = new Map();
@@ -297,7 +298,7 @@ function displaySpellSlotsSpontaneous(spellSRC, data) {
 
 
 
-function displaySpellBookPrepared(spellBook, data) {
+window.displaySpellBookPrepared=function(spellBook, data) {
 
     let spellBookSearch = $('#manageSpellsSpellBookSearch');
     let spellBookSearchInput = null;
@@ -378,7 +379,7 @@ function displaySpellBookPrepared(spellBook, data) {
 
 }
 
-function displaySpellSlotsPrepared(spellSRC, data) {
+window.displaySpellSlotsPrepared=function(spellSRC, data) {
 
     let spellSlotArray = data.SpellSlotsMap.get(spellSRC);
     let spellSlotMap = new Map();
@@ -447,7 +448,7 @@ function displaySpellSlotsPrepared(spellSRC, data) {
 
 }
 
-function slotCanTakeSpell(spellDataStruct, slot){
+window.slotCanTakeSpell=function(spellDataStruct, slot){
     if(spellDataStruct.Spell.level > slot.slotLevel){
         return false;
     }
@@ -459,7 +460,7 @@ function slotCanTakeSpell(spellDataStruct, slot){
 
 }
 
-function updateSpellSlot(spellID, slot, spellSRC, data){
+window.updateSpellSlot=function(spellID, slot, spellSRC, data){
     if(spellID != null) {
         let spellDataStruct = data.SpellMap.get(spellID+"");
         if(!slotCanTakeSpell(spellDataStruct, slot)){
@@ -485,7 +486,7 @@ function updateSpellSlot(spellID, slot, spellSRC, data){
 
 }
 
-function updateSlotSpellID(spellSlotsArray, slotID, spellID) {
+window.updateSlotSpellID=function(spellSlotsArray, slotID, spellID) {
     for(let slot of spellSlotsArray){
         if(slot.slotID == slotID){
             slot.spellID = spellID;
@@ -495,7 +496,7 @@ function updateSlotSpellID(spellSlotsArray, slotID, spellID) {
     return spellSlotsArray;
 }
 
-function updateSlotUsed(spellSlotsArray, slotID, used) {
+window.updateSlotUsed=function(spellSlotsArray, slotID, used) {
     for(let slot of spellSlotsArray){
         if(slot.slotID == slotID){
             slot.used = used;
@@ -505,7 +506,7 @@ function updateSlotUsed(spellSlotsArray, slotID, used) {
     return spellSlotsArray;
 }
 
-function removeAllNullSpells(spellBook) {
+window.removeAllNullSpells=function(spellBook) {
     for(let i = spellBook.length - 1; i >= 0; i--) {
         if(spellBook[i] === null) {
             spellBook.splice(i, 1);

@@ -6,11 +6,11 @@
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Wanderer's Guide Code ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
 // ========================================================================================= //
 
-function testSheetCode(wscCode){
+window.testSheetCode=function(wscCode){
     return processSheetCode(wscCode, { source: 'TEST' }, true);
 }
 
-function processSheetCode(wscCode, extraData=null, isTest=false){
+window.processSheetCode=function(wscCode, extraData=null, isTest=false){
     if(wscCode == null) {return false;}
     if(extraData == null){ extraData = {source: 'Unknown', sourceName: ''}; }
 
@@ -542,7 +542,7 @@ function processSheetCode(wscCode, extraData=null, isTest=false){
 }
 
 
-function getSheetProcNumber(strNum, sourceName){
+window.getSheetProcNumber=function(strNum, sourceName){
   if(strNum == null) {
     displayError('Incorrect WSC syntax ('+sourceName+')(1-1): NaN error in sheet statement');
     return 0;

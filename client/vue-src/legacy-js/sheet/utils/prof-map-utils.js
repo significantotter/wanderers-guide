@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function findItemDataByName(itemMap, profItemName, type){
+window.findItemDataByName=function(itemMap, profItemName, type){
     for(const [itemID, itemData] of itemMap.entries()){
         if(type == 'WEAPON' && itemData.WeaponData != null){
             if(itemData.WeaponData.profName.toUpperCase() == profItemName){
@@ -17,7 +17,7 @@ function findItemDataByName(itemMap, profItemName, type){
     return null;
 }
 
-function hasFamiliarityReduceProf(itemData){
+window.hasFamiliarityReduceProf=function(itemData){
     for(let weaponFamiliarity of g_weaponFamiliaritiesArray){
         let traitName = weaponFamiliarity.value+' - ITEM';
         
@@ -31,7 +31,7 @@ function hasFamiliarityReduceProf(itemData){
     return false;
 }
 
-function buildWeaponProfMap(){
+window.buildWeaponProfMap=function(){
 
     let weaponProfMap = new Map(); // Key: ItemID Value: { NumUps, UserBonus }
 
@@ -223,7 +223,7 @@ function buildWeaponProfMap(){
     return weaponProfMap;
 }
 
-function weaponProfDetermineNumUps(itemData){
+window.weaponProfDetermineNumUps=function(itemData){
 
   let profNumUps = 0;
   let profData = g_weaponProfMap.get(itemData.WeaponData.profName);
@@ -250,7 +250,7 @@ function weaponProfDetermineNumUps(itemData){
 
 }
 
-function buildArmorProfMap(){
+window.buildArmorProfMap=function(){
 
     let armorProfMap = new Map(); // Key: ItemID Value: { NumUps, UserBonus }
 
@@ -371,7 +371,7 @@ function buildArmorProfMap(){
     return armorProfMap;
 }
 
-function greaterProfValue(prevValue, newValue){
+window.greaterProfValue=function(prevValue, newValue){
   if(prevValue == null || isNaN(prevValue)){
     return newValue;
   } else if(prevValue > newValue){

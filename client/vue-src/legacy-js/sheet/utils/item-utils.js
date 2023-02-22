@@ -2,11 +2,11 @@
     By Aaron Cassar.
 */
 
-function doesntHaveItemHealth(invItem){
+window.doesntHaveItemHealth=function(invItem){
   return (invItem.hitPoints == 0);
 }
 
-function getBulkFromNumber(bulkNumber){
+window.getBulkFromNumber=function(bulkNumber){
   switch(bulkNumber) {
     case 0: return '-';
     case 0.1: return 'L';
@@ -15,7 +15,7 @@ function getBulkFromNumber(bulkNumber){
   }
 }
 
-function getHandsToString(hands){
+window.getHandsToString=function(hands){
   switch(hands) {
     case "NONE":
         return "-";
@@ -32,7 +32,7 @@ function getHandsToString(hands){
 
 
 /* Coins */
-function getCoinToString(price) {
+window.getCoinToString=function(price) {
 
   if(price == 0){return "-";}
 
@@ -91,35 +91,35 @@ function getCoinToString(price) {
 
 }
 
-function processCopper(priceObj) {
+window.processCopper=function(priceObj) {
   if(priceObj.Value == 0){return '';}
   let copperCount = Math.floor(priceObj.Value / 1);
   priceObj.Value -= copperCount;
   return copperCount+'';
 }
 
-function processSilver(priceObj) {
+window.processSilver=function(priceObj) {
   if(priceObj.Value == 0){return '';}
   let silverCount = Math.floor(priceObj.Value / 10);
   priceObj.Value -= silverCount*10;
   return silverCount+'';
 }
 
-function processGold(priceObj) {
+window.processGold=function(priceObj) {
   if(priceObj.Value == 0){return '';}
   let goldCount = Math.floor(priceObj.Value / 100);
   priceObj.Value -= goldCount*100;
   return goldCount+'';
 }
 
-function processPlatinum(priceObj) {
+window.processPlatinum=function(priceObj) {
   if(priceObj.Value == 0){return '';}
   let platinumCount = Math.floor(priceObj.Value / 1000);
   priceObj.Value -= platinumCount*1000;
   return platinumCount+'';
 }
 
-function reduceCoinStr(currentCoinStr, upperCoinStr){
+window.reduceCoinStr=function(currentCoinStr, upperCoinStr){
   let currentCoin = parseInt(currentCoinStr); if(isNaN(currentCoin)){ currentCoin = 0; }
   let upperCoin = parseInt(upperCoinStr); if(isNaN(upperCoin)){ upperCoin = 0; }
   if(currentCoin !== 0 && currentCoin % 10 === 0){
@@ -129,12 +129,12 @@ function reduceCoinStr(currentCoinStr, upperCoinStr){
   return { current: currentCoinStr, upper: upperCoinStr };
 }
 
-function numberWithCommas(x) {
+window.numberWithCommas=function(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 /* Worn Armor Bulk Adjustment */
-function getWornArmorBulkAdjustment(invItem, currentBulk){
+window.getWornArmorBulkAdjustment=function(invItem, currentBulk){
   if(g_equippedArmorInvItemID != null && g_equippedArmorInvItemID == invItem.id){
     return currentBulk;
   } else {
@@ -151,15 +151,15 @@ function getWornArmorBulkAdjustment(invItem, currentBulk){
 }
 
 /* Size Conversions */
-function bulkIsLight(bulk){
+window.bulkIsLight=function(bulk){
   return bulk === 0.1;
 }
-function bulkIsNegligible(bulk){
+window.bulkIsNegligible=function(bulk){
   return bulk === 0 || bulk === 0.001;
 }
 
 
-function getBulkLimitModifierForSize(creatureSize){
+window.getBulkLimitModifierForSize=function(creatureSize){
   switch(creatureSize) {
     case "TINY": return 0.5;
     case "SMALL": return 1;
@@ -171,13 +171,13 @@ function getBulkLimitModifierForSize(creatureSize){
   }
 }
 
-function determineItemBulk(creatureSize, itemSize, itemBulk){
+window.determineItemBulk=function(creatureSize, itemSize, itemBulk){
   if(itemBulk == -1){ return 0; }
   let newItemBulk = convertItemTreatedBulkForCreature(creatureSize, itemBulk);
   return getConvertedBulkForSize(itemSize, newItemBulk);
 }
 
-function convertItemTreatedBulkForCreature(creatureSize, itemBulk){
+window.convertItemTreatedBulkForCreature=function(creatureSize, itemBulk){
   switch(creatureSize) {
     case "TINY":
       if(itemBulk >= 0 && itemBulk <= 0.1) { return 0.1; }
@@ -199,7 +199,7 @@ function convertItemTreatedBulkForCreature(creatureSize, itemBulk){
   }
 }
 
-function getConvertedBulkForSize(itemSize, bulk){
+window.getConvertedBulkForSize=function(itemSize, bulk){
   switch(itemSize) {
     case "TINY":
       if(bulk == 0) {
@@ -249,7 +249,7 @@ function getConvertedBulkForSize(itemSize, bulk){
   }
 }
 
-function getConvertedPriceForSize(itemSize, price){
+window.getConvertedPriceForSize=function(itemSize, price){
   switch(itemSize) {
     case "TINY":
       return price;
@@ -270,7 +270,7 @@ function getConvertedPriceForSize(itemSize, price){
 
 ////////
 
-function getItemTraitsArray(item, invItem){
+window.getItemTraitsArray=function(item, invItem){
   let tagArray;
   try {
     tagArray = [];
@@ -328,7 +328,7 @@ function getItemTraitsArray(item, invItem){
 
 ////////
 
-function getItemIcon(item, invItem){
+window.getItemIcon=function(item, invItem){
 
   let fa_icon = null;
 

@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openInventoryTab(data){
+window.openInventoryTab=function(data){
 
     $('#tabContent').append('<div class="columns is-mobile pt-1 is-marginless"><div class="column is-inline-flex is-paddingless pt-2 px-3"><p class="is-size-6 pr-3"><strong class="has-txt-value-number">Total Bulk</strong></p><p id="bulkTotal" class="is-size-6 has-text-left">'+g_bulkAndCoinsStruct.TotalBulk+' / '+g_bulkAndCoinsStruct.WeightEncumbered+'</p><p id="bulkMax" class="is-size-7 pl-2 has-text-left">(Limit '+g_bulkAndCoinsStruct.WeightMax+')</p></div><div class="column is-paddingless pt-2 px-3"><div class="is-inline-flex is-pulled-right"><p id="coinsMessage" class="is-size-6"><strong class="has-txt-value-number">Total Coins</strong></p><div id="coinsPlatinumSection" class="is-inline-flex" data-tooltip="Platinum"><figure class="image is-16x16 is-marginless mt-1 ml-3 mr-1"><img src="/images/platinum_coin.png"></figure><p>'+g_bulkAndCoinsStruct.PlatinumCoins+'</p></div><div id="coinsGoldSection" class="is-inline-flex" data-tooltip="Gold"><figure class="image is-16x16 is-marginless mt-1 ml-3 mr-1"><img src="/images/gold_coin.png"></figure><p>'+g_bulkAndCoinsStruct.GoldCoins+'</p></div><div id="coinsSilverSection" class="is-inline-flex" data-tooltip="Silver"><figure class="image is-16x16 is-marginless mt-1 ml-3 mr-1"><img src="/images/silver_coin.png"></figure><p>'+g_bulkAndCoinsStruct.SilverCoins+'</p></div><div id="coinsCopperSection" class="is-inline-flex" data-tooltip="Copper"><figure class="image is-16x16 is-marginless mt-1 ml-3 mr-1"><img src="/images/copper_coin.png"></figure><p>'+g_bulkAndCoinsStruct.CopperCoins+'</p></div></div></div></div>');
 
@@ -103,7 +103,7 @@ function openInventoryTab(data){
 
 // Inventory //
 
-function displayInventorySection(data){
+window.displayInventorySection=function(data){
 
     $('#inventorySearch').off('change');
 
@@ -199,7 +199,7 @@ function displayInventorySection(data){
 
 }
 
-function displayInventoryItem(invItem, item, openBagItemArray, data) {
+window.displayInventoryItem=function(invItem, item, openBagItemArray, data) {
 
     let itemTagArray = getItemTraitsArray(item, invItem);
 
@@ -623,7 +623,7 @@ function displayInventoryItem(invItem, item, openBagItemArray, data) {
 
 }
 
-function handleArmorEquip(invID){
+window.handleArmorEquip=function(invID){
     $('.equipArmorButton').each(function(i, obj) {
         let invItemID = $(this).attr('data-invItemID');
         let armorCategory = $(this).attr('data-category');
@@ -649,7 +649,7 @@ function handleArmorEquip(invID){
     });
 }
 
-function handleShieldEquip(invID){
+window.handleShieldEquip=function(invID){
     $('.equipShieldButton').each(function(i, obj) {
         let invItemID = $(this).attr('name');
         if(g_equippedShieldInvItemID == invItemID) {
@@ -673,7 +673,7 @@ function handleShieldEquip(invID){
 }
 
 let isUpdateInventoryAvailable = true;
-function updateInventoryBackend(invID){
+window.updateInventoryBackend=function(invID){
     if(isUpdateInventoryAvailable){
         isUpdateInventoryAvailable = false;
         setTimeout(function(){

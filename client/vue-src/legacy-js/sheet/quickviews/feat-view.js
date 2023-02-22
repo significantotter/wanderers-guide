@@ -19,7 +19,7 @@ Requires:
   - g_skillMap (either CharGathering or GeneralGathering version)
   - g_allTags
 */
-function openFeatQuickview(data) {
+window.openFeatQuickview=function(data) {
     addBackFunctionality(data);
     addContentSource(data.Feat.id, data.Feat.contentSrc, data.Feat.homebrewID);
 
@@ -194,7 +194,7 @@ function openFeatQuickview(data) {
 
 
 
-function showFeatListOptions(qContent, wscStatements){
+window.showFeatListOptions=function(qContent, wscStatements){
   if(wscStatements == null) {return;}
 
   let statementArray = wscStatements.split(/\n/);
@@ -244,7 +244,7 @@ function showFeatListOptions(qContent, wscStatements){
   }
 }
 
-function showFeatPrerequisiteFor(qContent, featName) {
+window.showFeatPrerequisiteFor=function(qContent, featName) {
   if(typeof g_featMap == 'undefined') { return; }
 
   let prereqFeatMap = new Map();
@@ -291,7 +291,7 @@ function showFeatPrerequisiteFor(qContent, featName) {
   }
 }
 
-function featNameIsFeatPrerequisite(prerequisites, featName){
+window.featNameIsFeatPrerequisite=function(prerequisites, featName){
   if(prerequisites == featName) { return true; }
   if(prerequisites.includes(', '+featName) && prerequisites.endsWith(featName)) { return true; }
   if(prerequisites.includes('; '+featName) && prerequisites.endsWith(featName)) { return true; }
@@ -300,7 +300,7 @@ function featNameIsFeatPrerequisite(prerequisites, featName){
   return false;
 }
 
-function featViewTextProcessor(text){
+window.featViewTextProcessor=function(text){
     if(!isSheetPage()) { return text; }
 
     let speedNum = getStatTotal(VARIABLE.SPEED);

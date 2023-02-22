@@ -7,13 +7,12 @@ import {
   initCharacterExportToPDF as initCharacterExportToPDFInternal,
   setup as setupPopulatePdf,
 } from "./char_export/populate-pdf";
-import { exportCharacter, copyCharacter } from "./char_export/export-handler";
 
-let activeModalCharID = -1;
-let activeModalCharName = "";
-let socket = io();
+window.activeModalCharID = -1;
+window.activeModalCharName = "";
+window.socket = io();
 
-setupPopulatePdf(socket);
+setupPopulatePdf(window.socket);
 
 // ~~~~~~~~~~~~~~ // Run on Load // ~~~~~~~~~~~~~~ //
 export function setup() {

@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openACQuickview(data) {
+window.openACQuickview=function(data) {
 
     $('#quickViewTitle').html('Armor Class - <em class="is-size-6">'+data.ArmorItemName+'</em>');
 

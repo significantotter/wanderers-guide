@@ -2,140 +2,144 @@
     By Aaron Cassar.
 */
 
-let socket = io();
-let isSheetInit = false;
-let isViewOnly = false;
+window.socket = io(); 
+window.isSheetInit = false;
+window.isViewOnly = false;
 
 /* Character Options */
-let gOption_hasAutoHeightenSpells;
-let gOption_hasProfWithoutLevel;
-let gOption_hasStamina;
-let gOption_hasDiceRoller;
-let gOption_hasAutoBonusProgression;
-let gOption_hasGradualAbilityBoosts;
+window.gOption_hasAutoHeightenSpells=null;
+window.gOption_hasProfWithoutLevel=null;
+window.gOption_hasStamina=null;
+window.gOption_hasDiceRoller=null;
+window.gOption_hasAutoBonusProgression=null;
+window.gOption_hasGradualAbilityBoosts=null;
+window.gOption_hasIgnoreBulk=null;
 /* ~~~~~~~~~~~~~~~~~ */
 
 /* Internal Sheet-State Options */
-let gState_hasFinesseMeleeUseDexDamage;
-let gState_armoredStealth;
-let gState_mightyBulwark;
-let gState_unburdenedIron;
-let gState_improvisedWeaponNoPenalty;
-let gState_addLevelToUntrainedWeaponAttack;
-let gState_addLevelToUntrainedSkill;
-let gState_displayCompanionTab;
-let gState_MAP = 'TIER_1';
+window.gState_hasFinesseMeleeUseDexDamage=null;
+window.gState_armoredStealth=null;
+window.gState_mightyBulwark=null;
+window.gState_unburdenedIron=null;
+window.gState_improvisedWeaponNoPenalty=null;
+window.gState_addLevelToUntrainedWeaponAttack=null;
+window.gState_addLevelToUntrainedSkill=null;
+window.gState_displayCompanionTab=null;
+window.gState_MAP = 'TIER_1';
 // TIER_1 = (5/10 or 4/8 agile)
 // TIER_2 = (4/8 or 3/6 agile)
 // TIER_3 = (3/6 or 2/4 agile)
 // TIER_4 = (2/4 or 1/2 agile)
 /* ~~~~~~~~~~~~~~~~~~~ */
 
-let g_calculatedStats = null;
+window.g_calculatedStats = null;
 
-let g_enabledSources = null;
+window.g_enabledSources = null;
 
-let g_character = null;
-let g_classDetails = null;
-let g_ancestry = null;
-let g_heritage = null;
-let g_background = null;
-let g_charTagsArray = null;
+window.g_focusPointArray=[];
+window.g_focusSpellMap = null;
 
-let g_campaignDetails = null;
+window.g_character = null;
+window.g_classDetails = null;
+window.g_ancestry = null;
+window.g_heritage = null;
+window.g_background = null;
+window.g_charTagsArray = null;
 
-let g_classArchetype = null;
+window.g_campaignDetails = null;
 
-let g_charSize = null;
+window.g_classArchetype = null;
 
-let g_allTags = null;
+window.g_charSize = null;
 
-let g_itemMap = null;
-let g_invStruct = null;
-let g_bulkAndCoinsStruct = null;
-let g_openBagsSet = new Set();
+window.g_allTags = null;
 
-let g_otherSpeeds = null;
+window.g_itemMap = null;
+window.g_invStruct = null;
+window.g_bulkAndCoinsStruct = null;
+window.g_openBagsSet = new Set();
 
-let g_conditionsMap = null;
-let g_allConditions = null;
+window.g_otherSpeeds = null;
 
-let g_profMap = null;
-let g_weaponProfMap = null;
-let g_armorProfMap = null;
+window.g_conditionsMap = null;
+window.g_allConditions = null;
 
-let g_equippedArmorInvItemID = null;
-let g_equippedShieldInvItemID = null;
-let g_equippedArmorCategory = null;
+window.g_profMap = null;
+window.g_weaponProfMap = null;
+window.g_armorProfMap = null;
 
-let g_abilMap = null;
-let g_skillMap = null;
-let g_senseArray = null;
-let g_phyFeatArray = null;
+window.g_equippedArmorInvItemID = null;
+window.g_equippedShieldInvItemID = null;
+window.g_equippedArmorCategory = null;
 
-let g_langArray = null;
-let g_allLanguages = null;
+window.g_abilMap = null;
+window.g_skillMap = null;
+window.g_senseArray = null;
+window.g_phyFeatArray = null;
 
-let g_featMap = null;
-let g_featChoiceArray = null;
+window.g_langArray = null;
+window.g_allLanguages = null;
 
-let g_extraClassAbilities = null;
-let g_allClassAbilityOptions = null;
+window.g_featMap = null;
+window.g_featChoiceArray = null;
 
-let g_spellMap = null;
-let g_spellSlotsMap = null;
-let g_spellBookArray = null;
-let g_innateSpellArray = null;
+window.g_extraClassAbilities = null;
+window.g_allClassAbilityOptions = null;
 
-let g_companionData = null;
+window.g_spellMap = null;
+window.g_spellSlotsMap = null;
+window.g_spellBookArray = null;
+window.g_innateSpellArray = null;
 
-let g_resistAndVulners = null;
+window.g_companionData = null;
 
-let g_heritageEffects = null;
+window.g_resistAndVulners = null;
 
-let g_specializationStruct = null;
-let g_weaponFamiliaritiesArray = null;
+window.g_heritageEffects = null;
 
-let g_runeDataStruct = null;
+window.g_specializationStruct = null;
+window.g_weaponFamiliaritiesArray = null;
 
-let g_notesFields = null;
+window.g_runeDataStruct = null;
 
-let currentInvests = null;
-let maxInvests = null;
+window.g_notesFields = null;
 
-let g_sheetStatesArray = null;
+window.currentInvests = null;
+window.maxInvests = null;
 
-let g_unselectedDataArray = null;
+window.g_sheetStatesArray = null;
 
-let g_sheetTabSizeLock = false;
+window.g_unselectedDataArray = null;
 
-let g_inventoryTabScroll = null;
-let g_selectedTabID = 'inventoryTab';
-let g_selectedSubTabID = null;
-let g_selectedSubTabLock = false;
+window.g_sheetTabSizeLock = false;
 
-let g_selectedActionSubTabID = 'actionTabEncounter';
-let g_selectedAction_SkillOption = 'chooseDefault';
-let g_selectedAction_ActionOption = 'chooseDefault';
-let g_selectedAction_SearchText = '';
-let g_selectedAction_BasicEnabled = true;
-let g_selectedAction_FeatsEnabled = true;
-let g_selectedAction_ItemsEnabled = true;
-let g_selectedAction_SkillsEnabled = true;
+window.g_inventoryTabScroll = null;
+window.g_selectedTabID = 'inventoryTab';
+window.g_selectedSubTabID = null;
+window.g_selectedSubTabLock = false;
 
-let g_selectedSpellSubTabID = null;
+window.g_selectedActionSubTabID = 'actionTabEncounter';
+window.g_selectedAction_SkillOption = 'chooseDefault';
+window.g_selectedAction_ActionOption = 'chooseDefault';
+window.g_selectedAction_SearchText = '';
+window.g_selectedAction_BasicEnabled = true;
+window.g_selectedAction_FeatsEnabled = true;
+window.g_selectedAction_ItemsEnabled = true;
+window.g_selectedAction_SkillsEnabled = true;
 
-let g_selectedDetailsSubTabID = 'detailsTabFeats';
-let g_selectedDetailsOptionValue = 'All';
+window.g_selectedSpellSubTabID = null;
 
-let g_preConditions_strScore = null;
-let g_preConditions_dexScore = null;
-let g_preConditions_conScore = null;
-let g_preConditions_intScore = null;
-let g_preConditions_wisScore = null;
-let g_preConditions_chaScore = null;
+window.g_selectedDetailsSubTabID = 'detailsTabFeats';
+window.g_selectedDetailsOptionValue = 'All';
 
-let g_showHealthPanel = true; // For Stamina GMG Variant
+window.g_preConditions_strScore = null;
+window.g_preConditions_dexScore = null;
+window.g_preConditions_conScore = null;
+window.g_preConditions_intScore = null;
+window.g_preConditions_wisScore = null;
+window.g_preConditions_chaScore = null;
+
+window.g_showHealthPanel = true; // For Stamina GMG Variant
 
 // ~~~~~~~~~~~~~~ // Run on Load // ~~~~~~~~~~~~~~ //
 $(function () {
@@ -166,7 +170,7 @@ $(function () {
 });
 
 
-function initCharSheet(charInfo, userPermissions, viewOnly){
+window.initCharSheet=function(charInfo, userPermissions, viewOnly){
     console.log('~ Loaded Char Sheet Info ~');
 
     isViewOnly = viewOnly;
@@ -204,22 +208,22 @@ function initCharSheet(charInfo, userPermissions, viewOnly){
         })
     );
 
-    g_invStruct = charInfo.InvStruct;
+    window.g_invStruct = charInfo.InvStruct;
 
-    g_equippedArmorInvItemID = g_invStruct.Inventory.equippedArmorInvItemID;
-    g_equippedShieldInvItemID = g_invStruct.Inventory.equippedShieldInvItemID;
-    g_equippedArmorCategory = g_invStruct.Inventory.equippedArmorCategory;
+    window.g_equippedArmorInvItemID = g_invStruct.Inventory.equippedArmorInvItemID;
+    window.g_equippedShieldInvItemID = g_invStruct.Inventory.equippedShieldInvItemID;
+    window.g_equippedArmorCategory = g_invStruct.Inventory.equippedArmorCategory;
 
-    g_character = charInfo.Character;
+    window.g_character = charInfo.Character;
 
     /* Character Options and Variants */
-    gOption_hasAutoHeightenSpells = (g_character.optionAutoHeightenSpells === 1);
-    gOption_hasProfWithoutLevel = (g_character.variantProfWithoutLevel === 1);
-    gOption_hasStamina = (g_character.variantStamina === 1);
-    gOption_hasDiceRoller = (g_character.optionDiceRoller === 1);
-    gOption_hasIgnoreBulk = (g_character.optionIgnoreBulk === 1);
-    gOption_hasAutoBonusProgression = (g_character.variantAutoBonusProgression === 1);
-    gOption_hasGradualAbilityBoosts = (g_character.variantGradualAbilityBoosts === 1);
+    window.gOption_hasAutoHeightenSpells = (g_character.optionAutoHeightenSpells === 1);
+    window.gOption_hasProfWithoutLevel = (g_character.variantProfWithoutLevel === 1);
+    window.gOption_hasStamina = (g_character.variantStamina === 1);
+    window.gOption_hasDiceRoller = (g_character.optionDiceRoller === 1);
+    window.gOption_hasIgnoreBulk = (g_character.optionIgnoreBulk === 1);
+    window.gOption_hasAutoBonusProgression = (g_character.variantAutoBonusProgression === 1);
+    window.gOption_hasGradualAbilityBoosts = (g_character.variantGradualAbilityBoosts === 1);
 
 
     /* Class Archetype ID */
@@ -431,7 +435,7 @@ function initCharSheet(charInfo, userPermissions, viewOnly){
     isSheetInit = true;
 }
 
-function loadCharSheet(){
+window.loadCharSheet=function(){
 
     console.log('~ LOADING SHEET ~');
 
@@ -718,7 +722,7 @@ function loadCharSheet(){
     sendOutUpdateToGM('calculated-stats', g_calculatedStats);
 }
 
-function displayAbilityScores() {
+window.displayAbilityScores=function() {
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////// Ability Scores ////////////////////////////////////////
@@ -1728,7 +1732,7 @@ function displayInformation() {
 //////////////////////////////////////////// Health ////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function initHealthPointsAndMore() {
+window.initHealthPointsAndMore=function() {
 
   // TODO - Rework this
   // Sets the g_calculatedStats for both health and stamina
@@ -1760,7 +1764,7 @@ function initHealthPointsAndMore() {
 
 }
 
-function initHealthAndTemp() {
+window.initHealthAndTemp=function() {
     $('#healthPointsContainer').removeClass('is-hidden');
     $('#tempPointsContainer').removeClass('is-hidden');
     $('#staminaPointsContainer').addClass('is-hidden');
@@ -1848,7 +1852,7 @@ function initHealthAndTemp() {
 
 }
 
-function healthConfirm(maxHealthNum){
+window.healthConfirm=function(maxHealthNum){
   let currentHealthNum = $('#current-health-input').val();
 
   let newCurrentHealth;
@@ -1897,7 +1901,7 @@ function healthConfirm(maxHealthNum){
   }
 }
 
-function tempHealthConfirm(){
+window.tempHealthConfirm=function(){
   let tempHealth = $('#char-temp-health');
   let tempHealthNum = $('#temp-health-input').val();
 
@@ -1927,7 +1931,7 @@ function tempHealthConfirm(){
 
 ///////
 
-function initStaminaAndResolve() {
+window.initStaminaAndResolve=function() {
   $('#staminaPointsContainer').removeClass('is-hidden');
   $('#resolvePointsContainer').removeClass('is-hidden');
   $('#healthPointsContainer').addClass('is-hidden');
@@ -2010,7 +2014,7 @@ function initStaminaAndResolve() {
 
 }
 
-function staminaConfirm(maxStaminaNum){
+window.staminaConfirm=function(maxStaminaNum){
   let currentStaminaNum = $('#current-stamina-input').val();
 
   let newCurrentStamina;
@@ -2033,7 +2037,7 @@ function staminaConfirm(maxStaminaNum){
   sendOutUpdateToGM('stamina', { value: g_character.currentStamina });
 }
 
-function resolveConfirm(maxResolveNum){
+window.resolveConfirm=function(maxResolveNum){
   let currentResolveNum = $('#current-resolve-input').val();
 
   let newCurrentResolve;
@@ -2060,7 +2064,7 @@ function resolveConfirm(maxResolveNum){
 ////////////////////////////////////// Armor and Shields ///////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function determineArmor(dexMod, strScore) {
+window.determineArmor=function(dexMod, strScore) {
 
     let shieldStruct = findEquippedShield();
     if(shieldStruct != null){
@@ -2326,7 +2330,7 @@ function determineArmor(dexMod, strScore) {
 
 }
 
-function runPropertyRuneCode(propertyRuneID, invItemID){
+window.runPropertyRuneCode=function(propertyRuneID, invItemID){
 
     if(propertyRuneID == null){ return; }
 
@@ -2346,14 +2350,14 @@ function runPropertyRuneCode(propertyRuneID, invItemID){
 
 }
 
-function applyArmorCheckPenaltyToSkill(skillName, checkPenalty){
+window.applyArmorCheckPenaltyToSkill=function(skillName, checkPenalty){
 
     addStat('SKILL_'+skillName, 'PENALTY (ARMOR)', checkPenalty);
     addConditionalStat('SKILL_'+skillName, signNumber(checkPenalty)+" penalty from armor is NOT applied to skill checks that have the attack trait", 'Worn Armor');
 
 }
 
-function findEquippedArmor() {
+window.findEquippedArmor=function() {
     for(const invItem of g_invStruct.InvItems){
         if(invItem.id == g_equippedArmorInvItemID) {
             let item = g_itemMap.get(invItem.itemID+"");
@@ -2366,7 +2370,7 @@ function findEquippedArmor() {
     return null;
 }
 
-function findEquippedShield() {
+window.findEquippedShield=function() {
     for(const invItem of g_invStruct.InvItems){
         if(invItem.id == g_equippedShieldInvItemID) {
             let item = g_itemMap.get(invItem.itemID+"");
@@ -2393,7 +2397,7 @@ function findEquippedShield() {
     return null;
 }
 
-function removeInvalidItemsFromInventory(){
+window.removeInvalidItemsFromInventory=function(){
 
   for(const invItem of g_invStruct.InvItems){
         
@@ -2411,7 +2415,7 @@ function removeInvalidItemsFromInventory(){
 //////////////////////////////////////// Rune Data Struct //////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function generateRuneDataStruct(){
+window.generateRuneDataStruct=function(){
 
     let weaponRuneArray = [];
     let armorRuneArray = [];
@@ -2459,7 +2463,7 @@ function generateRuneDataStruct(){
 /////////////////////////////////// Determine Bulk And Coins ///////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function determineBulkAndCoins(invItems, itemMap){
+window.determineBulkAndCoins=function(invItems, itemMap){
 
     let bagBulkMap = new Map();
     let totalBulk = 0;
@@ -2622,7 +2626,7 @@ function determineBulkAndCoins(invItems, itemMap){
 ////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////// Determine Investitures ////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function determineInvestitures(){
+window.determineInvestitures=function(){
 
     maxInvests = 10;
 
@@ -2669,7 +2673,7 @@ function determineInvestitures(){
 ///////////////////////////////// Feats, Abilities, Items Code /////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function runAllItemsCode() {
+window.runAllItemsCode=function() {
         
     for(const invItem of g_invStruct.InvItems){
         
@@ -2698,7 +2702,7 @@ function runAllItemsCode() {
 
 }
 
-function runAllFeatsAndAbilitiesCode() {
+window.runAllFeatsAndAbilitiesCode=function() {
 
     let totalClassAbilities = cloneObj(g_classDetails.Abilities);
     for(let extraClassAbil of g_extraClassAbilities){
@@ -2820,7 +2824,7 @@ function runAllFeatsAndAbilitiesCode() {
 
 }
 
-function runAllSheetStateCode() {
+window.runAllSheetStateCode=function() {
 
   for(const sheetState of getSheetStates()){
     if(sheetState.isActive){
@@ -2838,7 +2842,7 @@ function runAllSheetStateCode() {
 ///////////////////////////////////////// Other Profs //////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function otherProfBuild(content, prof, name, otherProfsNum, profData, profSrcData, VARIABLE, extraData={}){
+window.otherProfBuild=function(content, prof, name, otherProfsNum, profData, profSrcData, VARIABLE, extraData={}){
 
     if(profData.UserAdded){
         prof = '<span class="is-underlined-thin-darker">'+prof+'</span>';
@@ -2880,7 +2884,7 @@ function otherProfBuild(content, prof, name, otherProfsNum, profData, profSrcDat
 ///////////////////////////////////////////// Rest /////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-function takeRest(){
+window.takeRest=function(){
 
     // Regen Health
     let conMod = getModOfValue('CON');

@@ -21,7 +21,7 @@ $(function () {
 
 });
 
-function updateHideables(){
+window.updateHideables=function(){
     $('.isHideable').each(function(){
         $(this).addClass('is-hidden');
     });

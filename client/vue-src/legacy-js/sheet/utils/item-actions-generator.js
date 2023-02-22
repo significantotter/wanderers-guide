@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function findItemActionsFromInvItems(){
+window.findItemActionsFromInvItems=function(){
   let itemActions = [];
   for(const invItem of g_invStruct.InvItems){
     if(invItem.description == null){ continue; }
@@ -21,7 +21,7 @@ function findItemActionsFromInvItems(){
   return itemActions;
 }
 
-function getActionsInText(text){
+window.getActionsInText=function(text){
 
   let textToTraits = function(text){
     let traitsArray = [];

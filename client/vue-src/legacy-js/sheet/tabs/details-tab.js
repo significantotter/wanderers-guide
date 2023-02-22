@@ -1,8 +1,7 @@
 /* Copyright (C) 2021, Wanderer's Guide, all rights reserved.
     By Aaron Cassar.
 */
-
-function openDetailsTab(data){
+window.openDetailsTab=function(data){
 
     $('#tabContent').append('<div class="tabs is-centered is-marginless"><ul class="details-tabs"><li><a id="detailsTabFeats">Feats</a></li><li><a id="detailsTabAbilities">Abilities</a></li><li><a id="detailsTabDescription">Description</a></li></ul></div>');
 
@@ -25,7 +24,7 @@ function openDetailsTab(data){
 }
 
 // Details Tabs //
-function changeDetailsTab(type, data){
+window.changeDetailsTab=function(type, data){
     if(!g_selectedSubTabLock) {g_selectedSubTabID = type;}
     g_selectedDetailsSubTabID = type;
 
@@ -47,7 +46,7 @@ function changeDetailsTab(type, data){
 }
 
 
-function displayFeatsSection(data) {
+window.displayFeatsSection=function(data) {
 
     $('#detailsTabContent').append('<div class="columns is-mobile is-marginless"><div class="column"><p class="control has-icons-left"><input id="featsSearch" class="input" type="text" autocomplete="off" placeholder="Search Feats"><span class="icon is-left"><i class="fas fa-search" aria-hidden="true"></i></span></p></div><div class="column is-narrow"><div class="select"><select id="featsFilterByType"><option value="All">All</option><option value="Class">Class</option><option value="Ancestry">Ancestry</option><option value="Skill">Skill</option><option value="Other">Other</option></select></div></div></div><div id="featsContent" class="use-custom-scrollbar" style="height: 505px; max-height: 505px; overflow-y: auto;"></div>');
 
@@ -56,7 +55,7 @@ function displayFeatsSection(data) {
 
 }
 
-function displayFeatContent(data){
+window.displayFeatContent=function(data){
 
     $('#featsFilterByType').off('change');
     $('#featsSearch').off('change');
@@ -106,7 +105,7 @@ function displayFeatContent(data){
 
 }
 
-function displayClassFeats(data, featsSearchValue, displayIfNoResults=true){
+window.displayClassFeats=function(data, featsSearchValue, displayIfNoResults=true){
   $('#featsContent').append('<p id="featsContent-classFeats" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Class</p>');
   $('#featsContent').append('<hr id="featsContent-classFeats-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
   let displayedFeat = featDisplayByType(data, [data.ClassDetails.Class.name], featsSearchValue);
@@ -118,7 +117,7 @@ function displayClassFeats(data, featsSearchValue, displayIfNoResults=true){
 
 }
 
-function displayAncestryFeats(data, featsSearchValue, displayIfNoResults=true){
+window.displayAncestryFeats=function(data, featsSearchValue, displayIfNoResults=true){
   $('#featsContent').append('<p id="featsContent-ancestryFeats" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Ancestry</p>');
   $('#featsContent').append('<hr id="featsContent-ancestryFeats-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
   let displayedFeat = featDisplayByType(data, cloneObj(g_charTagsArray), featsSearchValue);
@@ -130,7 +129,7 @@ function displayAncestryFeats(data, featsSearchValue, displayIfNoResults=true){
 
 }
 
-function displaySkillFeats(data, featsSearchValue, displayIfNoResults=true){
+window.displaySkillFeats=function(data, featsSearchValue, displayIfNoResults=true){
   $('#featsContent').append('<p id="featsContent-skillFeats" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Skill</p>');
   $('#featsContent').append('<hr id="featsContent-skillFeats-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
   let displayedFeat = featDisplayByType(data, ['Skill'], featsSearchValue);
@@ -142,7 +141,7 @@ function displaySkillFeats(data, featsSearchValue, displayIfNoResults=true){
 
 }
 
-function displayOtherFeats(data, featsSearchValue, displayIfNoResults=true){
+window.displayOtherFeats=function(data, featsSearchValue, displayIfNoResults=true){
   $('#featsContent').append('<p id="featsContent-otherFeats" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Other</p>');
   $('#featsContent').append('<hr id="featsContent-otherFeats-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
   let displayedFeat = featDisplayByType(data, null, featsSearchValue);
@@ -154,7 +153,7 @@ function displayOtherFeats(data, featsSearchValue, displayIfNoResults=true){
 
 }
 
-function featDisplayByType(data, sortingTagNameArray, featsSearchValue){
+window.featDisplayByType=function(data, sortingTagNameArray, featsSearchValue){
 
     let displayedFeat = false;
     let featCount = 0;
@@ -194,7 +193,7 @@ function featDisplayByType(data, sortingTagNameArray, featsSearchValue){
 
 }
 
-function filterFeatsThroughSearch(featData, featTags, featCount, featsSearchValue){
+window.filterFeatsThroughSearch=function(featData, featTags, featCount, featsSearchValue){
 
     let willDisplay = false;
     if(featsSearchValue != null){
@@ -216,7 +215,7 @@ function filterFeatsThroughSearch(featData, featTags, featCount, featsSearchValu
 
 }
 
-function displayFeat(featData, featTags, featCount){
+window.displayFeat=function(featData, featTags, featCount){
 
     let feat = featData.value;
     let featID = 'featDetailsEntry'+feat.id+"C"+featCount;
@@ -296,7 +295,7 @@ function displayFeat(featData, featTags, featCount){
 
 
 
-function displayAbilitiesSection(data) {
+window.displayAbilitiesSection=function(data) {
 
     $('#detailsTabContent').append('<div class="columns is-mobile is-marginless"><div class="column"><p class="control has-icons-left"><input id="abilitiesSearch" class="input" autocomplete="off" type="text" placeholder="Search Abilities"><span class="icon is-left"><i class="fas fa-search" aria-hidden="true"></i></span></p></div><div class="column is-narrow"><div class="select"><select id="abilitiesFilterByType"><option value="All">All</option><option value="Class">Class</option><option value="Ancestry">Ancestry</option><option value="Other">Other</option></select></div></div></div><div id="abilitiesContent" class="use-custom-scrollbar" style="height: 505px; max-height: 505px; overflow-y: auto;"></div>');
 
@@ -309,7 +308,7 @@ function displayAbilitiesSection(data) {
 
 }
 
-function displayAbilitiesContent(data){
+window.displayAbilitiesContent=function(data){
 
     $('#abilitiesFilterByType').off('change');
     $('#abilitiesSearch').off('change');
@@ -356,7 +355,7 @@ function displayAbilitiesContent(data){
 
 }
 
-function displayClassAbilities(data, abilitiesSearchValue, displayIfNoResults=true){
+window.displayClassAbilities=function(data, abilitiesSearchValue, displayIfNoResults=true){
     $('#abilitiesContent').append('<p id="abilitiesContent-classAbilities" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Class</p>');
     $('#abilitiesContent').append('<hr id="abilitiesContent-classAbilities-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
 
@@ -391,7 +390,7 @@ function displayClassAbilities(data, abilitiesSearchValue, displayIfNoResults=tr
 
 }
 
-function displayAncestryAbilities(data, abilitiesSearchValue, displayIfNoResults=true){
+window.displayAncestryAbilities=function(data, abilitiesSearchValue, displayIfNoResults=true){
     $('#abilitiesContent').append('<p id="abilitiesContent-ancestryAbilities" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Ancestry</p>');
     $('#abilitiesContent').append('<hr id="abilitiesContent-ancestryAbilities-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
    
@@ -419,7 +418,7 @@ function displayAncestryAbilities(data, abilitiesSearchValue, displayIfNoResults
 
 }
 
-function displayOtherAbilities(data, abilitiesSearchValue, displayIfNoResults=true){
+window.displayOtherAbilities=function(data, abilitiesSearchValue, displayIfNoResults=true){
     $('#abilitiesContent').append('<p id="abilitiesContent-otherAbilities" class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5">Other</p>');
     $('#abilitiesContent').append('<hr id="abilitiesContent-otherAbilities-hr" class="hr-light" style="margin-top:-0.5em; margin-bottom:0em;">');
     
@@ -452,7 +451,7 @@ function displayOtherAbilities(data, abilitiesSearchValue, displayIfNoResults=tr
 
 }
 
-function filterAbilitiesThroughSearch(ability, abilIdentifier, abilitiesSearchValue){
+window.filterAbilitiesThroughSearch=function(ability, abilIdentifier, abilitiesSearchValue){
 
     let willDisplay = false;
     if(abilitiesSearchValue != null){
@@ -474,7 +473,7 @@ function filterAbilitiesThroughSearch(ability, abilIdentifier, abilitiesSearchVa
 
 }
 
-function displayAbility(ability, abilIdentifier){
+window.displayAbility=function(ability, abilIdentifier){
 
     let abilityID = 'abilityDetailsEntry'+abilIdentifier;
 
@@ -521,7 +520,7 @@ function displayAbility(ability, abilIdentifier){
 
 
 
-function displayDescriptionSection(data){
+window.displayDescriptionSection=function(data){
     $('#detailsTabContent').append('<div id="descriptionContent" class="use-custom-scrollbar" style="height: 555px; max-height: 555px; overflow-y: auto;"></div>');
 
     $('#descriptionContent').append('<p class="is-size-5 has-txt-listing has-text-weight-bold text-left pl-5 pt-2">Background - '+data.Background.name+'</p>');

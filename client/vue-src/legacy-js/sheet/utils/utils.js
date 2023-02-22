@@ -2,18 +2,18 @@
     By Aaron Cassar.
 */
 
-function getCharIDFromURL(){
+window.getCharIDFromURL=function(){
     return window.location.pathname.split("characters/")[1];
 }
 
-function hasEnabledSource(codeName){
+window.hasEnabledSource=function(codeName){
   const source = g_enabledSources.find(source => {
     return source.codeName != null && source.codeName == codeName;
   });
   return source != null;
 }
 
-function getBulmaTextColorFromCurrentHP(currentHP, maxHP) {
+window.getBulmaTextColorFromCurrentHP=function(currentHP, maxHP) {
   if(currentHP >= maxHP*0.8){
     return "has-text-success";
   } else if(currentHP >= maxHP*0.5){
@@ -22,12 +22,12 @@ function getBulmaTextColorFromCurrentHP(currentHP, maxHP) {
     return "has-text-danger";
   }
 }
-function getAnimationDelayFromCurrentHP(currentHP, maxHP) {
+window.getAnimationDelayFromCurrentHP=function(currentHP, maxHP) {
   let value = currentHP*(100/maxHP);
   return `-${Math.floor(value-0.0001)}s`;
 }
 
-function dieTypeToNum(dieType){
+window.dieTypeToNum=function(dieType){
   switch(dieType) {
     case '':
       return 1;
@@ -50,7 +50,7 @@ function dieTypeToNum(dieType){
   }
 }
 
-function textContainsWords(text, wordArray){
+window.textContainsWords=function(text, wordArray){
   if(text == null || wordArray.length == 0) {return false;}
   text = text.toUpperCase();
 

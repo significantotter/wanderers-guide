@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openWarningsQuickview(data) {
+window.openWarningsQuickview=function(data) {
 
   $('#quickViewTitle').html('Warnings <span class="icon is-small has-text-warning"><i class="fas fa-xs fa-exclamation-triangle"></i></span>');
   let qContent = $('#quickViewContent');

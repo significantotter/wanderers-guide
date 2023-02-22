@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let g_rollHistory = [];
+window.g_rollHistory = [];
 
-function initDiceRoller(){
+window.initDiceRoller=function(){
 
   if(gOption_hasDiceRoller){
     // Stat Roller Btns //
@@ -16,7 +16,7 @@ function initDiceRoller(){
 
 }
 
-function refreshStatRollButtons() {
+window.refreshStatRollButtons=function() {
   window.setTimeout(() => {
     $('.stat-roll-btn').removeClass('pr-1');
     $('.stat-roll-btn').addClass('button is-outlined is-info is-small');
@@ -44,7 +44,7 @@ function refreshStatRollButtons() {
 }
 
 
-function refreshDiceNotationButtons(){
+window.refreshDiceNotationButtons=function(){
   window.setTimeout(() => {
     $('.dice-roll-btn').off();
     $('.dice-roll-btn').click(function() {
@@ -59,7 +59,7 @@ function refreshDiceNotationButtons(){
   }, 100);
 }
 
-function processDiceNotation(text){
+window.processDiceNotation=function(text){
 
   text = processTextBakeSheetVariables(text);
   text = processTextRemoveTooltips(text, /((\d+)+d(\d+)|\+(\d+)|\+ (\d+))/g);
@@ -79,7 +79,7 @@ function processDiceNotation(text){
 }
 
 
-function makeDiceRoll(diceNum, dieType, bonus, label, resultSuffix='', doubleResult=false){
+window.makeDiceRoll=function(diceNum, dieType, bonus, label, resultSuffix='', doubleResult=false){
   let rollStruct = diceRoller_getDiceRoll(diceNum, dieType, bonus, label, resultSuffix, doubleResult);
   g_rollHistory.push(rollStruct);
   openLeftQuickView('Dice Roller');
@@ -93,7 +93,7 @@ function makeDiceRoll(diceNum, dieType, bonus, label, resultSuffix='', doubleRes
 }
 
 //// Math Rands ////
-function diceRoller_getDiceRoll(diceNum, dieType, bonus, label, resultSuffix='', doubleResult=false){
+window.diceRoller_getDiceRoll=function(diceNum, dieType, bonus, label, resultSuffix='', doubleResult=false){
   if(bonus == null || isNaN(bonus)) { bonus = 0; }
   let rollStruct = {Total: null, ResultData: null, RollData: {DiceNum: diceNum, DieType: dieType, Bonus: bonus} };
   let total = 0; let resultData = [];
@@ -119,11 +119,11 @@ function diceRoller_getDiceRoll(diceNum, dieType, bonus, label, resultSuffix='',
   return rollStruct;
 }
 
-function diceRoller_getRandomNumber(max) {
+window.diceRoller_getRandomNumber=function(max) {
   return Math.floor(Math.random()*Math.floor(max))+1;
 }
 
-function diceRoller_getQuickViewLabel(){
+window.diceRoller_getQuickViewLabel=function(){
   let label = null;
   if($('#quickviewDefault').hasClass('is-active')){
     label = $('#quickViewTitle').html().split('<')[0];

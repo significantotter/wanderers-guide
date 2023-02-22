@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let g_spellView_spellKeyAbility = null;
+window.g_spellView_spellKeyAbility = null;
 
-function openSpellQuickview(data){
+window.openSpellQuickview=function(data){
     addBackFunctionality(data);
     addContentSource(data.SpellDataStruct.Spell.id, data.SpellDataStruct.Spell.contentSrc, data.SpellDataStruct.Spell.homebrewID);
 
@@ -683,7 +683,7 @@ function openSpellQuickview(data){
 
 ///
 
-function pre_spellModTextProcessor(text){
+window.pre_spellModTextProcessor=function(text){
     if(!isSheetPage()) { return text; }
     if(g_spellView_spellKeyAbility == null) { return text; }
 
@@ -696,7 +696,7 @@ function pre_spellModTextProcessor(text){
     return text;
 }
 
-function post_spellModTextProcessor(text){
+window.post_spellModTextProcessor=function(text){
   if(!isSheetPage()) { return text; }
   if(g_spellView_spellKeyAbility == null) { return text; }
 
@@ -1105,16 +1105,16 @@ function modifySpellByHeighten(spellData, hText){
   return spellData;
 }
 
-function getHeightenDamageRegex(textBefore){
+window.getHeightenDamageRegex=function(textBefore){
   // Double escape because string will remove an escape before regex applies
   return new RegExp('( |^)([^ \\n]*)( |^)'+textBefore+' (\\d+)(d(\\d+)|)(( \\+ |\\+)(SPELL_MODIFIER|\\d+)|)([ .,;]|$)([^ .,;\\n]*|$)', 'g');
 }
-function damageInvalidEndWordList(){
+window.damageInvalidEndWordList=function(){
   return ['feet'];
 }
 
-let g_tempAutoHeightenCount = null;
-function getAutoHeightenedSpellText(hCount, hText, hVal){
+window.g_tempAutoHeightenCount = null;
+window.getAutoHeightenedSpellText=function(hCount, hText, hVal){
     if(hCount <= 0){ return ''; }
     hText = pre_spellModTextProcessor(hText);
     g_tempAutoHeightenCount = hCount;
@@ -1143,24 +1143,24 @@ function getAutoHeightenedSpellText(hCount, hText, hVal){
 
 }
 
-function handleSpellAutoHeightenedIncrease(match, dieAmount, dieType, endingChar){
+window.handleSpellAutoHeightenedIncrease=function(match, dieAmount, dieType, endingChar){
     dieAmount = dieAmount*g_tempAutoHeightenCount;
     return 'by '+dieAmount+'d'+dieType+''+endingChar;
 }
 
-function handleSpellAutoHeightenedIncreaseBonus(match, dieAmount, dieType, bonusAmount, endingChar){
+window.handleSpellAutoHeightenedIncreaseBonus=function(match, dieAmount, dieType, bonusAmount, endingChar){
     dieAmount = dieAmount*g_tempAutoHeightenCount;
     bonusAmount = bonusAmount*g_tempAutoHeightenCount;
     return 'by '+dieAmount+'d'+dieType+'+'+bonusAmount+''+endingChar;
 }
 
-function handleSpellAutoHeightenedIncreaseAnyNumber(match, numAmount, endingChar){
+window.handleSpellAutoHeightenedIncreaseAnyNumber=function(match, numAmount, endingChar){
   numAmount = numAmount*g_tempAutoHeightenCount;
   return 'by '+numAmount+''+endingChar;
 }
 
 // Spell Utils //
-function getHeightenedTextFromCodeName(codeName){
+window.getHeightenedTextFromCodeName=function(codeName){
     switch(codeName) {
       case "PLUS_ONE": return "+1";
       case "PLUS_TWO": return "+2";
@@ -1180,7 +1180,7 @@ function getHeightenedTextFromCodeName(codeName){
     }
 }
   
-function getHeightenedCount(spellLevel, spellHeightenLevel, heightenName){
+window.getHeightenedCount=function(spellLevel, spellHeightenLevel, heightenName){
     if(spellHeightenLevel == -1) { return 0; }
     if(spellLevel === 0){ spellLevel = 1; } // Cantrips are treated as 1st level
     switch(heightenName) {
@@ -1202,7 +1202,7 @@ function getHeightenedCount(spellLevel, spellHeightenLevel, heightenName){
     }
 }
 
-function removePeriodAtEndOfStr(str){
+window.removePeriodAtEndOfStr=function(str){
     if(str.endsWith('.')) {
         return str.substring(0, str.length - 1);
     } else {

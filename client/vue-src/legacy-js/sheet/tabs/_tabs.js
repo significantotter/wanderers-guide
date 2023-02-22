@@ -7,7 +7,7 @@ $(function () {
 
 });
 
-function changeTab(type, data) {
+window.changeTab=function(type, data) {
 
     $('#tabContent').html('');
 

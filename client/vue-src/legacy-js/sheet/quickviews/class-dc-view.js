@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openClassDCQuickview(data) {
+window.openClassDCQuickview=function(data) {
     let noteFieldID = 'classDC';
 
     $('#quickViewTitle').html('Class DC');

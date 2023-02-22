@@ -41,10 +41,10 @@ $(function () {
 
 });
 
-let g_QViewLastType = null;
-let g_QViewLastData = null;
+window.g_QViewLastType = null;
+window.g_QViewLastData = null;
 
-function openQuickView(type, data, noProtection = false) {
+window.openQuickView=function(type, data, noProtection = false) {
 
   $('#quickViewTitle').html('');
   $('#quickViewTitleRight').html('');
@@ -152,7 +152,7 @@ function openQuickView(type, data, noProtection = false) {
 
 }
 
-function closeQuickView() {
+window.closeQuickView=function() {
   $('#quickviewDefault').removeClass('is-active');
   g_QViewLastData = null;
 
@@ -162,18 +162,18 @@ function closeQuickView() {
   }
 }
 
-function addQuickViewProtection() {
+window.addQuickViewProtection=function() {
   $('#quickviewDefault').addClass('quickview-auto-close-protection');
 }
 
-function enablePreventQuickViewAutoClose(){
+window.enablePreventQuickViewAutoClose=function(){
   $('#quickviewDefault').addClass('quickview-prevent-auto-close');
 }
-function disablePreventQuickViewAutoClose(){
+window.disablePreventQuickViewAutoClose=function(){
   $('#quickviewDefault').removeClass('quickview-prevent-auto-close');
 }
 
-function refreshQuickView(newData=g_QViewLastData) {
+window.refreshQuickView=function(newData=g_QViewLastData) {
   if ($('#quickviewDefault').hasClass('is-active')) {
     let scrollAmt = $('#quickViewContent').parent().scrollTop();
 
@@ -184,7 +184,7 @@ function refreshQuickView(newData=g_QViewLastData) {
 }
 
 
-function addBackFunctionality(quickViewData) {
+window.addBackFunctionality=function(quickViewData) {
 
   if (quickViewData._prevBackData != null && quickViewData._prevBackData.Data != null) {
     $('#quickViewTitleClose').html('<span id="quickViewBack" class="icon has-txt-value-string cursor-clickable" style="font-size:0.8em;"><i class="fas fa-arrow-left"></i></i></span>');
@@ -195,7 +195,7 @@ function addBackFunctionality(quickViewData) {
 
 }
 
-function getContentSource(contentID, contentSrc, homebrewID) {
+window.getContentSource=function(contentID, contentSrc, homebrewID) {
 
   if (contentID != null && contentSrc == null && homebrewID == null) {
     return '<div style="position: fixed; bottom: 5px; right: 12px;"><span class="is-size-7 has-txt-faded is-italic">#' + contentID + '</span></div>';
@@ -228,7 +228,7 @@ function getContentSource(contentID, contentSrc, homebrewID) {
 
 }
 
-function addContentSource(contentID, contentSrc, homebrewID) {
+window.addContentSource=function(contentID, contentSrc, homebrewID) {
   $('#quickViewContent').parent().css('position', 'relative');
   $('#quickViewContent').append(getContentSource(contentID, contentSrc, homebrewID));
 }

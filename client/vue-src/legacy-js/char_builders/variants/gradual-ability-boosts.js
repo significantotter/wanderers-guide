@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function addGradualAbilityBoostsVariant(classStruct){
+window.addGradualAbilityBoostsVariant=function(classStruct){
 
   let newAbilities = [];
   for(let ability of classStruct.Abilities){
@@ -40,7 +40,7 @@ function addGradualAbilityBoostsVariant(classStruct){
   return classStruct;
 }
 
-function getGAB_AbilityBoost(lvl, extraStatement){
+window.getGAB_AbilityBoost=function(lvl, extraStatement){
   let setText = '';
   if(lvl > 1 && lvl <= 5) {
     setText = '2nd-5th level boosts';

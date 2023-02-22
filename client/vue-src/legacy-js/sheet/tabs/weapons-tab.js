@@ -2,10 +2,10 @@
     By Aaron Cassar.
 */
 
-const FIST_ITEM_ID = 56; // <- Fist, Hardcoded Item ID
-const IMPROVISED_ITEM_ID = 4753; // <- Improvised Weapon, Hardcoded Item ID
+window.FIST_ITEM_ID = 56; // <- Fist, Hardcoded Item ID
+window.IMPROVISED_ITEM_ID = 4753; // <- Improvised Weapon, Hardcoded Item ID
 
-function openWeaponsTab(data) {
+window.openWeaponsTab=function(data) {
 
     let addWeaponEntry = function(weaponEntryID, item, invItem, extraData) {
         let weaponListEntryID = 'weaponListEntry'+weaponEntryID;

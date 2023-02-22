@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import CharacterList from "./views/dashboard/character-list/character-list.vue";
+import CharacterSheet from "./views/character/character-sheet.vue";
 import { useCharacters } from "./stores/characters";
 import { useUser } from "./stores/user";
 
@@ -18,6 +19,11 @@ const routes: RouteRecordRaw[] = [
     },
   },
   {
+    path: "/profile/characters/:id(\\d+)",
+    name: "Character Sheet",
+    component: CharacterSheet,
+  },
+  {
     path: "/",
     component: CharacterList,
     beforeEnter: (to) => {
@@ -34,6 +40,6 @@ const routes: RouteRecordRaw[] = [
 // keep it simple for now.
 export const router = createRouter({
   // 4. Provide the history implementation to use. We are using the hash history for simplicity here.
-  history: createWebHistory('/v/'),
+  history: createWebHistory("/v/"),
   routes, // short for `routes: routes`
 });

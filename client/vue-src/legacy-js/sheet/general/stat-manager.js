@@ -32,16 +32,16 @@
 
 */
 
-function initStats(){
+window.initStats=function(){
   //g_statManagerMap = new Map();
   //g_conditionalStatManagerMap = new Map();
 }
 
-function addStat(statName, type, value){
+window.addStat=function(statName, type, value){
   addStatAndSrc(statName, type, value, 'CORE');
 }
 
-function addStatAndSrc(statName, type, value, source){
+window.addStatAndSrc=function(statName, type, value, source){
   statName = statName.replace(/\s/g, "_").toUpperCase();
 
   // Don't add to map, just increase
@@ -72,7 +72,7 @@ function addStatAndSrc(statName, type, value, source){
 }
 
 /*
-function removeStat(statName, source){
+window.removeStat=function(statName, source){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     let statDataMap = g_statManagerMap.get(statName);
     if(statDataMap != null){
@@ -80,12 +80,12 @@ function removeStat(statName, source){
     }
 }
 
-function removeStat(statName){
+window.removeStat=function(statName){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     g_statManagerMap.delete(statName);
 }*/
 
-function getStat(statName, type){
+window.getStat=function(statName, type){
   statName = statName.replace(/\s/g, "_").toUpperCase();
   let value = variables_getBonus(statName, type);
   if(value === 'LAND_SPEED'){
@@ -94,18 +94,18 @@ function getStat(statName, type){
   return value;
 }
 
-function getStatTotal(statName, errorOnFailure=true){
+window.getStatTotal=function(statName, errorOnFailure=true){
   statName = statName.replace(/\s/g, "_").toUpperCase();
   return variables_getTotal(statName, errorOnFailure);
 }
 
-function getStatBonusTotal(statName){
+window.getStatBonusTotal=function(statName){
   statName = statName.replace(/\s/g, "_").toUpperCase();
   let bonusTotal = variables_getBonusTotal(statName);
   if(bonusTotal == 0){ return null; } else { return bonusTotal; }
 }
 
-function getStatExtraBonuses(statName){
+window.getStatExtraBonuses=function(statName){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     /*
     let extraBonuses = null;
@@ -156,12 +156,12 @@ function getStatExtraBonuses(statName){
     return extraBonuses;
 }
 
-function getStatMap(statName){
+window.getStatMap=function(statName){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     return variables_getBonusesMap(statName);
 }
 
-function getModOfValue(valueModName, errorOnFailure=true){
+window.getModOfValue=function(valueModName, errorOnFailure=true){
     if(valueModName == null){ return 0; }
     valueModName = valueModName+''; // Convert to string, in case a num is passed
     valueModName = valueModName.toUpperCase();
@@ -199,13 +199,13 @@ function getModOfValue(valueModName, errorOnFailure=true){
 
 // Conditionals //
 
-function addConditionalStat(statName, condition, source){
+window.addConditionalStat=function(statName, condition, source){
   statName = statName.replace(/\s/g, "_").toUpperCase();
   variables_addToConditionals(statName, condition, source);
 }
 
 /*
-function removeConditionalStat(statName, condition){
+window.removeConditionalStat=function(statName, condition){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     let statDataMap = g_conditionalStatManagerMap.get(statName);
     if(statDataMap != null){
@@ -213,12 +213,12 @@ function removeConditionalStat(statName, condition){
     }
 }
 
-function removeConditionalStat(statName){
+window.removeConditionalStat=function(statName){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     g_conditionalStatManagerMap.delete(statName);
 }
 
-function getConditionalStat(statName, condition){
+window.getConditionalStat=function(statName, condition){
     statName = statName.replace(/\s/g, "_").toUpperCase();
     let statDataMap = g_conditionalStatManagerMap.get(statName);
     if(statDataMap != null){
@@ -228,7 +228,7 @@ function getConditionalStat(statName, condition){
     }
 }*/
 
-function getConditionalStatMap(statName){
+window.getConditionalStatMap=function(statName){
   statName = statName.replace(/\s/g, "_").toUpperCase();
   let map = variables_getConditionalsMap(statName);
   if(map == null){
@@ -238,7 +238,7 @@ function getConditionalStatMap(statName){
   }
 }
 
-function hasConditionals(statName){
+window.hasConditionals=function(statName){
   statName = statName.replace(/\s/g, "_").toUpperCase();
   return variables_hasConditionals(statName);
 }

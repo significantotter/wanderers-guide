@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openHeroPointsQuickview(data) {
+window.openHeroPointsQuickview=function(data) {
 
     $('#quickViewTitle').html('Hero Points');
     let qContent = $('#quickViewContent');

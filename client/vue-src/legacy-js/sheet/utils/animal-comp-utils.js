@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function getAnimalCompanionMaxHealth(charAnimal){
+window.getAnimalCompanionMaxHealth=function(charAnimal){
 
   let animal = g_companionData.AllAnimalCompanions.find(animal => {
       return animal.id == charAnimal.animalCompanionID;
@@ -20,8 +20,8 @@ function getAnimalCompanionMaxHealth(charAnimal){
 
 ////
 
-let g_animalSpecialArray = null;
-function initAnimalSpecializationArray(charAnimal){
+window.g_animalSpecialArray = null;
+window.initAnimalSpecializationArray=function(charAnimal){
   if(charAnimal.specialization == 'NONE'){
     g_animalSpecialArray = [];
   } else {
@@ -33,17 +33,17 @@ function initAnimalSpecializationArray(charAnimal){
   }
 }
 
-function animalHasSpecial(specialName){
+window.animalHasSpecial=function(specialName){
   return g_animalSpecialArray.includes(specialName);
 }
 
-function animalHasAnySpecial(){
+window.animalHasAnySpecial=function(){
   return g_animalSpecialArray.length > 0;
 }
 
 ////
 
-function getAnimalModStr(animal, charAnimal){
+window.getAnimalModStr=function(animal, charAnimal){
   let modStr = animal.modStr;
   if(animalHasSpecial('BULLY')){ modStr += 1; }
   if(animalHasSpecial('WRECKER')){ modStr += 1; }
@@ -58,7 +58,7 @@ function getAnimalModStr(animal, charAnimal){
   }
 }
 
-function getAnimalModDex(animal, charAnimal){
+window.getAnimalModDex=function(animal, charAnimal){
   let modDex = animal.modDex;
   if(animalHasAnySpecial()){ modDex += 1; }
   if(animalHasSpecial('AMBUSHER')){ modDex += 1; }
@@ -74,7 +74,7 @@ function getAnimalModDex(animal, charAnimal){
   }
 }
 
-function getAnimalModCon(animal, charAnimal){
+window.getAnimalModCon=function(animal, charAnimal){
   let modCon = animal.modCon;
   if(animalHasSpecial('RACER')){ modCon += 1; }
   switch(charAnimal.age){
@@ -88,7 +88,7 @@ function getAnimalModCon(animal, charAnimal){
   }
 }
 
-function getAnimalModInt(animal, charAnimal){
+window.getAnimalModInt=function(animal, charAnimal){
   let modInt = animal.modInt;
   if(animalHasAnySpecial()){ modInt += 2; }
   switch(charAnimal.age){
@@ -102,7 +102,7 @@ function getAnimalModInt(animal, charAnimal){
   }
 }
 
-function getAnimalModWis(animal, charAnimal){
+window.getAnimalModWis=function(animal, charAnimal){
   let modWis = animal.modWis;
   if(animalHasSpecial('TRACKER')){ modWis += 1; }
   switch(charAnimal.age){
@@ -116,7 +116,7 @@ function getAnimalModWis(animal, charAnimal){
   }
 }
 
-function getAnimalModCha(animal, charAnimal){
+window.getAnimalModCha=function(animal, charAnimal){
   let modCha = animal.modCha;
   if(animalHasSpecial('BULLY')){ modCha += 3; }
   switch(charAnimal.age){
@@ -132,7 +132,7 @@ function getAnimalModCha(animal, charAnimal){
 
 //
 
-function getAnimalDamageDieNumber(animal, charAnimal){
+window.getAnimalDamageDieNumber=function(animal, charAnimal){
   if(animalHasAnySpecial()){
     return 3;
   }
@@ -147,7 +147,7 @@ function getAnimalDamageDieNumber(animal, charAnimal){
   }
 }
 
-function getAnimalAdditionalDamage(animal, charAnimal){
+window.getAnimalAdditionalDamage=function(animal, charAnimal){
   switch(charAnimal.age){
     case 'YOUNG': return 0;
     case 'MATURE': return 0;
@@ -169,7 +169,7 @@ function getAnimalAdditionalDamage(animal, charAnimal){
 
 //
 
-function hasAnimalAdvancedManeuver(animal, charAnimal){
+window.hasAnimalAdvancedManeuver=function(animal, charAnimal){
   switch(charAnimal.age){
     case 'YOUNG': return false;
     case 'MATURE': return false;
@@ -181,7 +181,7 @@ function hasAnimalAdvancedManeuver(animal, charAnimal){
   }
 }
 
-function hasAnimalMagicalAttacks(animal, charAnimal){
+window.hasAnimalMagicalAttacks=function(animal, charAnimal){
   switch(charAnimal.age){
     case 'YOUNG': return false;
     case 'MATURE': return false;
@@ -195,7 +195,7 @@ function hasAnimalMagicalAttacks(animal, charAnimal){
 
 //
 
-function getAnimalSpecializationArray(charAnimal){
+window.getAnimalSpecializationArray=function(charAnimal){
   if(!animalHasAnySpecial()){
     return null;
   }
@@ -223,7 +223,7 @@ function getAnimalSpecializationArray(charAnimal){
 
 //
 
-function getAnimalUnarmedAttacksNumUps(animal, charAnimal){
+window.getAnimalUnarmedAttacksNumUps=function(animal, charAnimal){
   if(animalHasAnySpecial()){
     return 2;
   }
@@ -238,7 +238,7 @@ function getAnimalUnarmedAttacksNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalUnarmoredDefenseNumUps(animal, charAnimal){
+window.getAnimalUnarmoredDefenseNumUps=function(animal, charAnimal){
   let cNumUps = 0;
   if(animalHasSpecial('AMBUSHER')){ cNumUps += 1; }
   if(animalHasSpecial('DAREDEVIL')){ cNumUps += 1; }
@@ -256,7 +256,7 @@ function getAnimalUnarmoredDefenseNumUps(animal, charAnimal){
 
 //
 
-function getAnimalSize(animal, charAnimal){
+window.getAnimalSize=function(animal, charAnimal){
   let matureSize = function(size){
     if(size == 'TINY'){
       return 'SMALL';
@@ -280,7 +280,7 @@ function getAnimalSize(animal, charAnimal){
 
 //
 
-function getAnimalSkillNumUps(animal, charAnimal, skillName){
+window.getAnimalSkillNumUps=function(animal, charAnimal, skillName){
   switch(skillName){
     case 'intimidation': return getAnimalIntimidationNumUps(animal, charAnimal);
     case 'stealth': return getAnimalStealthNumUps(animal, charAnimal);
@@ -291,7 +291,7 @@ function getAnimalSkillNumUps(animal, charAnimal, skillName){
   }
 }
 
-function getAnimalAcrobaticsNumUps(animal, charAnimal){
+window.getAnimalAcrobaticsNumUps=function(animal, charAnimal){
   if(animalHasSpecial('DAREDEVIL')){ return 3; }
   switch(charAnimal.age){
     case 'YOUNG': return 1;
@@ -304,7 +304,7 @@ function getAnimalAcrobaticsNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalAthleticsNumUps(animal, charAnimal){
+window.getAnimalAthleticsNumUps=function(animal, charAnimal){
   let cNumUps = 0;
   if(animalHasSpecial('WRECKER')){ return 3; }
   if(animalHasSpecial('BULLY')){ cNumUps += 1; }
@@ -319,7 +319,7 @@ function getAnimalAthleticsNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalIntimidationNumUps(animal, charAnimal){
+window.getAnimalIntimidationNumUps=function(animal, charAnimal){
   let cNumUps = animal.skills.includes('intimidation') ? 1 : 0;
   if(animalHasSpecial('BULLY')){ cNumUps += 1; }
   switch(charAnimal.age){
@@ -333,7 +333,7 @@ function getAnimalIntimidationNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalStealthNumUps(animal, charAnimal){
+window.getAnimalStealthNumUps=function(animal, charAnimal){
   let cNumUps = animal.skills.includes('stealth') ? 1 : 0;
   if(animalHasSpecial('AMBUSHER')){ cNumUps += 1; }
   switch(charAnimal.age){
@@ -347,7 +347,7 @@ function getAnimalStealthNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalSurvivalNumUps(animal, charAnimal){
+window.getAnimalSurvivalNumUps=function(animal, charAnimal){
   let cNumUps = animal.skills.includes('survival') ? 1 : 0;
   if(animalHasSpecial('TRACKER')){ cNumUps += 1; }
   switch(charAnimal.age){
@@ -363,7 +363,7 @@ function getAnimalSurvivalNumUps(animal, charAnimal){
 
 //
 
-function getAnimalPerceptionNumUps(animal, charAnimal){
+window.getAnimalPerceptionNumUps=function(animal, charAnimal){
   if(animalHasAnySpecial()){
     return 3;
   }
@@ -380,7 +380,7 @@ function getAnimalPerceptionNumUps(animal, charAnimal){
 
 //
 
-function getAnimalFortitudeNumUps(animal, charAnimal){
+window.getAnimalFortitudeNumUps=function(animal, charAnimal){
   if(animalHasSpecial('RACER')){ return 4; }
   if(animalHasAnySpecial()){ return 3; }
   switch(charAnimal.age){
@@ -394,7 +394,7 @@ function getAnimalFortitudeNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalReflexNumUps(animal, charAnimal){
+window.getAnimalReflexNumUps=function(animal, charAnimal){
   if(animalHasAnySpecial()){
     return 3;
   }
@@ -409,7 +409,7 @@ function getAnimalReflexNumUps(animal, charAnimal){
   }
 }
 
-function getAnimalWillNumUps(animal, charAnimal){
+window.getAnimalWillNumUps=function(animal, charAnimal){
   if(animalHasAnySpecial()){
     return 3;
   }
@@ -426,7 +426,7 @@ function getAnimalWillNumUps(animal, charAnimal){
 
 //
 
-function getAnimalExtraText(animal, charAnimal){
+window.getAnimalExtraText=function(animal, charAnimal){
   let extraText = '';
   if(animalHasSpecial('SHADE')){
     extraText += '<p>It gains darkvision, resistance 5 to all damage except force, and in areas of dim light or darkness, it can Step 10 feet instead of 5 feet.</p>';

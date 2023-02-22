@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openCustomizeItemQuickview(data) {
+window.openCustomizeItemQuickview=function(data) {
     addBackFunctionality(data);
 
     $('#quickViewTitle').html("Customize Item");

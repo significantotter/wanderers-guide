@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function hasCriticalSpecialization(item){
+window.hasCriticalSpecialization=function(item){
     if(item.WeaponData != null){
         return hasWeaponCriticalSpecialization(item);
     } else if(item.ArmorData != null){
@@ -12,7 +12,7 @@ function hasCriticalSpecialization(item){
     }
 }
 
-function hasWeaponCriticalSpecialization(item){
+window.hasWeaponCriticalSpecialization=function(item){
     let itemName = item.Item.name.toUpperCase().replace(/’/g,"'");
     let itemCategory = item.WeaponData.category.toUpperCase();
 
@@ -72,7 +72,7 @@ function hasWeaponCriticalSpecialization(item){
     return false;
 }
 
-function hasArmorSpecialization(item){
+window.hasArmorSpecialization=function(item){
     let itemName = item.Item.name.toUpperCase().replace(/’/g,"'");
     let itemCategory = item.ArmorData.category.toUpperCase();
 
@@ -124,7 +124,7 @@ function hasArmorSpecialization(item){
     return false;
 }
 
-function displayCriticalSpecialization(qContent, item){
+window.displayCriticalSpecialization=function(qContent, item){
 
     let title = criticalSpecializationTitle(item);
     if(title == null) {return;}
@@ -158,7 +158,7 @@ function displayCriticalSpecialization(qContent, item){
 
 
 
-let g_critSpecialTextMap = new Map();
+window.g_critSpecialTextMap = new Map();
 
 g_critSpecialTextMap.set('LEATHER', 'The thick second skin of the armor disperses blunt force to reduce bludgeoning damage. You gain resistance to bludgeoning damage equal to 1 + the value of the armor’s potency rune for medium armor, or 2 + the value of the armor’s potency rune for heavy armor.');
 g_critSpecialTextMap.set('COMPOSITE', 'The numerous overlapping pieces of this armor protect you from piercing attacks. You gain resistance to piercing damage equal to 1 + the value of the armor’s potency rune for medium armor, or 2 + the value of the armor’s potency rune for heavy armor.');
@@ -184,7 +184,7 @@ g_critSpecialTextMap.set('BOMB', 'Increase the radius of the bomb’s splash dam
 g_critSpecialTextMap.set('FIREARM', ' The target must succeed at a Fortitude save against your class DC or be stunned 1.');
 
 
-function criticalSpecializationTitle(item){
+window.criticalSpecializationTitle=function(item){
     let isArmor = null;
     if(item.ArmorData != null){
         isArmor = true;
@@ -200,7 +200,7 @@ function criticalSpecializationTitle(item){
     }
 }
 
-function criticalSpecializationText(item){
+window.criticalSpecializationText=function(item){
 
     let text = '';
     if(item.ArmorData != null){

@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let g_addSpellEntrySetNum = 0;
+window.g_addSpellEntrySetNum = 0;
 
-function openAddSpellQuickview(data){
+window.openAddSpellQuickview=function(data){
 
     $('#quickViewTitle').html("Tradition Spell List");
     let qContent = $('#quickViewContent');
@@ -49,7 +49,7 @@ function openAddSpellQuickview(data){
 
 
 
-function changeSpellTraditionTab(type, traditionName, data){
+window.changeSpellTraditionTab=function(type, traditionName, data){
 
     $('#traitionSpellListSection').html('');
 
@@ -137,7 +137,7 @@ function changeSpellTraditionTab(type, traditionName, data){
 
 }
 
-function displayAddSpell(spellDataStruct, data){
+window.displayAddSpell=function(spellDataStruct, data){
 
     if(spellDataStruct.Spell.isArchived === 1){
         return;
@@ -214,7 +214,7 @@ function displayAddSpell(spellDataStruct, data){
 
 }
 
-function displaySpellDetails(spellDataStruct, spellTradDetailsSpellID){
+window.displaySpellDetails=function(spellDataStruct, spellTradDetailsSpellID){
 
     if(spellDataStruct == null){
         $('#'+spellTradDetailsSpellID).html('');
@@ -421,7 +421,7 @@ function displaySpellDetails(spellDataStruct, spellTradDetailsSpellID){
 
 }
 
-function removePeriodAtEndOfStr(str){
+window.removePeriodAtEndOfStr=function(str){
     if(str.endsWith('.')) {
         return str.substring(0, str.length - 1);
     } else {

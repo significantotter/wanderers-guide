@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openItemQuickview(data) {
+window.openItemQuickview=function(data) {
     addBackFunctionality(data);
     addContentSource(data.ItemDataStruct.Item.id, data.ItemDataStruct.Item.contentSrc, data.ItemDataStruct.Item.homebrewID);
 

@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openFamiliarQuickview(data) {
+window.openFamiliarQuickview=function(data) {
 
     let qContent = $('#quickViewContent');
 
@@ -217,7 +217,7 @@ function openFamiliarQuickview(data) {
 
 }
 
-function updateFamiliar(familiar) {
+window.updateFamiliar=function(familiar) {
 
     let familiarAbilityArray = $('#selectFamiliarAbility').val();
     let masterAbilityArray = $('#selectMasterAbility').val();

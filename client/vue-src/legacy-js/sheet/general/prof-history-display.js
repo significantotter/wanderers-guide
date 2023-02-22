@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function getProfHistoryHTML(VARIABLE_NAME){
+window.getProfHistoryHTML=function(VARIABLE_NAME){
   VARIABLE_NAME = VARIABLE_NAME.replace(/\s/g, "_").toUpperCase();
   const variableValue = variables_getValue(VARIABLE_NAME);
   const finalRank = variables_getFinalRank(VARIABLE_NAME);

@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openOtherProfsQuickview(data) {
+window.openOtherProfsQuickview=function(data) {
     let noteFieldID = 'otherProf-'+data.Name.replace(/\s/g, "_");
 
     $('#quickViewTitle').html(data.Name);

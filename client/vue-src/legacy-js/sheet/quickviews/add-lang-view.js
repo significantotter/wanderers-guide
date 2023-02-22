@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAddLangQuickview(data) {
+window.openAddLangQuickview=function(data) {
 
   $('#quickViewTitle').html("Add Language");
   let qContent = $('#quickViewContent');

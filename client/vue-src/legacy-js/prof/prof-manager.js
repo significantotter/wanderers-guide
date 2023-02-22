@@ -2,12 +2,12 @@
     By Aaron Cassar.
 */
 
-function getProfUserBonus(profBonus){
+window.getProfUserBonus=function(profBonus){
   let numBonus = parseInt(profBonus);
   return (isNaN(numBonus) ? 0 : numBonus);
 }
 
-function getFinalProf(profDataArray) {
+window.getFinalProf=function(profDataArray) {
   if(profDataArray == null || profDataArray.length == 0) { return null; }
 
   let finalProfData = null;
@@ -113,7 +113,7 @@ function getFinalProf(profDataArray) {
 
 }
 
-function getUserSetData(profDataArray) {
+window.getUserSetData=function(profDataArray) {
   if(profDataArray == null || profDataArray.length == 0) { return null; }
   for(const profData of profDataArray){
     if(profData.sourceType === 'user-set' && isNaN(profData.Prof)) {
@@ -123,7 +123,7 @@ function getUserSetData(profDataArray) {
   return null;
 }
 
-function getUserAddedData(profDataArray) {
+window.getUserAddedData=function(profDataArray) {
   if(profDataArray == null || profDataArray.length == 0) { return null; }
   for(const profData of profDataArray){
     if(profData.sourceType === 'user-added') {

@@ -1,10 +1,9 @@
 /* Copyright (C) 2021, Wanderer's Guide, all rights reserved.
     By Aaron Cassar.
 */
-let socket = io();
 
 // ~~~~~ Character Export ~~~~~ //
-export function exportCharacter(charID){
+window.exportCharacter=function(charID){
   startSpinnerSubLoader();
   socket.emit("requestCharExport", charID);
 }
@@ -17,7 +16,7 @@ socket.on("returnCharExport", function(charExportData){
   $('.modal-card-close').trigger('click');
 });
 
-export function charExportDataFileDownload(filename, text) {
+window.charExportDataFileDownload=function(filename, text) {
   let element = document.createElement('a');
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
@@ -33,7 +32,7 @@ export function charExportDataFileDownload(filename, text) {
 
 
 // ~~~~~ Character Copy ~~~~~ //
-export function copyCharacter(charID){
+window.copyCharacter=function(charID){
   socket.emit("requestCharCopy", charID);
 }
 

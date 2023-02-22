@@ -2,7 +2,7 @@
     By Aaron Cassar.
 */
 
-function openAbilityScoreQuickview(data){
+window.openAbilityScoreQuickview=function(data){
 
     $('#quickViewTitle').html(data.AbilityName);
     let qContent = $('#quickViewContent');

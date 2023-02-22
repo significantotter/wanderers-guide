@@ -2,9 +2,9 @@
     By Aaron Cassar.
 */
 
-let sheetStateActiveMap = null;
+window.sheetStateActiveMap = null;
 
-function initSheetStates(){
+window.initSheetStates=function(){
 
   sheetStateActiveMap = new Map();
   for(const sheetState of g_sheetStatesArray){
@@ -14,28 +14,28 @@ function initSheetStates(){
 }
 
 
-function getSheetStateByID(stateID){
+window.getSheetStateByID=function(stateID){
   return g_sheetStatesArray.find(sheetState => {
     return sheetState.id == stateID;
   });
 }
 
-function getSheetStateByName(stateName){
+window.getSheetStateByName=function(stateName){
   return g_sheetStatesArray.find(sheetState => {
     return sheetState.name.toUpperCase() == stateName.toUpperCase();
   });
 }
 
-function isSheetStateActive(stateID){
+window.isSheetStateActive=function(stateID){
   return sheetStateActiveMap.get(stateID);
 }
 
-function setSheetStateActive(stateID, toggle){
+window.setSheetStateActive=function(stateID, toggle){
   sheetStateActiveMap.set(stateID, toggle);
 }
 
 
-function getSheetStates(){
+window.getSheetStates=function(){
 
   let stateArray = [];
   for(let sheetStates of g_sheetStatesArray){
