@@ -1260,6 +1260,324 @@ const userStore = useUser();
 const user = userStore.user;
 </script>
 <style lang="scss">
-// @import "https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css";
-// @import "/css/sheet-styles.css";
+@media screen and (max-width: 768px) {
+  /* Phones */
+
+  #inventoryContent {
+    height: 490px;
+    max-height: 490px;
+    overflow-y: scroll;
+  }
+
+  .mobile-box {
+    margin: 0rem 0rem 1.5rem !important;
+    padding: 0rem !important;
+  }
+
+  #acText {
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+  #acNumber {
+    font-size: 1.5rem;
+  }
+  #shieldText {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+  #shieldBonus {
+    font-size: 1.5rem;
+  }
+
+  #manageSpellsModalCard {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+  /* Tablets */
+
+  #inventoryContent {
+    height: 495px;
+    max-height: 495px;
+    /* max-width: 60vw; - Removed with tablets now zooming in instead*/
+    overflow-y: scroll;
+  }
+
+  #acText {
+    margin-top: 0.5em;
+    font-size: 1rem;
+  }
+  #acNumber {
+    font-size: 1.25rem;
+  }
+  #shieldText {
+    margin-top: 0.5em;
+    font-size: 0.75rem;
+  }
+  #shieldBonus {
+    font-size: 1.25rem;
+  }
+
+  #manageSpellsModalCard {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  /* Zoom in 70% */
+  body {
+    width: 143%;
+    height: 143%;
+    transform-origin: top left;
+    transform: scale(70%);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  /* Desktops */
+
+  #inventoryContent {
+    height: 495px;
+    max-height: 495px;
+    overflow-y: scroll;
+  }
+
+  #acText {
+    margin-top: 0;
+    font-size: 1.25rem;
+  }
+  #acNumber {
+    font-size: 1.5rem;
+  }
+  #shieldText {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+  #shieldBonus {
+    font-size: 1.5rem;
+  }
+
+  #manageSpellsModalCard {
+    width: 90%;
+    height: 90%;
+  }
+}
+
+.health-variable-color {
+  animation-name: health-color;
+  animation-duration: 100s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: normal;
+  animation-fill-mode: none;
+  animation-play-state: paused;
+  animation-delay: -1s;
+}
+@keyframes health-color {
+  100% {
+    color: #48c774;
+  }
+  50% {
+    color: #ffdd57;
+  }
+  0% {
+    color: #f14668;
+  }
+}
+
+.sheet-box {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background: var(--main-box-bg-color);
+  border: 1px solid var(--main-box-bg-color);
+  color: #cccccc;
+  border-radius: 4px;
+}
+
+.sheet-small-box {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  background: var(--main-box-small-bg-color);
+  border: 1px solid var(--main-box-small-bg-color);
+  color: #cccccc;
+  border-radius: 43%;
+}
+
+.card-header {
+  background-color: var(--card-header-color);
+  border-color: hsl(0, 0%, 13%);
+  color: hsl(0, 0%, 73%);
+}
+
+.card {
+  background-color: var(--card-bg-color);
+  border-color: #282828;
+}
+
+/* Tabs */
+.sheet-tabs li.is-active a {
+  color: #303030;
+}
+.sheet-tabs li:hover {
+  color: #303030;
+}
+
+.action-tabs li:hover {
+  color: #3298dc;
+}
+.action-tabs a:hover {
+  border-bottom-color: #3298dc;
+}
+
+.spell-tabs li:hover {
+  color: #3298dc;
+}
+.spell-tabs a:hover {
+  border-bottom-color: #3298dc;
+}
+
+.details-tabs li:hover {
+  color: #3298dc;
+}
+.details-tabs a:hover {
+  border-bottom-color: #3298dc;
+}
+
+.quickViewLeft-Tabs li {
+  color: #dbdbdb;
+}
+.quickViewLeft-Tabs li:hover {
+  color: #3298dc;
+}
+.quickViewLeft-Tabs a:hover {
+  border-bottom-color: #3298dc;
+}
+
+.category-tabs li {
+  color: #dbdbdb;
+}
+.category-tabs li:hover {
+  color: #3298dc;
+}
+.category-tabs a:hover {
+  border-bottom-color: #3298dc;
+}
+
+.tabs:not(.is-boxed) li.is-active a {
+  border-bottom-color: #3298dc;
+  color: #3298dc;
+}
+
+/* Darkmode Styles */
+.input,
+.select select,
+.textarea {
+  background-color: var(--input-bg-color);
+  border-color: hsl(0, 0%, 13%);
+  color: hsl(0, 0%, 86%);
+}
+
+.input-background-color {
+  background-color: var(--input-bg-color);
+}
+
+.input:hover,
+.select select:hover,
+.textarea:hover {
+  border-color: hsl(0, 0%, 10%);
+}
+
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+  color: rgba(219, 219, 219, 0.4);
+}
+
+.hr-highlighted {
+  border-color: #444444 !important;
+}
+
+.hr-light {
+  border-color: #5a5a5a !important;
+}
+
+/* Background Images */
+.background-ac {
+  background: 50% transparent url("../images/ac_background.png") no-repeat;
+  background-size: contain;
+}
+.background-shield {
+  background: 50% transparent url("../images/shield_background.png") no-repeat;
+  background-size: contain;
+}
+
+/* For InvItem Property Runes */
+.select.is-success-dark select {
+  border-color: #47885e;
+}
+
+/* Character Icon */
+.character-icon {
+  width: 128px !important;
+  height: 128px !important;
+  object-fit: cover !important;
+}
+
+.character-icon-smaller {
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: cover !important;
+}
+
+/* Skills */
+a.panel-block:hover,
+label.panel-block:hover {
+  background-color: var(--selectable-hover);
+}
+
+/* Companions */
+.companion-icon {
+  width: 64px !important;
+  height: 64px !important;
+  object-fit: cover !important;
+}
+
+.companion-bonus-offset {
+  padding-right: 0.5rem !important;
+}
+
+/* Sticky Buttons */
+#main-container {
+  overflow: visible !important;
+}
+.sticky_button {
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 50%;
+  z-index: 10;
+}
+.sticky_button.is-upper {
+  top: 1rem;
+}
+.sticky_buttons_shell {
+  position: absolute;
+  height: 100%;
+}
+.sticky_button_leftest {
+  padding-left: 0.1rem;
+  padding-top: 1rem;
+}
+
+/* Notyf Adjustments */
+@media (min-width: 481px) {
+  .notyf__toast {
+    max-width: 360px !important;
+  }
+  .notyf__ripple {
+    width: 420px !important;
+  }
+}
 </style>
