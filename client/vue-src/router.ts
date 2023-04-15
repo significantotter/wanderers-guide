@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import CharacterList from "./views/dashboard/character-list/character-list.vue";
 import CharacterSheet from "./views/character/character-sheet.vue";
+import Builds from "./views/dashboard/builds/builds.vue";
 import { useCharacters } from "./stores/characters";
 import { useUser } from "./stores/user";
 
@@ -24,14 +25,9 @@ const routes: RouteRecordRaw[] = [
     component: CharacterSheet,
   },
   {
-    path: "/",
-    component: CharacterList,
-    beforeEnter: (to) => {
-      const userStore = useUser();
-      const characterStore = useCharacters();
-      Promise.all([userStore.load(), characterStore.load()]);
-      return false;
-    },
+    path: "/builds",
+    name: "Builds",
+    component: Builds,
   },
 ];
 

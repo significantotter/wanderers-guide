@@ -2,81 +2,84 @@
     By Aaron Cassar.
 */
 
-function openBuildsBrowse(){
+window.openBuildsBrowse=function(){
   window.history.pushState('builds', '', '/builds/?sub_tab=browse');// Update URL
   socket.emit('requestPublishedBuilds');
   //startSpinnerSubLoader();
 }
 
-socket.on("returnPublishedBuilds", function(builds){
+export function listenForPublishedBuilds(){
 
-  builds = builds.sort(
-    function(a, b) {
-      let aRating = a.characters.length;
-      let bRating = b.characters.length;
-      if (aRating === bRating) {
-        // Name is only important when ratings are the same
-        return a.name > b.name ? 1 : -1;
+  socket.on("returnPublishedBuilds", function(builds){
+
+    builds = builds.sort(
+      function(a, b) {
+        let aRating = a.characters.length;
+        let bRating = b.characters.length;
+        if (aRating === bRating) {
+          // Name is only important when ratings are the same
+          return a.name > b.name ? 1 : -1;
+        }
+        return bRating - aRating;
       }
-      return bRating - aRating;
-    }
-  );
-
-  stopSpinnerSubLoader();
-  $('#tabContent').html('');
-  $('#tabContent').addClass('is-hidden');
-  $('#tabContent').load("/templates/builds/display-browse.html");
-  $.ajax({ type: "GET",
-    url: "/templates/builds/display-browse.html",
-    success : function(text)
-    {
-
-      $("#filterNameInput").blur(function(){
-        if($('#filterNameInput').val() != ''){
-          $('#filterNameInput').addClass('is-info');
-        } else {
-          $('#filterNameInput').removeClass('is-info');
-        }
-      });
-      $("#filterDescInput").blur(function(){
-        if($('#filterDescInput').val() != ''){
-          $('#filterDescInput').addClass('is-info');
-        } else {
-          $('#filterDescInput').removeClass('is-info');
-        }
-      });$("#filterAuthorInput").blur(function(){
-        if($('#filterAuthorInput').val() != ''){
-          $('#filterAuthorInput').addClass('is-info');
-        } else {
-          $('#filterAuthorInput').removeClass('is-info');
-        }
-      });
-      $("#filterRatingInput").blur(function(){
-        if($('#filterRatingInput').val() != ''){
-          $('#filterRatingInput').addClass('is-info');
-        } else {
-          $('#filterRatingInput').removeClass('is-info');
-        }
-      });
-
-      // Search Filtering //
-      $('#updateFilterButton').click(function(){
-        filterBundleSearch(builds);
-      });
-      $(document).on('keypress',function(e) {
-        if(e.which == 13) {
+    );
+  
+    stopSpinnerSubLoader();
+    $('#tabContent').html('');
+    $('#tabContent').addClass('is-hidden');
+    $('#tabContent').load("/templates/builds/display-browse.html");
+    $.ajax({ type: "GET",
+      url: "/templates/builds/display-browse.html",
+      success : function(text)
+      {
+  
+        $("#filterNameInput").blur(function(){
+          if($('#filterNameInput').val() != ''){
+            $('#filterNameInput').addClass('is-info');
+          } else {
+            $('#filterNameInput').removeClass('is-info');
+          }
+        });
+        $("#filterDescInput").blur(function(){
+          if($('#filterDescInput').val() != ''){
+            $('#filterDescInput').addClass('is-info');
+          } else {
+            $('#filterDescInput').removeClass('is-info');
+          }
+        });$("#filterAuthorInput").blur(function(){
+          if($('#filterAuthorInput').val() != ''){
+            $('#filterAuthorInput').addClass('is-info');
+          } else {
+            $('#filterAuthorInput').removeClass('is-info');
+          }
+        });
+        $("#filterRatingInput").blur(function(){
+          if($('#filterRatingInput').val() != ''){
+            $('#filterRatingInput').addClass('is-info');
+          } else {
+            $('#filterRatingInput').removeClass('is-info');
+          }
+        });
+  
+        // Search Filtering //
+        $('#updateFilterButton').click(function(){
           filterBundleSearch(builds);
-        }
-      });
-      filterBundleSearch(builds);
-
-      $('#tabContent').removeClass('is-hidden');
-
-    }
+        });
+        $(document).on('keypress',function(e) {
+          if(e.which == 13) {
+            filterBundleSearch(builds);
+          }
+        });
+        filterBundleSearch(builds);
+  
+        $('#tabContent').removeClass('is-hidden');
+  
+      }
+    });
   });
-});
+}
 
-function filterBundleSearch(builds){
+window.filterBundleSearch=function(builds){
 
   let nameFilter = $('#filterNameInput').val();
   let descFilter = $('#filterDescInput').val();
@@ -136,7 +139,7 @@ function filterBundleSearch(builds){
   displayBundleResults(builds);
 }
 
-function displayBundleResults(builds){
+window.displayBundleResults = function(builds){
   $('#browsingList').html('');
 
   if(builds.size <= 0){

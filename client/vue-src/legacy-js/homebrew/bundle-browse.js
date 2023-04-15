@@ -2,88 +2,90 @@
     By Aaron Cassar.
 */
 
-function openBundleBrowse(){
+window.openBundleBrowse=function(){
   window.history.pushState('homebrew', '', '/homebrew/?sub_tab=browse');// Update URL
   socket.emit('requestPublishedHomebrewBundles');
   //startSpinnerSubLoader();
 }
 
-socket.on("returnPublishedHomebrewBundles", function(homebrewBundles){
+export function listenForPublishedHomebrewBuilds(){
+  socket.on("returnPublishedHomebrewBundles", function(homebrewBundles){
 
-  homebrewBundles = homebrewBundles.sort(
-    function(a, b) {
-      let aRating = a.userHomebrewBundles.length;
-      let bRating = b.userHomebrewBundles.length;
-      if (aRating === bRating) {
-        // Name is only important when ratings are the same
-        return a.name > b.name ? 1 : -1;
+    homebrewBundles = homebrewBundles.sort(
+      function(a, b) {
+        let aRating = a.userHomebrewBundles.length;
+        let bRating = b.userHomebrewBundles.length;
+        if (aRating === bRating) {
+          // Name is only important when ratings are the same
+          return a.name > b.name ? 1 : -1;
+        }
+        return bRating - aRating;
       }
-      return bRating - aRating;
-    }
-  );
+    );
 
-  stopSpinnerSubLoader();
-  $('#tabContent').html('');
-  $('#tabContent').addClass('is-hidden');
-  $('#tabContent').load("/templates/homebrew/display-browse.html");
-  $.ajax({ type: "GET",
-    url: "/templates/homebrew/display-browse.html",
-    success : function(text)
-    {
+    stopSpinnerSubLoader();
+    $('#tabContent').html('');
+    $('#tabContent').addClass('is-hidden');
+    $('#tabContent').load("/templates/homebrew/display-browse.html");
+    $.ajax({ type: "GET",
+      url: "/templates/homebrew/display-browse.html",
+      success : function(text)
+      {
 
-      $("#filterNameInput").blur(function(){
-        if($('#filterNameInput').val() != ''){
-          $('#filterNameInput').addClass('is-info');
-        } else {
-          $('#filterNameInput').removeClass('is-info');
-        }
-      });
-      $("#filterDescInput").blur(function(){
-        if($('#filterDescInput').val() != ''){
-          $('#filterDescInput').addClass('is-info');
-        } else {
-          $('#filterDescInput').removeClass('is-info');
-        }
-      });$("#filterAuthorInput").blur(function(){
-        if($('#filterAuthorInput').val() != ''){
-          $('#filterAuthorInput').addClass('is-info');
-        } else {
-          $('#filterAuthorInput').removeClass('is-info');
-        }
-      });
-      $("#filterRatingInput").blur(function(){
-        if($('#filterRatingInput').val() != ''){
-          $('#filterRatingInput').addClass('is-info');
-        } else {
-          $('#filterRatingInput').removeClass('is-info');
-        }
-      });
-      $("#filterKeyRequiredInput").blur(function(){
-        if($('#filterKeyRequiredInput').val() != 'ANY'){
-          $('#filterKeyRequiredInput').parent().addClass('is-info');
-        } else {
-          $('#filterKeyRequiredInput').parent().removeClass('is-info');
-        }
-      });
+        $("#filterNameInput").blur(function(){
+          if($('#filterNameInput').val() != ''){
+            $('#filterNameInput').addClass('is-info');
+          } else {
+            $('#filterNameInput').removeClass('is-info');
+          }
+        });
+        $("#filterDescInput").blur(function(){
+          if($('#filterDescInput').val() != ''){
+            $('#filterDescInput').addClass('is-info');
+          } else {
+            $('#filterDescInput').removeClass('is-info');
+          }
+        });$("#filterAuthorInput").blur(function(){
+          if($('#filterAuthorInput').val() != ''){
+            $('#filterAuthorInput').addClass('is-info');
+          } else {
+            $('#filterAuthorInput').removeClass('is-info');
+          }
+        });
+        $("#filterRatingInput").blur(function(){
+          if($('#filterRatingInput').val() != ''){
+            $('#filterRatingInput').addClass('is-info');
+          } else {
+            $('#filterRatingInput').removeClass('is-info');
+          }
+        });
+        $("#filterKeyRequiredInput").blur(function(){
+          if($('#filterKeyRequiredInput').val() != 'ANY'){
+            $('#filterKeyRequiredInput').parent().addClass('is-info');
+          } else {
+            $('#filterKeyRequiredInput').parent().removeClass('is-info');
+          }
+        });
 
-      // Search Filtering //
-      $('#updateFilterButton').click(function(){
-        filterBundleSearch(homebrewBundles);
-      });
-      $(document).on('keypress',function(e) {
-        if(e.which == 13) {
+        // Search Filtering //
+        $('#updateFilterButton').click(function(){
           filterBundleSearch(homebrewBundles);
-        }
-      });
-      filterBundleSearch(homebrewBundles);
+        });
+        $(document).on('keypress',function(e) {
+          if(e.which == 13) {
+            filterBundleSearch(homebrewBundles);
+          }
+        });
+        filterBundleSearch(homebrewBundles);
 
-      $('#tabContent').removeClass('is-hidden');
+        $('#tabContent').removeClass('is-hidden');
 
-    }
+      }
+    });
   });
-});
+}
 
-function filterBundleSearch(homebrewBundles){
+window.filterBundleSearch=function(homebrewBundles){
 
   let nameFilter = $('#filterNameInput').val();
   let descFilter = $('#filterDescInput').val();
@@ -153,7 +155,7 @@ function filterBundleSearch(homebrewBundles){
   displayBundleResults(homebrewBundles);
 }
 
-function displayBundleResults(homebrewBundles){
+window.displayBundleResults=function(homebrewBundles){
   $('#browsingList').html('');
 
   if(homebrewBundles.size <= 0){

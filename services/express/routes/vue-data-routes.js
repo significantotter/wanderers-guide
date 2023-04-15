@@ -89,6 +89,18 @@ router.get("/characters", async (req, res) => {
     });
   }
 });
+router.get("/page/builds", (req, res) => {
+  let viewBuildID = parseInt(req.query.view_id);
+  if (isNaN(viewBuildID)) {
+    viewBuildID = null;
+  }
+  let buildTabName = req.query.sub_tab;
+
+  res.json({
+    viewBuildID,  
+    buildTabName,
+  });
+});
 router.post("/characters/:charID/copy", async function (req, res) {
   const charID = Number(req.params.charID);
   if (isNaN(charID)) {

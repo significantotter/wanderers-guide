@@ -2,20 +2,20 @@
     By Aaron Cassar.
 */
 
-let socket = io();
+window.socket = io();
 
-let g_activeBuild = null;
+window.g_activeBuild = null;
 
-let g_featMap = null;
-let g_itemMap = null;
-let g_spellMap = null;
-let g_allLanguages = null;
-let g_allConditions = null;
-let g_allTags = null;
-let g_skillMap = null;
+window.g_featMap = null;
+window.g_itemMap = null;
+window.g_spellMap = null;
+window.g_allLanguages = null;
+window.g_allConditions = null;
+window.g_allTags = null;
+window.g_skillMap = null;
 
 // ~~~~~~~~~~~~~~ // Run on Load // ~~~~~~~~~~~~~~ //
-$(function () {
+export function initBuildsPage(viewBuildID, buildTabName){
 
   $('.category-tabs li a').click(function() {
     $('#browseTab').parent().removeClass("is-active");
@@ -30,11 +30,6 @@ $(function () {
   $('#userContentTab').click(function() {
     openUserContent();
   });
-
-
-  let viewBuildID = $('#builds-container').attr('data-view-build-id');
-  let buildTabName = $('#builds-container').attr('data-direct-to-tab').toUpperCase();
-
   if(viewBuildID != '' || buildTabName != '') {
     if(viewBuildID != ''){
       $('#browseTab').parent().addClass('is-active');
@@ -50,7 +45,7 @@ $(function () {
     $('#browseTab').trigger("click");
   }
 
-});
+};
 
 /*
 socket.on("returnHomebrewBundle", function(REQUEST_TYPE, homebrewBundle){

@@ -2,14 +2,14 @@
     By Aaron Cassar.
 */
 
-function openBuildView(buildID){
+window.openBuildView = function(buildID){
   window.history.pushState('builds', '', '/builds/?view_id='+buildID);// Update URL
   socket.emit('requestBuildContents', buildID);
   startSpinnerSubLoader();
 }
 
-let g_notesMap;
-let g_unselectedDataArray;
+window.g_notesMap=null;
+window.g_unselectedDataArray=null;
 
 socket.on("returnBuildContents", function(buildContents){
 
@@ -571,7 +571,7 @@ socket.on('returnCharacterFailedToCreateFromBuild', function(){
   new ConfirmMessage('Cannot Create Character', 'It seems like you\'ve reached your max characters. To get unlimited characters, support us and what we\'re doing on Patreon!', 'Okay', 'modal-failed-max-characters', 'modal-failed-max-characters-btn', 'is-info');
 });
 
-function populateAccord(accordBodyID, optionsList){
+window.populateAccord = function(accordBodyID, optionsList){
 
   let content = $('#'+accordBodyID);
   content.html('');
@@ -632,7 +632,7 @@ function generateNotesMap(){
 
 }
 
-function processMetaData(buildContents){
+window.processMetaData = function(buildContents){
 
   let ancestryFeats = [];
   let classSelections = [];
@@ -681,18 +681,18 @@ function processMetaData(buildContents){
 
 }
 
-function processData_isCheckedData(data){
+window.processData_isCheckedData = function(data){
   return ((data.source == 'chosenFeats' || data.source == 'classChoice') && data.value != null);
 }
 
-function processData_isAncestryFeat(data){
+window.processData_isAncestryFeat = function(data){
   return (data.source == 'chosenFeats'
     && data.sourceCode.startsWith('ancestryFeat-')
     && data.sourceType == 'ancestry'
   );
 }
 
-function processData_isClassFeat(data){
+window.processData_isClassFeat = function(data){
   if(data.source == 'chosenFeats'
     && data.sourceCode.startsWith('classAbility-')
     && !data.sourceCode.startsWith('classAbility--')
@@ -716,14 +716,14 @@ function processData_isClassFeat(data){
   }
 }
 
-function processData_isArchetypeFeat(data){
+window.processData_isArchetypeFeat = function(data){
   return (data.source == 'chosenFeats'
     && data.sourceCode.startsWith('classAbility--')
     && data.sourceType == 'class'
   );
 }
 
-function processData_isGeneralFeat(data, buildContents){
+window.processData_isGeneralFeat = function(data, buildContents){
   if (data.source == 'chosenFeats'
     && data.sourceCode.startsWith('classAbility-')
     && !data.sourceCode.startsWith('classAbility--')
@@ -756,7 +756,7 @@ function processData_isGeneralFeat(data, buildContents){
   }
 }
 
-function processData_isSkillFeat(data){
+window.processData_isSkillFeat = function(data){
   if (data.source == 'chosenFeats'
     && data.sourceCode.startsWith('classAbility-')
     && !data.sourceCode.startsWith('classAbility--')
@@ -774,27 +774,27 @@ function processData_isSkillFeat(data){
   }
 }
 
-function processData_isSkillRelated(data){
+window.processData_isSkillRelated = function(data){
   return (data.source == 'proficiencies'
     && data.value.startsWith('Skill:::')
   );
 }
 
-function processData_isClassSelection(data){
+window.processData_isClassSelection = function(data){
   return (data.source == 'classChoice'
     && data.sourceCode.startsWith('classAbilitySelector-')
     && data.sourceType == 'class'
   );
 }
 
-function processData_isIncorrectOption(data){
+window.processData_isIncorrectOption = function(data){
   return (data.source == 'unselectedData'
     && data.value.includes('"INCORRECT"')
   );
 }
 
 
-function processData_buildFeatTable(locationID, featDataArray){
+window.processData_buildFeatTable = function(locationID, featDataArray){
   if(featDataArray.length > 0){
     $('#'+locationID+'-section').removeClass('is-hidden');
   } else {
@@ -875,7 +875,7 @@ function processData_buildFeatTable(locationID, featDataArray){
 
 }
 
-function processData_buildSkillTable(locationID, skillDataArray){
+window.processData_buildSkillTable=function(locationID, skillDataArray){
   if(skillDataArray.length > 0){
     $('#'+locationID+'-section').removeClass('is-hidden');
   } else {
@@ -940,7 +940,7 @@ function processData_buildSkillTable(locationID, skillDataArray){
 
 }
 
-function processData_buildClassSelection(locationID, selectionDataArray, buildContents){
+window.processData_buildClassSelection=function(locationID, selectionDataArray, buildContents){
   if(selectionDataArray.length > 0){
     $('#'+locationID+'-section').removeClass('is-hidden');
   } else {
